@@ -80,14 +80,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCollectionViewCell
         cell.backgroundColor = .gray
-        cell.categoryImageView.image = UIImage(named: "category-1")
+        cell.categoryImageView.image = UIImage(named: "category-\(indexPath.row + 1)")
         return cell
     }
     
