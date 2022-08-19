@@ -14,10 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = greenColor
-        navigationBarAppearace.barTintColor = greenColor
+        let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = .green
+            
         return true
     }
 

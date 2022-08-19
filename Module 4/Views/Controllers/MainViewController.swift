@@ -35,11 +35,25 @@ class MainViewController: UIViewController {
     }()
     
     private func setupNavBar() {
+        let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
+        
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 44))
-        navBar.backgroundColor = .green
+        
+        if #available(iOS 13.0, *) {
+          
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = greenColor
+            navBar.standardAppearance = navBarAppearance
+            navBar.scrollEdgeAppearance = navBarAppearance
+        }
+        
         view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Помощь")
-        let closeItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: nil)
+        let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(popVC))
+        closeItem.tintColor = .white
         navItem.leftBarButtonItem = closeItem
         navBar.setItems([navItem], animated: true)
     }
@@ -52,6 +66,10 @@ class MainViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
+    }
+    
+    @objc func popVC() {
+        print("Button tapped")
     }
 }
 

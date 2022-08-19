@@ -84,8 +84,8 @@ final class MainTabBarViewController: UITabBarController {
         profileVC.tabBarItem.title = "Профиль"
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
         
-        let controllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
-        tabBarController?.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
+        viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
+//        tabBarController?.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         
     }
 }
