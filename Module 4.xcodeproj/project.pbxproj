@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42128AB878200E3E792 /* AppDelegate.swift */; };
 		F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42328AB878200E3E792 /* SceneDelegate.swift */; };
-		F527D42628AB878200E3E792 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42528AB878200E3E792 /* ViewController.swift */; };
+		F527D42628AB878200E3E792 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42528AB878200E3E792 /* MainViewController.swift */; };
 		F527D42928AB878200E3E792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42728AB878200E3E792 /* Main.storyboard */; };
 		F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527D42A28AB878600E3E792 /* Assets.xcassets */; };
 		F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */; };
+		F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */; };
+		F5A927DE28ABA9C500E8DA4E /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */; };
+		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F527D41E28AB878200E3E792 /* Module 4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Module 4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F527D42128AB878200E3E792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F527D42328AB878200E3E792 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F527D42528AB878200E3E792 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F527D42528AB878200E3E792 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F527D42828AB878200E3E792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F527D42A28AB878600E3E792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F527D42D28AB878600E3E792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F527D42F28AB878600E3E792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,59 @@
 		F527D42028AB878200E3E792 /* Module 4 */ = {
 			isa = PBXGroup;
 			children = (
-				F527D42128AB878200E3E792 /* AppDelegate.swift */,
-				F527D42328AB878200E3E792 /* SceneDelegate.swift */,
-				F527D42528AB878200E3E792 /* ViewController.swift */,
-				F527D42728AB878200E3E792 /* Main.storyboard */,
-				F527D42A28AB878600E3E792 /* Assets.xcassets */,
-				F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */,
+				F5797F0228AF7C9200FE85D3 /* Application */,
+				F5797EFF28AF7BC500FE85D3 /* Controllers */,
+				F5797EFE28AF7BBC00FE85D3 /* Views */,
+				F5797F0128AF7C5600FE85D3 /* Tab bar */,
+				F5797F0028AF7BEF00FE85D3 /* Resourses */,
 				F527D42F28AB878600E3E792 /* Info.plist */,
 			);
 			path = "Module 4";
+			sourceTree = "<group>";
+		};
+		F5797EFE28AF7BBC00FE85D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5797EFF28AF7BC500FE85D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F527D42528AB878200E3E792 /* MainViewController.swift */,
+			);
+			name = Controllers;
+			path = Views/Controllers;
+			sourceTree = "<group>";
+		};
+		F5797F0028AF7BEF00FE85D3 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				F527D42728AB878200E3E792 /* Main.storyboard */,
+				F527D42A28AB878600E3E792 /* Assets.xcassets */,
+				F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		F5797F0128AF7C5600FE85D3 /* Tab bar */ = {
+			isa = PBXGroup;
+			children = (
+				F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */,
+				F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */,
+			);
+			path = "Tab bar";
+			sourceTree = "<group>";
+		};
+		F5797F0228AF7C9200FE85D3 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F527D42128AB878200E3E792 /* AppDelegate.swift */,
+				F527D42328AB878200E3E792 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +188,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F527D42628AB878200E3E792 /* ViewController.swift in Sources */,
+				F527D42628AB878200E3E792 /* MainViewController.swift in Sources */,
+				F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */,
+				F5A927DE28ABA9C500E8DA4E /* MainTabBarViewController.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
+				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +344,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Module 4/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -318,6 +372,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Module 4/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
