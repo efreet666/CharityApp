@@ -33,11 +33,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(categoryImageView)
         contentView.addSubview(categoryNameLabel)
         
+        //MARK: - make contstraint
         NSLayoutConstraint.activate([
-            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
-            categoryImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 40),
-            categoryImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -40),
-            categoryImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
+            categoryImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            categoryImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            categoryImageView.widthAnchor.constraint(equalToConstant: 100),
+            categoryImageView.heightAnchor.constraint(equalToConstant: 70)
         ])
         
         NSLayoutConstraint.activate([
@@ -49,6 +50,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         
         }
     
+    //MARK: - setup cell
     func setup(image: UIImage, text: String) {
         categoryNameLabel.text = text
         categoryImageView.image = image

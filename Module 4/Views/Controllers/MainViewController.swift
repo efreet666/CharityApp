@@ -9,15 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private lazy var chooseCategoryLabel: UILabel = {
-        let chooseCategoryLabel = UILabel()
-        chooseCategoryLabel.text = "Выберите категорию помощи"
-        chooseCategoryLabel.textColor = UIColor(red: 73/255, green: 74/255, blue: 74/255, alpha: 1)
-        chooseCategoryLabel.textAlignment = .center
-        chooseCategoryLabel.font = UIFont(name: "", size: 17)
-        chooseCategoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        return chooseCategoryLabel
-    }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
@@ -30,18 +21,19 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 90, left: 9, bottom: 9, right: 9)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2 , height: 160)
-        self.collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
+        
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         
         setupUI()
         setupNavBar()
     }
-    
     
     private func setupNavBar() {
         let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
@@ -57,6 +49,8 @@ class MainViewController: UIViewController {
             navBarAppearance.backgroundColor = greenColor
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
+            
+           
         }
         
         view.addSubview(navBar)
@@ -71,21 +65,14 @@ class MainViewController: UIViewController {
     private func setupUI() {
         
         view.addSubview(collectionView)
-        view.addSubview(chooseCategoryLabel)
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -40),
+//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+//        ])
         
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-        ])
-        
-        NSLayoutConstraint.activate([
-            chooseCategoryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            chooseCategoryLabel.heightAnchor.constraint(equalToConstant: 20),
-            chooseCategoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            chooseCategoryLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-        ])
+     
     }
     
     @objc func popVC() {
@@ -93,10 +80,10 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return categoryData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -107,6 +94,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Cell №\(indexPath.row + 1) tapped")
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as! HeaderCollectionReusableView
+        header.configure()
+        return header
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.size.width, height: 50)
+    }
 }
 

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.backgroundColor = .green
-            
+        
         return true
     }
 
