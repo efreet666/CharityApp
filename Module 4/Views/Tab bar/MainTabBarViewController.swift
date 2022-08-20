@@ -17,6 +17,7 @@ final class MainTabBarViewController: UITabBarController {
         centerButton.layer.cornerRadius = centerButtonDiameter / 2
         centerButton.backgroundColor = greenColor
         centerButton.translatesAutoresizingMaskIntoConstraints = false
+        centerButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
         return centerButton
     }()
     
@@ -28,14 +29,34 @@ final class MainTabBarViewController: UITabBarController {
         return heartImageView
     }()
     
+    private lazy var blurView: UIVisualEffectView = {
+        let view = UIVisualEffectView()
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        //setupBlurView()
+        
+        
     }
-
-    
-    
+  
+    private func setupBlurView() {
+        let blurEffect = UIBlurEffect(style: .regular)
+        view.addSubview(blurView)
+        blurView.effect = blurEffect
+        NSLayoutConstraint.activate([
+            blurView.heightAnchor.constraint(equalToConstant: 20),
+            blurView.widthAnchor.constraint(equalToConstant: 5),
+            blurView.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor, constant: -25),
+            blurView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: 8)
+        ])
+        
+    }
     private func setupUI() {
         tabBar.tintColor = greenColor
         
@@ -87,6 +108,11 @@ final class MainTabBarViewController: UITabBarController {
         
         
     }
+    @objc private func didPressMiddleButton() {
+           selectedIndex = 1
+           centerButton.backgroundColor = greenColor
+       }
+    
 }
 
 extension MainTabBarViewController: UITabBarControllerDelegate {
@@ -98,4 +124,6 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
             centerButton.backgroundColor = .gray // 4
         }
     }
+    
+    
 }
