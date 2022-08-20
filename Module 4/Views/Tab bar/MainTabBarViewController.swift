@@ -40,23 +40,10 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupUI()
-        //setupBlurView()
-        
-        
+    
     }
   
-    private func setupBlurView() {
-        let blurEffect = UIBlurEffect(style: .regular)
-        view.addSubview(blurView)
-        blurView.effect = blurEffect
-        NSLayoutConstraint.activate([
-            blurView.heightAnchor.constraint(equalToConstant: 20),
-            blurView.widthAnchor.constraint(equalToConstant: 5),
-            blurView.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor, constant: -25),
-            blurView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: 8)
-        ])
-        
-    }
+    
     private func setupUI() {
         tabBar.tintColor = greenColor
         
@@ -105,11 +92,11 @@ final class MainTabBarViewController: UITabBarController {
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
         
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
-        
+        self.selectedIndex = 2
         
     }
     @objc private func didPressMiddleButton() {
-           selectedIndex = 1
+           selectedIndex = 2
            centerButton.backgroundColor = greenColor
        }
     

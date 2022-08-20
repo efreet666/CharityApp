@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
         setupCollectionView()
         setupNavBar()
     }
