@@ -85,7 +85,6 @@ final class MainTabBarViewController: UITabBarController {
         
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
         
-//        tabBarController?.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         
     }
 }

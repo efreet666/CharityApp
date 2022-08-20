@@ -18,7 +18,6 @@
 		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
 		F5C2ADFE28B0C0290031B6D4 /* categoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2ADFD28B0C0290031B6D4 /* categoryModel.swift */; };
 		F5C2AE0328B0DCC20031B6D4 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */; };
-		F5C2AE0428B0DCC20031B6D4 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C2AE0228B0DCC20031B6D4 /* HeaderCollectionReusableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		F5C2ADFD28B0C0290031B6D4 /* categoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryModel.swift; sourceTree = "<group>"; };
 		F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		F5C2AE0228B0DCC20031B6D4 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */,
-				F5C2AE0228B0DCC20031B6D4 /* HeaderCollectionReusableView.xib */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -208,7 +205,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5C2AE0428B0DCC20031B6D4 /* HeaderCollectionReusableView.xib in Resources */,
 				F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */,
 				F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */,
 				F527D42928AB878200E3E792 /* Main.storyboard in Resources */,

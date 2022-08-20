@@ -20,26 +20,32 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionView()
+        setupNavBar()
+    }
+    
+    //MARK: - setup collectionView
+    private func setupCollectionView() {
+        
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2 , height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
         
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
-        
-        setupUI()
-        setupNavBar()
+        view.addSubview(collectionView)
     }
     
+    //MARK: - setup navigation bar
     private func setupNavBar() {
         let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
         
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 44))
-        
+    
+        //MARK: - NavigationBarAppearance
         if #available(iOS 13.0, *) {
             
             let navBarAppearance = UINavigationBarAppearance()
@@ -52,7 +58,7 @@ class MainViewController: UIViewController {
             
            
         }
-        
+
         view.addSubview(navBar)
         
         let navItem = UINavigationItem(title: "Помощь")
@@ -62,21 +68,10 @@ class MainViewController: UIViewController {
         navBar.setItems([navItem], animated: true)
     }
     
-    private func setupUI() {
-        
-        view.addSubview(collectionView)
-//        NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -40),
-//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-//        ])
-        
-     
-    }
-    
+    //MARK: - back button
     @objc func popVC() {
         print("Button tapped")
+        exit(-1)
     }
 }
 
