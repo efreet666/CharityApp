@@ -20,7 +20,7 @@ final class MainTabBarViewController: UITabBarController {
         centerButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
         return centerButton
     }()
-    
+
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
         heartImageView.image = UIImage(systemName: "heart.fill")
@@ -28,30 +28,29 @@ final class MainTabBarViewController: UITabBarController {
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
     }()
-    
+
     private lazy var blurView: UIVisualEffectView = {
         let view = UIVisualEffectView()
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
-    
+
     }
-  
-    
+
     private func setupUI() {
         tabBar.tintColor = greenColor
-        
-        //MARK: - add subview
+
+        // MARK: - add subview
         tabBar.addSubview(centerButton)
         centerButton.addSubview(heartImageView)
 
-        //MARK: - activate center button contsraints
+        // MARK: - activate center button contsraints
         NSLayoutConstraint.activate([
             centerButton.heightAnchor.constraint(equalToConstant: centerButtonDiameter),
             centerButton.widthAnchor.constraint(equalToConstant: centerButtonDiameter),
@@ -59,15 +58,15 @@ final class MainTabBarViewController: UITabBarController {
             centerButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
         ])
 
-        //MARK: - activate heart image constraints
+        // MARK: - activate heart image constraints
         NSLayoutConstraint.activate([
             heartImageView.heightAnchor.constraint(equalToConstant: 15),
             heartImageView.widthAnchor.constraint(equalToConstant: 18),
             heartImageView.centerXAnchor.constraint(equalTo: centerButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: centerButton.centerYAnchor)
         ])
-        
-        //MARK: - create VC
+
+        // MARK: - create VC
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
         newsVC.tabBarItem.title = "Новости"
@@ -77,7 +76,7 @@ final class MainTabBarViewController: UITabBarController {
         searchVC.view.backgroundColor = .green
         searchVC.tabBarItem.title = "Поиск"
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        
+
         let helpVC = MainViewController()
         helpVC.tabBarItem.title = "Помочь"
 
@@ -85,21 +84,21 @@ final class MainTabBarViewController: UITabBarController {
         historyVC.view.backgroundColor = .blue
         historyVC.tabBarItem.title = "История"
         historyVC.tabBarItem.image = UIImage(systemName: "clock.arrow.2.circlepath")
-        
+
         let profileVC = UIViewController()
         profileVC.view.backgroundColor = .blue
         profileVC.tabBarItem.title = "Профиль"
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
-        
+
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
         self.selectedIndex = 2
-        
+
     }
     @objc private func didPressMiddleButton() {
            selectedIndex = 2
            centerButton.backgroundColor = greenColor
        }
-    
+
 }
 
 extension MainTabBarViewController: UITabBarControllerDelegate {
@@ -111,6 +110,5 @@ extension MainTabBarViewController: UITabBarControllerDelegate {
             centerButton.backgroundColor = .gray // 4
         }
     }
-    
-    
+
 }

@@ -10,7 +10,7 @@ import UIKit
 class HeaderCollectionReusableView: UICollectionReusableView {
 
     static let identifier = " "
-    
+
     private let headerLabel: UILabel = {
         let headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         headerLabel.textColor = UIColor(red: 73.0 / 255.0, green: 74.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0)
         return headerLabel
     }()
-    
+
     public func configure() {
         backgroundColor = .white
         addSubview(headerLabel)

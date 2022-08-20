@@ -8,17 +8,17 @@
 import UIKit
 
 final class CustomTabBar: UITabBar {
-    
-    //MARK: - properties
+
+    // MARK: - properties
     private var tabBarWidth: CGFloat { self.bounds.width }
     private var tabBarHeight: CGFloat { self.bounds.height }
     private var centerWidth: CGFloat { self.bounds.width / 2 }
     private let circleRadius: CGFloat = 27
-    
+
     override func draw(_ rect: CGRect) {
         drawTabBar()
     }
-    
+
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         let pointIsInside = super.point(inside: point, with: event)
         if pointIsInside == false {
@@ -31,8 +31,7 @@ final class CustomTabBar: UITabBar {
         }
         return pointIsInside
     }
-    
-    
+
     private func shapePath() -> CGPath {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
@@ -42,7 +41,7 @@ final class CustomTabBar: UITabBar {
         path.close()
         return path.cgPath
     }
-    
+
     private func circlePath() -> CGPath {
         let path = UIBezierPath()
         path.addArc(withCenter: CGPoint(x: centerWidth, y: 12),
@@ -52,14 +51,14 @@ final class CustomTabBar: UITabBar {
                     clockwise: true)
         return path.cgPath
     }
-    
+
     private var shapeLayer: CALayer?
     private var circleLayer: CALayer?
 
     private var gradientLayer: CALayer?
-    
+
     private func drawTabBar() {
-        
+
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
@@ -71,7 +70,6 @@ final class CustomTabBar: UITabBar {
         circleLayer.strokeColor = UIColor.lightGray.cgColor
         circleLayer.fillColor = UIColor.white.cgColor
         circleLayer.lineWidth = 1.0
-        
 
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: (self.layer.frame.width / 5) * 2, y: 2, width: 75, height: 10)
@@ -79,7 +77,7 @@ final class CustomTabBar: UITabBar {
                            UIColor.white.cgColor]
         gradient.startPoint = CGPoint(x: 0, y: 0)
         gradient.endPoint = CGPoint(x: 0, y: 1)
-    
+
         if let oldShapeLayer = self.shapeLayer {
                 self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
             } else {
@@ -94,12 +92,11 @@ final class CustomTabBar: UITabBar {
 
         self.shapeLayer = shapeLayer
         self.circleLayer = circleLayer
-        
+
         self.gradientLayer = gradient
 
 //        self.circleLayer?.addSublayer(gradientLayer!)
 //        self.circleLayer?.masksToBounds = false
         }
-    
-    
+
 }

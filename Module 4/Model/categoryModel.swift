@@ -12,7 +12,6 @@ struct CategoryModel {
     let text: String
 }
 
-
 // MARK: - Data
 
 var categoryData: [CategoryModel] = [
