@@ -22,8 +22,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.clipsToBounds = true
         nameLabel.textAlignment = .center
-        nameLabel.textColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
-        nameLabel.font = UIFont(name: "", size: 15)
+        nameLabel.textColor = UIColor(red: 158/255, green: 191/255, blue: 80/255, alpha: 1)
+        nameLabel.font = UIFont(name: "OfficinaSansExtraBoldC", size: 15)
         return nameLabel
     }()
     

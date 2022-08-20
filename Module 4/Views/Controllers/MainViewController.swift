@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
         setupCollectionView()
         setupNavBar()
+        
+             
     }
     
     //MARK: - setup collectionView
@@ -56,12 +58,23 @@ class MainViewController: UIViewController {
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
             
-           
         }
 
         view.addSubview(navBar)
         
-        let navItem = UINavigationItem(title: "Помощь")
+        let navItem = UINavigationItem(title: "Помочь")
+        
+        
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "OfficinaSansExtraBoldC", size: 21)!]
+        
+        UINavigationBar.appearance().titleTextAttributes = attributes
+        
+        let attrs = [
+            NSAttributedString.Key.foregroundColor: UIColor.red,
+            NSAttributedString.Key.font: UIFont(name: "OfficinaSansExtraBoldC", size: 24)!
+        ]
+
+        UINavigationBar.appearance().titleTextAttributes = attrs
         let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(popVC))
         closeItem.tintColor = .white
         navItem.leftBarButtonItem = closeItem

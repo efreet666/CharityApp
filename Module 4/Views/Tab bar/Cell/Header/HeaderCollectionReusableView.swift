@@ -16,7 +16,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.clipsToBounds = true
         headerLabel.textAlignment = .center
-        headerLabel.font = UIFont(name: "", size: 17)
+        headerLabel.font = UIFont(name: "SFUIText-Regular", size: 17)
         headerLabel.text = "Выберите категорию помощи"
         headerLabel.textColor = UIColor(red: 73.0 / 255.0, green: 74.0 / 255.0, blue: 74.0 / 255.0, alpha: 1.0)
         return headerLabel
