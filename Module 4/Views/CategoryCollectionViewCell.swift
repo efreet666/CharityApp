@@ -9,42 +9,51 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     
-    //let categoryImageView = UIImageView()
+    private let categoryImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
-     let categoryImageView: UIImageView = {
-           let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = .scaleAspectFit
-            imageView.clipsToBounds = true
-            return imageView
-        }()
+    private let categoryNameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.clipsToBounds = true
+        nameLabel.textAlignment = .center
+        nameLabel.textColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
+        nameLabel.font = UIFont(name: "", size: 15)
+        return nameLabel
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
             
-        //categoryImageView.contentMode = .scaleAspectFill
-        //categoryImageView.isUserInteractionEnabled = false
         contentView.addSubview(categoryImageView)
+        contentView.addSubview(categoryNameLabel)
         
-        categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        categoryImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20).isActive = true
-        categoryImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20).isActive = true
-        categoryImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        NSLayoutConstraint.activate([
+            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
+            categoryImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 40),
+            categoryImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -40),
+            categoryImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
+        ])
+        
+        NSLayoutConstraint.activate([
+            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 130),
+            categoryNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            categoryNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            categoryNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
+        
         }
     
-//    override func layoutSubviews() {
-//            super.layoutSubviews()
-//
-//            var frame = categoryImageView.frame
-//            frame.size.height = self.frame.size.height / 2 - 20
-//            frame.size.width = self.frame.size.width / 2 - 20
-//            frame.origin.x = self.frame.size.width / 2 - 30
-//            frame.origin.y = self.frame.size.height / 2 - 30
-//            categoryImageView.frame = frame
-        
-      
-//        }
-    
+    func setup(image: UIImage, text: String) {
+        categoryNameLabel.text = text
+        categoryImageView.image = image
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -19,44 +19,44 @@ final class CustomTabBar: UITabBar {
     private let circleRadius: CGFloat = 27
     
     private func shapePath() -> CGPath {
-        let path = UIBezierPath() // 1
-        path.move(to: CGPoint(x: 0, y: 0)) // 2
-        path.addLine(to: CGPoint(x: tabBarWidth, y: 0)) // 3
-        path.addLine(to: CGPoint(x: tabBarWidth, y: tabBarHeight)) // 4
-        path.addLine(to: CGPoint(x: 0, y: tabBarHeight)) // 5
-        path.close() // 6
-        return path.cgPath // 7
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: tabBarWidth, y: 0))
+        path.addLine(to: CGPoint(x: tabBarWidth, y: tabBarHeight))
+        path.addLine(to: CGPoint(x: 0, y: tabBarHeight))
+        path.close()
+        return path.cgPath
     }
     
     private func circlePath() -> CGPath {
-        let path = UIBezierPath() // 1
-        path.addArc(withCenter: CGPoint(x: centerWidth, y: 12), // 2
-                    radius: circleRadius, // 3
-                    startAngle: 180 * .pi / 180, // 4
-                    endAngle: 0 * 180 / .pi, // 5
-                    clockwise: true) // 6
-        return path.cgPath // 7
+        let path = UIBezierPath()
+        path.addArc(withCenter: CGPoint(x: centerWidth, y: 12),
+                    radius: circleRadius,
+                    startAngle: 180 * .pi / 180,
+                    endAngle: 0 * 180 / .pi,
+                    clockwise: true)
+        return path.cgPath
     }
     
     private var shapeLayer: CALayer?
     private var circleLayer: CALayer?
     
     private func drawTabBar() {
-        // 1
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
         shapeLayer.fillColor = UIColor.white.cgColor
         shapeLayer.lineWidth = 1.0
 
-        // 2
+        
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath()
         circleLayer.strokeColor = UIColor.lightGray.cgColor
         circleLayer.fillColor = UIColor.white.cgColor
         circleLayer.lineWidth = 1.0 
 
-        // 3
+     
         if let oldShapeLayer = self.shapeLayer {
             self.layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
         } else {
@@ -69,7 +69,6 @@ final class CustomTabBar: UITabBar {
             self.layer.insertSublayer(circleLayer, at: 1)
         }
 
-        // 4
         self.shapeLayer = shapeLayer
         self.circleLayer = circleLayer
     }

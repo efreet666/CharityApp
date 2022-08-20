@@ -9,12 +9,6 @@ import UIKit
 
 final class MainTabBarViewController: UITabBarController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupUI()
-    }
-
     private let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
     private let centerButtonDiameter: CGFloat = 42
 
@@ -34,33 +28,38 @@ final class MainTabBarViewController: UITabBarController {
         return heartImageView
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupUI()
+    }
+
+    
+    
     private func setupUI() {
         tabBar.tintColor = greenColor
+        
         //MARK: - add subview
         tabBar.addSubview(centerButton)
         centerButton.addSubview(heartImageView)
 
         //MARK: - activate center button contsraints
         NSLayoutConstraint.activate([
-            // 2.1
             centerButton.heightAnchor.constraint(equalToConstant: centerButtonDiameter),
             centerButton.widthAnchor.constraint(equalToConstant: centerButtonDiameter),
-            // 2.2
             centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             centerButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
         ])
 
         //MARK: - activate heart image constraints
         NSLayoutConstraint.activate([
-            // 3.1
             heartImageView.heightAnchor.constraint(equalToConstant: 15),
             heartImageView.widthAnchor.constraint(equalToConstant: 18),
-            // 3.2
             heartImageView.centerXAnchor.constraint(equalTo: centerButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: centerButton.centerYAnchor)
         ])
         
-        
+        //MARK: - create VC
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
         newsVC.tabBarItem.title = "Новости"
@@ -85,7 +84,19 @@ final class MainTabBarViewController: UITabBarController {
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
         
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
+        
 //        tabBarController?.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
         
+    }
+}
+
+extension MainTabBarViewController: UITabBarControllerDelegate {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let selectedIndex = self.tabBar.items?.firstIndex(of: item) // 1
+        if selectedIndex != 1 { // 2
+            centerButton.backgroundColor = greenColor // 3
+        } else {
+            centerButton.backgroundColor = .gray // 4
+        }
     }
 }
