@@ -40,7 +40,8 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupUI()
-
+        
+               
     }
 
     private func setupUI() {
@@ -70,24 +71,29 @@ final class MainTabBarViewController: UITabBarController {
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
         newsVC.tabBarItem.title = "Новости"
+        newsVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         newsVC.tabBarItem.image = UIImage(systemName: "list.bullet")
 
         let searchVC = UIViewController()
         searchVC.view.backgroundColor = .green
         searchVC.tabBarItem.title = "Поиск"
+        searchVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
         let helpVC = MainViewController()
+        helpVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         helpVC.tabBarItem.title = "Помочь"
 
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .blue
+        historyVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         historyVC.tabBarItem.title = "История"
         historyVC.tabBarItem.image = UIImage(systemName: "clock.arrow.2.circlepath")
 
         let profileVC = UIViewController()
         profileVC.view.backgroundColor = .blue
         profileVC.tabBarItem.title = "Профиль"
+        profileVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
 
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
