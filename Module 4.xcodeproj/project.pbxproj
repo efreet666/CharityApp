@@ -100,9 +100,8 @@
 		F5797F0028AF7BEF00FE85D3 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				F5C2AE0F28B213CB0031B6D4 /* Storyboard */,
 				F5C2AE0528B152010031B6D4 /* Fonts */,
-				F527D42728AB878200E3E792 /* Main.storyboard */,
-				F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */,
 				F527D42A28AB878600E3E792 /* Assets.xcassets */,
 				F527D42F28AB878600E3E792 /* Info.plist */,
 			);
@@ -167,6 +166,15 @@
 				F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		F5C2AE0F28B213CB0031B6D4 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F527D42728AB878200E3E792 /* Main.storyboard */,
+				F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -445,6 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

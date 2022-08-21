@@ -71,6 +71,7 @@ final class CustomTabBar: UITabBar {
         circleLayer.fillColor = UIColor.white.cgColor
         circleLayer.lineWidth = 1.0
 
+        //MARK: - gradient
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: (self.layer.frame.width / 5) * 2, y: 2, width: 75, height: 10)
         gradient.colors = [UIColor.lightGray.cgColor,
