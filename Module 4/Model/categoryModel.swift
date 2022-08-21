@@ -5,7 +5,7 @@
 //  Created by Влад Бокин on 20.08.2022.
 //
 
-import UIKit
+import UIKit.UIImage
 
 struct CategoryModel {
     let image: UIImage?

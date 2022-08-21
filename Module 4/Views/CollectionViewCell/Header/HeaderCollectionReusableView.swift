@@ -28,6 +28,11 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         addSubview(headerLabel)
     }
     override func layoutSubviews() {
-        headerLabel.frame = bounds
+        NSLayoutConstraint.activate([
+            headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60),
+            headerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60),
+            headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            headerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -17)
+        ])
     }
 }

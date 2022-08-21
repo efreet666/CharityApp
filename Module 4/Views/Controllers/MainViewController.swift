@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
@@ -25,6 +25,10 @@ class MainViewController: UIViewController {
 
     }
 
+    // MARK: - set light status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+          return .lightContent
+    }
     // MARK: - setup collectionView
     private func setupCollectionView() {
 
@@ -108,6 +112,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: 50)
+        return CGSize(width: self.view.frame.size.width, height: 57)
     }
 }

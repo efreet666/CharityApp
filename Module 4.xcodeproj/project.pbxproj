@@ -14,7 +14,7 @@
 		F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527D42A28AB878600E3E792 /* Assets.xcassets */; };
 		F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */; };
 		F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */; };
-		F5A927DE28ABA9C500E8DA4E /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */; };
+		F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */; };
 		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
 		F5C2ADFE28B0C0290031B6D4 /* categoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2ADFD28B0C0290031B6D4 /* categoryModel.swift */; };
 		F5C2AE0328B0DCC20031B6D4 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */; };
@@ -32,7 +32,7 @@
 		F527D42D28AB878600E3E792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F527D42F28AB878600E3E792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		F5C2ADFD28B0C0290031B6D4 /* categoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryModel.swift; sourceTree = "<group>"; };
 		F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		F5797F0128AF7C5600FE85D3 /* Tab bar */ = {
 			isa = PBXGroup;
 			children = (
-				F5A927DD28ABA9C500E8DA4E /* MainTabBarViewController.swift */,
+				F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */,
 				F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */,
 			);
 			path = "Tab bar";
@@ -275,7 +275,7 @@
 				F527D42628AB878200E3E792 /* MainViewController.swift in Sources */,
 				F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */,
 				F5C2ADFE28B0C0290031B6D4 /* categoryModel.swift in Sources */,
-				F5A927DE28ABA9C500E8DA4E /* MainTabBarViewController.swift in Sources */,
+				F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
 				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,

@@ -36,7 +36,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         // MARK: - make contstraint
         NSLayoutConstraint.activate([
             categoryImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            categoryImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            categoryImageView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -10),
             categoryImageView.widthAnchor.constraint(equalToConstant: 100),
             categoryImageView.heightAnchor.constraint(equalToConstant: 70)
         ])
