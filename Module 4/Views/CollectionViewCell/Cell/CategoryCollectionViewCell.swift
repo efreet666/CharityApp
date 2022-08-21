@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
 
-    private let categoryImageView: UIImageView = {
+    private lazy var categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -17,7 +17,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
 
-    private let categoryNameLabel: UILabel = {
+    private lazy var categoryNameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.clipsToBounds = true

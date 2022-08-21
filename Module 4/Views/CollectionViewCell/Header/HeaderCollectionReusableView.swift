@@ -11,7 +11,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
     static let identifier = " "
 
-    private let headerLabel: UILabel = {
+    private lazy var headerLabel: UILabel = {
         let headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.clipsToBounds = true
@@ -22,6 +22,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         return headerLabel
     }()
 
+    // MARK: - configure header
     public func configure() {
         backgroundColor = .white
         addSubview(headerLabel)

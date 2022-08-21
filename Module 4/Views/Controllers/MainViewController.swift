@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -27,6 +28,7 @@ class MainViewController: UIViewController {
     // MARK: - setup collectionView
     private func setupCollectionView() {
 
+        // MARK: - collection view layout
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
@@ -56,13 +58,12 @@ class MainViewController: UIViewController {
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
             let attributes = [NSAttributedString.Key.font: UIFont(name: "OfficinaSansExtraBoldC", size: 21)!]
-            navBar.titleTextAttributes = attributes
+            navBarAppearance.titleTextAttributes = attributes
         }
 
         view.addSubview(navBar)
 
         let navItem = UINavigationItem(title: "Помочь")
-
         let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                         style: .plain,
                                         target: self,
@@ -75,6 +76,7 @@ class MainViewController: UIViewController {
     // MARK: - back button
     @objc func popVC() {
         print("Button tapped")
+        // close application
         exit(-1)
     }
 }
@@ -98,7 +100,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,                                        withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as? HeaderCollectionReusableView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                     withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as? HeaderCollectionReusableView
+        // MARK: - configure header
         header?.configure()
         return header!
     }

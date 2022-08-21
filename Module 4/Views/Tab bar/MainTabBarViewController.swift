@@ -40,8 +40,6 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupUI()
-        
-               
     }
 
     private func setupUI() {
@@ -80,6 +78,7 @@ final class MainTabBarViewController: UITabBarController {
         searchVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
+        // MARK: - Main VC
         let helpVC = MainViewController()
         helpVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
         helpVC.tabBarItem.title = "Помочь"
@@ -104,17 +103,5 @@ final class MainTabBarViewController: UITabBarController {
            selectedIndex = 2
            centerButton.backgroundColor = greenColor
        }
-
-}
-
-extension MainTabBarViewController: UITabBarControllerDelegate {
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        let selectedIndex = self.tabBar.items?.firstIndex(of: item) // 1
-        if selectedIndex != 1 { // 2
-            centerButton.backgroundColor = greenColor // 3
-        } else {
-            centerButton.backgroundColor = .gray // 4
-        }
-    }
 
 }
