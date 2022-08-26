@@ -6,20 +6,21 @@
 //
 
 import UIKit
+import Rswift
 
 final class MainViewController: UIViewController {
-
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = whiteColor
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
+        self.view.backgroundColor = mainGreenColor
         setupCollectionView()
         setupNavBar()
 
@@ -40,14 +41,13 @@ final class MainViewController: UIViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         view.addSubview(collectionView)
     }
 
     // MARK: - setup navigation bar
     private func setupNavBar() {
-        let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
 
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 44))
 
@@ -56,13 +56,13 @@ final class MainViewController: UIViewController {
 
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.backgroundColor = greenColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: whiteColor]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: whiteColor]
+            navBarAppearance.backgroundColor = mainGreenColor
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
-            let attributes = [NSAttributedString.Key.font: UIFont(name: "OfficinaSansExtraBoldC", size: 21)!]
-            navBarAppearance.titleTextAttributes = attributes
+            let attributes = [NSAttributedString.Key.font: R.font.officinaSansExtraBoldC(size: 21)]
+            navBarAppearance.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         }
 
         view.addSubview(navBar)
@@ -93,8 +93,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CategoryCollectionViewCell
-        cell?.backgroundColor = UIColor(red: 234/255, green: 237/255, blue: 232/255, alpha: 1)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
+        cell?.backgroundColor = lightGreyColor
         cell?.setup(image: categoryData[indexPath.row].image!, text: categoryData[indexPath.row].text)
         return cell!
     }
