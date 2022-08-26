@@ -62,21 +62,21 @@ final class CustomTabBar: UITabBar {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
         shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.fillColor = whiteColor.cgColor
         shapeLayer.lineWidth = 1.0
 
         // MARK: - circle
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath()
         circleLayer.strokeColor = UIColor.lightGray.cgColor
-        circleLayer.fillColor = UIColor.white.cgColor
+        circleLayer.fillColor = whiteColor.cgColor
         circleLayer.lineWidth = 1.0
 
         // MARK: - gradient
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: (self.layer.frame.width / 5) * 2, y: 2, width: 75, height: 10)
         gradient.colors = [UIColor.lightGray.cgColor,
-                           UIColor.white.cgColor]
+                           whiteColor.cgColor]
         gradient.startPoint = CGPoint(x: 0, y: 0)
         gradient.endPoint = CGPoint(x: 0, y: 1)
 

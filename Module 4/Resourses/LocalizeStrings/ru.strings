@@ -1,0 +1,22 @@
+/* 
+  ru.strings
+  Module 4
+
+  Created by Влад Бокин on 26.08.2022.
+  
+*/
+
+"HelpTitle" = "Помочь";
+"ChooseCategory" = "Выберите категорию помощи";
+"AdultCategory" = "Взрослые";
+"ChildCategory" = "Дети";
+"OldCAtegory" = "Пожилые";
+"AnimalsCategory" = "Животные";
+"EventCategory" = "Мероприятия";
+"NewsTabCategory" = "Новости";
+"SearchTabCategory" = "Поиск";
+"HelpTabCategory" = "Помочь";
+"HistoryTabCategory" = "История";
+"ProfileTabCategory" = "Профиль"
+
+

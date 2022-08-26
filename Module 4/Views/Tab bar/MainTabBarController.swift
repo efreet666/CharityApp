@@ -9,13 +9,13 @@ import UIKit
 
 final class MainTabBarViewController: UITabBarController {
 
-    private let greenColor = UIColor(red: 102/255, green: 166/255, blue: 54/255, alpha: 1)
+    
     private let centerButtonDiameter: CGFloat = 42
 
     private lazy var centerButton: UIButton = {
         let centerButton = UIButton()
         centerButton.layer.cornerRadius = centerButtonDiameter / 2
-        centerButton.backgroundColor = greenColor
+        centerButton.backgroundColor = mainGreenColor
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         centerButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
         return centerButton
@@ -43,7 +43,7 @@ final class MainTabBarViewController: UITabBarController {
     }
 
     private func setupUI() {
-        tabBar.tintColor = greenColor
+        tabBar.tintColor = mainGreenColor
 
         // MARK: - add subview
         tabBar.addSubview(centerButton)
@@ -69,30 +69,30 @@ final class MainTabBarViewController: UITabBarController {
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
         newsVC.tabBarItem.title = "Новости"
-        newsVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
+        newsVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         newsVC.tabBarItem.image = UIImage(systemName: "list.bullet")
 
         let searchVC = UIViewController()
         searchVC.view.backgroundColor = .green
         searchVC.tabBarItem.title = "Поиск"
-        searchVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
+        searchVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
         // MARK: - Main VC
         let helpVC = MainViewController()
-        helpVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
+        helpVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         helpVC.tabBarItem.title = "Помочь"
 
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .blue
-        historyVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
+        historyVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         historyVC.tabBarItem.title = "История"
         historyVC.tabBarItem.image = UIImage(systemName: "clock.arrow.2.circlepath")
 
         let profileVC = UIViewController()
         profileVC.view.backgroundColor = .blue
         profileVC.tabBarItem.title = "Профиль"
-        profileVC.tabBarItem.setTitleTextAttributes([.font: UIFont(name: "SFUIText-Regular", size: 10)! ], for: .normal)
+        profileVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
 
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
@@ -101,7 +101,7 @@ final class MainTabBarViewController: UITabBarController {
     }
     @objc private func didPressMiddleButton() {
            selectedIndex = 2
-           centerButton.backgroundColor = greenColor
+           centerButton.backgroundColor = mainGreenColor
        }
 
 }

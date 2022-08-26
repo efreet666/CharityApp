@@ -6,7 +6,7 @@
 //
 
 import UIKit.UIImage
-
+import Rswift
 struct CategoryModel {
     let image: UIImage?
     let text: String
@@ -14,10 +14,10 @@ struct CategoryModel {
 
 // MARK: - Data
 
-var categoryData: [CategoryModel] = [
-    CategoryModel(image: UIImage(named: "category1"), text: "Дети"),
-    CategoryModel(image: UIImage(named: "category2"), text: "Взрослые"),
-    CategoryModel(image: UIImage(named: "category3"), text: "Пожилые"),
-    CategoryModel(image: UIImage(named: "category4"), text: "Животные"),
-    CategoryModel(image: UIImage(named: "category5"), text: "Мероприятия")
+let categoryData: [CategoryModel] = [
+    CategoryModel(image: R.image.childCategoty(), text: "Дети"),
+    CategoryModel(image: R.image.adultCategoty(), text: "Взрослые"),
+    CategoryModel(image: R.image.oldCategoty(), text: "Пожилые"),
+    CategoryModel(image: R.image.animalsCategoty(), text: "Животные"),
+    CategoryModel(image: R.image.eventCategoty(), text: "Мероприятия")
 ]
