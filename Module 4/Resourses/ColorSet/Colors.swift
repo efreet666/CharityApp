@@ -12,6 +12,10 @@ extension UIColor {
     static func rgb(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
         return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
+    
+    static var mainGreenColor: UIColor {
+        return UIColor.rgb(r: 102, g: 166, b: 54)
+    }
 }
 
 let mainGreenColor = UIColor.rgb(r: 102, g: 166, b: 54)

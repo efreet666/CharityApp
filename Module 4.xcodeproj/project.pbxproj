@@ -16,7 +16,7 @@
 		F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */; };
 		F547F8E928B95EBD006D215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8E828B95EBD006D215B /* Colors.swift */; };
 		F547F8ED28B960AB006D215B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8EC28B960AB006D215B /* R.generated.swift */; };
-		F547F8F028B96713006D215B /* ru.strings in Resources */ = {isa = PBXBuildFile; fileRef = F547F8EF28B96713006D215B /* ru.strings */; };
+		F547F8F828BA2E1E006D215B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F547F8FA28BA2E1E006D215B /* Localizable.strings */; };
 		F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */; };
 		F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */; };
 		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
@@ -40,7 +40,8 @@
 		F527D42F28AB878600E3E792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F547F8E828B95EBD006D215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F547F8EC28B960AB006D215B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		F547F8EF28B96713006D215B /* ru.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ru.strings; sourceTree = "<group>"; };
+		F547F8F928BA2E1E006D215B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F547F8FB28BA2E21006D215B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 				F5797EFF28AF7BC500FE85D3 /* Controllers */,
 				F5797EFE28AF7BBC00FE85D3 /* Views */,
 				F5797F0028AF7BEF00FE85D3 /* Resourses */,
+				F547F8FA28BA2E1E006D215B /* Localizable.strings */,
 			);
 			path = "Module 4";
 			sourceTree = "<group>";
@@ -123,14 +125,6 @@
 				F547F8EC28B960AB006D215B /* R.generated.swift */,
 			);
 			path = Rswift;
-			sourceTree = "<group>";
-		};
-		F547F8EE28B966C2006D215B /* LocalizeStrings */ = {
-			isa = PBXGroup;
-			children = (
-				F547F8EF28B96713006D215B /* ru.strings */,
-			);
-			path = LocalizeStrings;
 			sourceTree = "<group>";
 		};
 		F5797EFE28AF7BBC00FE85D3 /* Views */ = {
@@ -159,7 +153,6 @@
 				F5C2AE0528B152010031B6D4 /* Fonts */,
 				F527D42A28AB878600E3E792 /* Assets.xcassets */,
 				F527D42F28AB878600E3E792 /* Info.plist */,
-				F547F8EE28B966C2006D215B /* LocalizeStrings */,
 				F547F8EA28B95F5F006D215B /* ColorSet */,
 			);
 			path = Resourses;
@@ -279,6 +272,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = F527D41528AB878200E3E792;
 			productRefGroup = F527D41F28AB878200E3E792 /* Products */;
@@ -296,9 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */,
+				F547F8F828BA2E1E006D215B /* Localizable.strings in Resources */,
 				F5C2AE0928B157680031B6D4 /* SFUIText-Regular.ttf in Resources */,
 				F5C2AE0728B152270031B6D4 /* OfficinaSansExtraBoldC.ttf in Resources */,
-				F547F8F028B96713006D215B /* ru.strings in Resources */,
 				F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */,
 				F527D42928AB878200E3E792 /* Main.storyboard in Resources */,
 			);
@@ -360,7 +354,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/Module 4/Resourses/Rswift/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -405,6 +399,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		F547F8FA28BA2E1E006D215B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F547F8F928BA2E1E006D215B /* en */,
+				F547F8FB28BA2E21006D215B /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -412,6 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -473,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

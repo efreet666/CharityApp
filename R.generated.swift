@@ -119,8 +119,8 @@ struct R: Rswift.Validatable {
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
-    /// Color `mainGreenColor`.
-    static let mainGreenColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "mainGreenColor")
+    /// Color `MainGreenColor`.
+    static let mainGreenColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "MainGreenColor")
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
@@ -132,7 +132,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIColor(named: "mainGreenColor", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "MainGreenColor", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mainGreenColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(watchOS)
-    /// `UIColor(named: "mainGreenColor", bundle: ..., traitCollection: ...)`
+    /// `UIColor(named: "MainGreenColor", bundle: ..., traitCollection: ...)`
     @available(watchOSApplicationExtension 4.0, *)
     static func mainGreenColor(_: Void = ()) -> UIKit.UIColor? {
       return UIKit.UIColor(named: R.color.mainGreenColor.name)
@@ -307,6 +307,245 @@ struct R: Rswift.Validatable {
         }
 
         fileprivate init() {}
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 12 localization keys.
+    struct localizable {
+      /// en translation: Adult
+      ///
+      /// Locales: en, ru
+      static let adultCategory = Rswift.StringResource(key: "AdultCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Animals
+      ///
+      /// Locales: en, ru
+      static let animalsCategory = Rswift.StringResource(key: "AnimalsCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Children
+      ///
+      /// Locales: en, ru
+      static let childCategory = Rswift.StringResource(key: "ChildCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Choose help categoty
+      ///
+      /// Locales: en, ru
+      static let chooseCategory = Rswift.StringResource(key: "ChooseCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Event
+      ///
+      /// Locales: en, ru
+      static let eventCategory = Rswift.StringResource(key: "EventCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Help
+      ///
+      /// Locales: en, ru
+      static let helpTabCategory = Rswift.StringResource(key: "HelpTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Help
+      ///
+      /// Locales: en, ru
+      static let helpTitle = Rswift.StringResource(key: "HelpTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: History
+      ///
+      /// Locales: en, ru
+      static let historyTabCategory = Rswift.StringResource(key: "HistoryTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: News
+      ///
+      /// Locales: en, ru
+      static let newsTabCategory = Rswift.StringResource(key: "NewsTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Old
+      ///
+      /// Locales: en, ru
+      static let oldCategory = Rswift.StringResource(key: "OldCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Profile
+      ///
+      /// Locales: en, ru
+      static let profileTabCategory = Rswift.StringResource(key: "ProfileTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, ru
+      static let searchTabCategory = Rswift.StringResource(key: "SearchTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+
+      /// en translation: Adult
+      ///
+      /// Locales: en, ru
+      static func adultCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("AdultCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "AdultCategory"
+        }
+
+        return NSLocalizedString("AdultCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Animals
+      ///
+      /// Locales: en, ru
+      static func animalsCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("AnimalsCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "AnimalsCategory"
+        }
+
+        return NSLocalizedString("AnimalsCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Children
+      ///
+      /// Locales: en, ru
+      static func childCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ChildCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ChildCategory"
+        }
+
+        return NSLocalizedString("ChildCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Choose help categoty
+      ///
+      /// Locales: en, ru
+      static func chooseCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ChooseCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ChooseCategory"
+        }
+
+        return NSLocalizedString("ChooseCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Event
+      ///
+      /// Locales: en, ru
+      static func eventCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("EventCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "EventCategory"
+        }
+
+        return NSLocalizedString("EventCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Help
+      ///
+      /// Locales: en, ru
+      static func helpTabCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("HelpTabCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "HelpTabCategory"
+        }
+
+        return NSLocalizedString("HelpTabCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Help
+      ///
+      /// Locales: en, ru
+      static func helpTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("HelpTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "HelpTitle"
+        }
+
+        return NSLocalizedString("HelpTitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: History
+      ///
+      /// Locales: en, ru
+      static func historyTabCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("HistoryTabCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "HistoryTabCategory"
+        }
+
+        return NSLocalizedString("HistoryTabCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: News
+      ///
+      /// Locales: en, ru
+      static func newsTabCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("NewsTabCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "NewsTabCategory"
+        }
+
+        return NSLocalizedString("NewsTabCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Old
+      ///
+      /// Locales: en, ru
+      static func oldCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("OldCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "OldCategory"
+        }
+
+        return NSLocalizedString("OldCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Profile
+      ///
+      /// Locales: en, ru
+      static func profileTabCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ProfileTabCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ProfileTabCategory"
+        }
+
+        return NSLocalizedString("ProfileTabCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, ru
+      static func searchTabCategory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("SearchTabCategory", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "SearchTabCategory"
+        }
+
+        return NSLocalizedString("SearchTabCategory", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
