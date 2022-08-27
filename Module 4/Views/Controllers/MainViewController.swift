@@ -14,13 +14,13 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = whiteColor
+        collectionView.backgroundColor = UIColor.whiteColor
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = mainGreenColor
+        self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
 
@@ -56,9 +56,9 @@ final class MainViewController: UIViewController {
 
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: whiteColor]
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: whiteColor]
-            navBarAppearance.backgroundColor = mainGreenColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.whiteColor]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.whiteColor]
+            navBarAppearance.backgroundColor = UIColor.mainGreenColor
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
             let attributes = [NSAttributedString.Key.font: R.font.officinaSansExtraBoldC(size: 21)]
@@ -93,10 +93,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
         cell?.backgroundColor = lightGreyColor
         cell?.setup(image: categoryData[indexPath.row].image!, text: categoryData[indexPath.row].text)
         return cell!
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.backgroundColor = UIColor.lightGreyColor
+        cell.setup(image: categoryData[indexPath.row].image ?? UIImage() , text: categoryData[indexPath.row].text)
+        return cell
+
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
