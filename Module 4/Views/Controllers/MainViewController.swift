@@ -66,8 +66,8 @@ final class MainViewController: UIViewController {
         }
 
         view.addSubview(navBar)
-
-        let navItem = UINavigationItem(title: "Помочь")
+        
+        let navItem = UINavigationItem(title: R.string.localizable.helpTitle())
         let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                         style: .plain,
                                         target: self,
@@ -85,8 +85,10 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    //Mark: - UICollectionViewDelegate, UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryData.count
     }
@@ -114,13 +116,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                     withReuseIdentifier: HeaderCollectionReusableView.identifier, for: indexPath) as? HeaderCollectionReusableView
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                                           withReuseIdentifier: HeaderCollectionReusableView.identifier,
+                                                                           for: indexPath) as? HeaderCollectionReusableView else  { return UICollectionReusableView()}
         // MARK: - configure header
-        header?.configure()
-        return header!
+        header.configure()
+        return header
     }
+    
+}
+    
 
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: 57)
     }
