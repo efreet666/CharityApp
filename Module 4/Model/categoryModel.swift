@@ -7,6 +7,7 @@
 
 import UIKit.UIImage
 import Rswift
+
 struct CategoryModel {
     let image: UIImage?
     let text: String

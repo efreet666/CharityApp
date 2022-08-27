@@ -17,8 +17,8 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         headerLabel.clipsToBounds = true
         headerLabel.textAlignment = .center
         headerLabel.font = R.font.sfuiTextRegular(size: 17)
-        headerLabel.text = "Выберите категорию помощи"
-        headerLabel.textColor = charcoalGreyColor
+        headerLabel.text = R.string.localizable.chooseCategory()
+        headerLabel.textColor = UIColor.charcoalGreyColor
         return headerLabel
     }()
 
@@ -27,6 +27,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         backgroundColor = .white
         addSubview(headerLabel)
     }
+    
     override func layoutSubviews() {
         NSLayoutConstraint.activate([
             headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60),
