@@ -14,7 +14,7 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = UIColor.whiteColor
+        //collectionView.backgroundColor = UIColor.whiteColor
         return collectionView
     }()
 
@@ -22,10 +22,11 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
-        setupNavBar()
-
+        
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        setupNavBar()
+    }
     // MARK: - set light status bar
     override var preferredStatusBarStyle: UIStatusBarStyle {
           return .lightContent
@@ -85,9 +86,8 @@ final class MainViewController: UIViewController {
     }
 }
 
+// Mark: - UICollectionViewDelegate, UICollectionViewDataSource
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    //Mark: - UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryData.count
@@ -95,13 +95,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
-        cell?.backgroundColor = UIColor.lightGreyColor
-        cell?.setup(image: categoryData[indexPath.row].image!, text: categoryData[indexPath.row].text)
-        return cell!
-
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
+        else {
             return UICollectionViewCell()
         }
         
@@ -113,6 +108,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Cell №\(indexPath.row + 1) tapped")
+        let vc = CurrentCategoryViewController()
+        vc.currentCategoryName = categoryData[indexPath.row].text
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -126,7 +124,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
     
-
+// Mark: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

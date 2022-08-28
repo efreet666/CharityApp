@@ -9,26 +9,12 @@ import UIKit
 
 final class MainTabBarViewController: UITabBarController {
 
-    
-//    private enum Constants {
-//        static let heartImageViewHeight: CGFloat = 15
-//        static let centerButtonDiameter: CGFloat = 42
-//    }
     private enum Constants {
         static let heartImageViewHeight: CGFloat = 15
         static let centerButtonDiameter: CGFloat = 42
         static let centerButtonTopAnchorConstant: CGFloat = -10
         static let heartImageViewWidth: CGFloat = 18
     }
-
-//    private lazy var centerButton: UIButton = {
-//        let centerButton = UIButton()
-//        centerButton.layer.cornerRadius = Constants.centerButtonDiameter / 2
-//        centerButton.backgroundColor = UIColor.mainGreenColor
-//        return centerButton
-//    }()
-    
-    
 
     private lazy var centerButton: UIButton = {
         let centerButton = UIButton()
