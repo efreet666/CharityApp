@@ -97,7 +97,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
-        cell?.backgroundColor = lightGreyColor
+        cell?.backgroundColor = UIColor.lightGreyColor
         cell?.setup(image: categoryData[indexPath.row].image!, text: categoryData[indexPath.row].text)
         return cell!
 

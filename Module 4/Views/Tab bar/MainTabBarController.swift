@@ -10,22 +10,25 @@ import UIKit
 final class MainTabBarViewController: UITabBarController {
 
     
-    private enum Constants {
-        static let heartImageViewHeight: CGFloat = 15
-        static let centerButtonDiameter: CGFloat = 42
-    }
-
-    private lazy var centerButton: UIButton = {
-        let centerButton = UIButton()
-        centerButton.layer.cornerRadius = Constants.centerButtonDiameter / 2
-        centerButton.backgroundColor = mainGreenColor
-
+//    private enum Constants {
+//        static let heartImageViewHeight: CGFloat = 15
+//        static let centerButtonDiameter: CGFloat = 42
+//    }
     private enum Constants {
         static let heartImageViewHeight: CGFloat = 15
         static let centerButtonDiameter: CGFloat = 42
         static let centerButtonTopAnchorConstant: CGFloat = -10
         static let heartImageViewWidth: CGFloat = 18
     }
+
+//    private lazy var centerButton: UIButton = {
+//        let centerButton = UIButton()
+//        centerButton.layer.cornerRadius = Constants.centerButtonDiameter / 2
+//        centerButton.backgroundColor = UIColor.mainGreenColor
+//        return centerButton
+//    }()
+    
+    
 
     private lazy var centerButton: UIButton = {
         let centerButton = UIButton()
@@ -80,7 +83,7 @@ final class MainTabBarViewController: UITabBarController {
 
             heartImageView.heightAnchor.constraint(equalToConstant: Constants.heartImageViewHeight),
             heartImageView.widthAnchor.constraint(equalToConstant: Constants.heartImageViewWidth),
->>>>>>> Stashed changes
+
             heartImageView.centerXAnchor.constraint(equalTo: centerButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: centerButton.centerYAnchor)
         ])
@@ -121,13 +124,11 @@ final class MainTabBarViewController: UITabBarController {
     }
     @objc private func didPressMiddleButton() {
         selectedIndex = 2
-        centerButton.backgroundColor = mainGreenColor
+        centerButton.backgroundColor = UIColor.mainGreenColor
 //        centerButton.backgroundColor = .mainGreenColor
     }
 
-        selectedIndex = 2
-        centerButton.backgroundColor = UIColor.mainGreenColor
-    }
+    
 
 
 }
