@@ -16,9 +16,9 @@ struct CategoryModel {
 // MARK: - Data
 
 let categoryData: [CategoryModel] = [
-    CategoryModel(image: R.image.childCategoty(), text: "Дети"),
-    CategoryModel(image: R.image.adultCategoty(), text: "Взрослые"),
-    CategoryModel(image: R.image.oldCategoty(), text: "Пожилые"),
-    CategoryModel(image: R.image.animalsCategoty(), text: "Животные"),
-    CategoryModel(image: R.image.eventCategoty(), text: "Мероприятия")
+    CategoryModel(image: R.image.childCategoty(), text: R.string.localizable.childCategory()),
+    CategoryModel(image: R.image.adultCategoty(), text: R.string.localizable.adultCategory()),
+    CategoryModel(image: R.image.oldCategoty(), text: R.string.localizable.oldCategory()),
+    CategoryModel(image: R.image.animalsCategoty(), text: R.string.localizable.animalsCategory()),
+    CategoryModel(image: R.image.eventCategoty(), text: R.string.localizable.eventCategory())
 ]

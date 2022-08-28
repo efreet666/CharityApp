@@ -24,7 +24,7 @@ class HeaderCollectionReusableView: UICollectionReusableView {
 
     // MARK: - configure header
     public func configure() {
-        backgroundColor = .white
+        backgroundColor = UIColor.whiteColor
         addSubview(headerLabel)
     }
     

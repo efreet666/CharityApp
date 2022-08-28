@@ -125,7 +125,6 @@ final class MainTabBarViewController: UITabBarController {
     @objc private func didPressMiddleButton() {
         selectedIndex = 2
         centerButton.backgroundColor = UIColor.mainGreenColor
-//        centerButton.backgroundColor = .mainGreenColor
     }
 
     
