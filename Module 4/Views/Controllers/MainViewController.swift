@@ -22,11 +22,10 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
+        setupNavBar()
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        setupNavBar()
-    }
+    
     // MARK: - set light status bar
     override var preferredStatusBarStyle: UIStatusBarStyle {
           return .lightContent

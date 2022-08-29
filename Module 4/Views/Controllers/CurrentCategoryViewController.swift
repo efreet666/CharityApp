@@ -55,7 +55,8 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryNewsTableViewCell.identifier, for: indexPath) as? CategoryNewsTableViewCell else { return UITableViewCell() }
-        cell.setup(image: R.image.newsImages() ?? UIImage(), text: "aaa")
+        
+        //cell.setup(image: R.image.newsImages()! , text: "aaa")
         return cell
     }
     
