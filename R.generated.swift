@@ -159,12 +159,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
     /// Resource file `OfficinaSansExtraBoldC.ttf`.
     static let officinaSansExtraBoldCTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "OfficinaSansExtraBoldC", pathExtension: "ttf")
     /// Resource file `SFUIText-Regular.ttf`.
     static let sfuiTextRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SFUIText-Regular", pathExtension: "ttf")
+    /// Resource file `sf-ui-text-medium.ttf`.
+    static let sfUiTextMediumTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "sf-ui-text-medium", pathExtension: "ttf")
 
     /// `bundle.url(forResource: "OfficinaSansExtraBoldC", withExtension: "ttf")`
     static func officinaSansExtraBoldCTtf(_: Void = ()) -> Foundation.URL? {
@@ -178,19 +180,32 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "sf-ui-text-medium", withExtension: "ttf")`
+    static func sfUiTextMediumTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.sfUiTextMediumTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  /// This `R.font` struct is generated, and contains static references to 3 fonts.
   struct font: Rswift.Validatable {
     /// Font `OfficinaSansExtraBoldC`.
     static let officinaSansExtraBoldC = Rswift.FontResource(fontName: "OfficinaSansExtraBoldC")
+    /// Font `SFUIText-Medium`.
+    static let sfuiTextMedium = Rswift.FontResource(fontName: "SFUIText-Medium")
     /// Font `SFUIText-Regular`.
     static let sfuiTextRegular = Rswift.FontResource(fontName: "SFUIText-Regular")
 
     /// `UIFont(name: "OfficinaSansExtraBoldC", size: ...)`
     static func officinaSansExtraBoldC(size: CGFloat) -> UIKit.UIFont? {
       return UIKit.UIFont(resource: officinaSansExtraBoldC, size: size)
+    }
+
+    /// `UIFont(name: "SFUIText-Medium", size: ...)`
+    static func sfuiTextMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: sfuiTextMedium, size: size)
     }
 
     /// `UIFont(name: "SFUIText-Regular", size: ...)`
@@ -200,13 +215,14 @@ struct R: Rswift.Validatable {
 
     static func validate() throws {
       if R.font.officinaSansExtraBoldC(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'OfficinaSansExtraBoldC' could not be loaded, is 'OfficinaSansExtraBoldC.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.sfuiTextMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFUIText-Medium' could not be loaded, is 'sf-ui-text-medium.ttf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.sfuiTextRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFUIText-Regular' could not be loaded, is 'SFUIText-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 11 images.
+  /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
     /// Image `AdultCategoty`.
     static let adultCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategoty")
@@ -220,6 +236,8 @@ struct R: Rswift.Validatable {
     static let imageShadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "ImageShadow")
     /// Image `OldCategoty`.
     static let oldCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "OldCategoty")
+    /// Image `calendarIcon`.
+    static let calendarIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "calendarIcon")
     /// Image `logo-2`.
     static let logo2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo-2")
     /// Image `logo`.
@@ -270,6 +288,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "OldCategoty", bundle: ..., traitCollection: ...)`
     static func oldCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.oldCategoty, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "calendarIcon", bundle: ..., traitCollection: ...)`
+    static func calendarIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.calendarIcon, compatibleWith: traitCollection)
     }
     #endif
 

@@ -8,7 +8,6 @@
 import UIKit
 
 final class MainTabBarViewController: UITabBarController {
-
     
     private enum Constants {
         static let heartImageViewHeight: CGFloat = 15

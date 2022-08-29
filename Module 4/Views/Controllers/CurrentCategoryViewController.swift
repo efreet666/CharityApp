@@ -29,14 +29,8 @@ class CurrentCategoryViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.mainGreenColor
-        
         setupTableView()
-        
-        
-        self.navigationController?.navigationBar.backgroundColor = UIColor.mainGreenColor
-        self.navigationController?.title = currentCategoryName
-        self.title = currentCategoryName
-        self.tabBarController?.tabBar.backgroundColor = .whiteColor
+        configureNavBar()
         
     }
     
@@ -58,12 +52,17 @@ class CurrentCategoryViewController: UIViewController {
             make.trailing.leading.equalToSuperview()
             make.bottom.equalToSuperview().inset(54)
         }
-        
-        
-        
-        
+     
     }
 
+    private func configureNavBar() {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.mainGreenColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.mainGreenColor
+        self.navigationController?.title = currentCategoryName
+        self.title = currentCategoryName
+        self.tabBarController?.tabBar.backgroundColor = .whiteColor
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor
+    }
 }
 
 extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSource {
@@ -75,7 +74,7 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryNewsTableViewCell.identifier, for: indexPath) as? CategoryNewsTableViewCell else { return UITableViewCell() }
         
-        cell.setup(image: R.image.newsImages() ?? UIImage() , title: "Спонсоры отремонтируют школу-интернат", subtitle: "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …")
+        cell.setup(image: R.image.newsImages() ?? UIImage() , title: "Спонсоры отремонтируют школу-интернат", subtitle: "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …", timeoutTitle: "Осталось 13 дней (21.09 – 20.10)")
         return cell
     }
     

@@ -61,7 +61,7 @@ final class CustomTabBar: UITabBar {
     private var circleLayer: CALayer?
     private var gradientLayer: CALayer?
 
-    private func drawTabBar() {
+    func drawTabBar() {
 
         // MARK: - shape
         let shapeLayer = CAShapeLayer()

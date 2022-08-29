@@ -81,9 +81,16 @@ class CategoryNewsTableViewCell: UITableViewCell {
         titleLabel.textColor = UIColor.whiteColor
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 1
-        titleLabel.font = R.font.sfuiTextRegular(size: 11)
-        titleLabel.text = "Осталось 13 дней (21.09 – 20.10)"
+        titleLabel.font = R.font.sfuiTextMedium(size: 11)
         return titleLabel
+    }()
+    
+    private lazy var calendarIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        imageView.image = R.image.calendarIcon()
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -146,13 +153,19 @@ class CategoryNewsTableViewCell: UITableViewCell {
            make.height.equalTo(15)
         }
         
+        addSubview(calendarIconImageView)
+        calendarIconImageView.snp.makeConstraints { make in
+            make.leading.equalTo(timeoutLabel).inset(-20)
+            make.height.width.equalTo(14)
+            make.centerY.equalTo(greenBarView)
+         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
    
-    func setup(image: UIImage, title: String, subtitle: String) {
+    func setup(image: UIImage, title: String, subtitle: String, timeoutTitle: String) {
         newsTitleLabel.text = title
         let paragraphStyle = NSMutableParagraphStyle()
         //line height size
@@ -163,6 +176,7 @@ class CategoryNewsTableViewCell: UITableViewCell {
         subtitleLabel.attributedText = attrString
         subtitleLabel.textAlignment = NSTextAlignment.center
         newsImageView.image = image
+        timeoutLabel.text = timeoutTitle
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

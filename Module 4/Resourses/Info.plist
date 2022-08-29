@@ -8,6 +8,7 @@
 	<array>
 		<string>OfficinaSansExtraBoldC.ttf</string>
 		<string>SFUIText-Regular.ttf</string>
+		<string>sf-ui-text-medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

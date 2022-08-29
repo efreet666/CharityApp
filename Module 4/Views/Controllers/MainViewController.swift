@@ -10,6 +10,8 @@ import Rswift
 
 final class MainViewController: UIViewController {
     
+    var tabBar : CustomTabBar!
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
@@ -20,10 +22,17 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
-        //setupNavBar()
-        self.title = "Help"
+        setupNavBar()
+        
+
+//        guard let bar = tabBar else { return }
+//        bar.tintColor = .blueGrey
+//        view.addSubview(bar)
+       
     }
     
     // MARK: - set light status bar
@@ -49,32 +58,18 @@ final class MainViewController: UIViewController {
     // MARK: - setup navigation bar
     private func setupNavBar() {
 
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: view.frame.size.width, height: 44))
-
-        // MARK: - NavigationBarAppearance
-        if #available(iOS 13.0, *) {
-
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.whiteColor]
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.whiteColor]
-            navBarAppearance.backgroundColor = UIColor.mainGreenColor
-            navBar.standardAppearance = navBarAppearance
-            navBar.scrollEdgeAppearance = navBarAppearance
-            let attributes = [NSAttributedString.Key.font: R.font.officinaSansExtraBoldC(size: 21)]
-            navBarAppearance.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
-        }
-
-        view.addSubview(navBar)
+        self.title = R.string.localizable.helpTitle()
         
-        let navItem = UINavigationItem(title: R.string.localizable.helpTitle())
         let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                         style: .plain,
                                         target: self,
                                         action: #selector(popVC))
         closeItem.tintColor = .white
-        navItem.leftBarButtonItem = closeItem
-        navBar.setItems([navItem], animated: true)
+        self.navigationItem.leftBarButtonItem = closeItem
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.whiteColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
     }
 
     // MARK: - back button
