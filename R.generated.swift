@@ -206,7 +206,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 9 images.
+  /// This `R.image` struct is generated, and contains static references to 11 images.
   struct image {
     /// Image `AdultCategoty`.
     static let adultCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategoty")
@@ -216,6 +216,8 @@ struct R: Rswift.Validatable {
     static let childCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "ChildCategoty")
     /// Image `EventCategoty`.
     static let eventCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "EventCategoty")
+    /// Image `ImageShadow`.
+    static let imageShadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "ImageShadow")
     /// Image `OldCategoty`.
     static let oldCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "OldCategoty")
     /// Image `logo-2`.
@@ -226,6 +228,8 @@ struct R: Rswift.Validatable {
     static let newsImages = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages")
     /// Image `simbirSoft`.
     static let simbirSoft = Rswift.ImageResource(bundle: R.hostingBundle, name: "simbirSoft")
+    /// Image `yellowHeart`.
+    static let yellowHeart = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellowHeart")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "AdultCategoty", bundle: ..., traitCollection: ...)`
@@ -252,6 +256,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "EventCategoty", bundle: ..., traitCollection: ...)`
     static func eventCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.eventCategoty, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ImageShadow", bundle: ..., traitCollection: ...)`
+    static func imageShadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.imageShadow, compatibleWith: traitCollection)
     }
     #endif
 
@@ -287,6 +298,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "simbirSoft", bundle: ..., traitCollection: ...)`
     static func simbirSoft(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.simbirSoft, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "yellowHeart", bundle: ..., traitCollection: ...)`
+    static func yellowHeart(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.yellowHeart, compatibleWith: traitCollection)
     }
     #endif
 
@@ -614,7 +632,7 @@ struct _R: Rswift.Validatable {
 
     #if os(iOS) || os(tvOS)
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = MainTabBarViewController
+      typealias InitialController = MainViewController
 
       let bundle = R.hostingBundle
       let name = "Main"

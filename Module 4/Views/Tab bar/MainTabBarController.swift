@@ -9,6 +9,7 @@ import UIKit
 
 final class MainTabBarViewController: UITabBarController {
 
+    
     private enum Constants {
         static let heartImageViewHeight: CGFloat = 15
         static let centerButtonDiameter: CGFloat = 42
@@ -45,6 +46,7 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupUI()
+        
     }
 
     private func setupUI() {
@@ -91,7 +93,9 @@ final class MainTabBarViewController: UITabBarController {
         let helpVC = MainViewController()
         helpVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
         helpVC.tabBarItem.title = R.string.localizable.helpTabCategory()
-
+        
+        let navViewController = UINavigationController(rootViewController: helpVC)
+        
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .blue
         historyVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
@@ -104,7 +108,7 @@ final class MainTabBarViewController: UITabBarController {
         profileVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
 
-        viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
+        viewControllers = [newsVC, searchVC, navViewController, historyVC, profileVC]
         self.selectedIndex = 2
 
     }

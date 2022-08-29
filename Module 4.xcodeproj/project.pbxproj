@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				F5797F0128AF7C5600FE85D3 /* Tab bar */,
-				F5C2ADFF28B0D59C0031B6D4 /* CollectionViewCell */,
+				F5C2ADFF28B0D59C0031B6D4 /* ViewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,14 +197,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F5C2ADFF28B0D59C0031B6D4 /* CollectionViewCell */ = {
+		F5C2ADFF28B0D59C0031B6D4 /* ViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				F5C2AE0028B0DCA70031B6D4 /* Header */,
-				F5C2AE0D28B171AF0031B6D4 /* Cell */,
 				F547F90028BBC008006D215B /* CategoryTableViewCell */,
+				F5C2AE0028B0DCA70031B6D4 /* Header */,
+				F5C2AE0D28B171AF0031B6D4 /* CollectionCell */,
 			);
-			path = CollectionViewCell;
+			path = ViewCells;
 			sourceTree = "<group>";
 		};
 		F5C2AE0028B0DCA70031B6D4 /* Header */ = {
@@ -224,12 +224,12 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F5C2AE0D28B171AF0031B6D4 /* Cell */ = {
+		F5C2AE0D28B171AF0031B6D4 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
 				F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */,
 			);
-			path = Cell;
+			path = CollectionCell;
 			sourceTree = "<group>";
 		};
 		F5C2AE0F28B213CB0031B6D4 /* Storyboard */ = {

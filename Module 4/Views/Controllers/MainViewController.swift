@@ -22,8 +22,8 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
-        setupNavBar()
-        
+        //setupNavBar()
+        self.title = "Help"
     }
     
     // MARK: - set light status bar
@@ -107,9 +107,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Cell №\(indexPath.row + 1) tapped")
+        
         let vc = CurrentCategoryViewController()
         vc.currentCategoryName = categoryData[indexPath.row].text
+        
+        self.hidesBottomBarWhenPushed = false
         self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

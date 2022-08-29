@@ -18,12 +18,11 @@ extension UIColor {
     static var mainGreenColor: UIColor {
         return UIColor.rgb(r: 102, g: 166, b: 54)
     }
-    
     static var lightOliveGreenColor: UIColor {
         return UIColor.rgb(r: 158, g: 191, b: 80)
     }
     static var lightGreyColor: UIColor {
-        return UIColor.rgb(r: 234, g: 237, b: 232)
+        return UIColor.rgb(r: 232, g: 237, b: 237)
     }
     static var charcoalGreyColor: UIColor {
         return UIColor.rgb(r: 73, g: 74, b: 74)
@@ -31,14 +30,13 @@ extension UIColor {
     static var whiteColor: UIColor {
         return UIColor.rgb(r: 255, g: 255, b: 255)
     }
-    
+    static var blueGrey: UIColor {
+        return UIColor.rgb(r: 98, g: 127, b: 143)
+    }
+    static var darkSlateBlue: UIColor {
+        return UIColor.rgb(r: 22, g: 59, b: 79)
+    }
     
 
 }
-
-//let mainGreenColor = UIColor.rgb(r: 102, g: 166, b: 54)
-//let lightOliveGreenColor = UIColor.rgb(r: 158, g: 191, b: 80)
-//let lightGreyColor = UIColor.rgb(r: 234, g: 237, b: 232)
-//let charcoalGreyColor = UIColor.rgb(r: 73, g: 74, b: 74)
-//let whiteColor = UIColor.rgb(r: 255, g: 255, b: 255)
 

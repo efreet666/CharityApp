@@ -18,6 +18,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+  
 
     private lazy var categoryNameLabel: UILabel = {
         let nameLabel = UILabel()
