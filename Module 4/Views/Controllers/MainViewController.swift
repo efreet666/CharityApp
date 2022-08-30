@@ -10,7 +10,9 @@ import Rswift
 
 final class MainViewController: UIViewController {
     
-    var tabBar : CustomTabBar!
+    //var tabBar : CustomTabBar!
+    
+    var categoriesData: CategoriesModel? = nil
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
@@ -20,6 +22,11 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
+    fileprivate func parseData() {
+        categoriesData = Bundle.main.decode(CategoriesModel.self, from: "categoryData.json")
+        print(categoriesData!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +35,8 @@ final class MainViewController: UIViewController {
         setupCollectionView()
         setupNavBar()
         
-
+        parseData()
+        
 //        guard let bar = tabBar else { return }
 //        bar.tintColor = .blueGrey
 //        view.addSubview(bar)
@@ -84,7 +92,14 @@ final class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryData.count
+        if let count = categoriesData?.count {
+            return count
+        } else {
+            return 0
+        }
+        
+        
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -95,7 +110,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         cell.backgroundColor = UIColor.lightGreyColor
-        cell.setup(image: categoryData[indexPath.row].image ?? UIImage() , text: categoryData[indexPath.row].text)
+        print(categoriesData?[indexPath.row].image! ?? "")
+        cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
+                   , text: categoriesData?[indexPath.row].title ?? "")
         return cell
 
     }

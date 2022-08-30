@@ -1,23 +1,27 @@
 [
     {
        "id": "child",
-       "title" : "Дети"
-
+       "title" : "Дети",
+       "image" : "ChildCategory"
     },
     {
        "id": "Adult",
-        "title" : "Взрослые"
+        "title" : "Взрослые",
+        "image" : "AdultCategory"
     },
     {
        "id": "Old",
-       "title" : "Пожилые"
+       "title" : "Пожилые",
+       "image" : "OldCategory"
     },
     {
        "id": "Animals",
-       "title" : "Животные"
+       "title" : "Животные",
+       "image" : "AnimalsCategory"
     },
     {
        "id": "Event",
-       "title" : "Мероприятия"
+       "title" : "Мероприятия",
+       "image" : "EventCategory"
     }
 ]

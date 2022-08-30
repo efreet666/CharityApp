@@ -159,12 +159,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 3 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `OfficinaSansExtraBoldC.ttf`.
     static let officinaSansExtraBoldCTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "OfficinaSansExtraBoldC", pathExtension: "ttf")
     /// Resource file `SFUIText-Regular.ttf`.
     static let sfuiTextRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SFUIText-Regular", pathExtension: "ttf")
+    /// Resource file `categoryData.json`.
+    static let categoryDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "categoryData", pathExtension: "json")
+    /// Resource file `eventData.json`.
+    static let eventDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "eventData", pathExtension: "json")
     /// Resource file `sf-ui-text-medium.ttf`.
     static let sfUiTextMediumTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "sf-ui-text-medium", pathExtension: "ttf")
 
@@ -177,6 +181,18 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "SFUIText-Regular", withExtension: "ttf")`
     static func sfuiTextRegularTtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.sfuiTextRegularTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "categoryData", withExtension: "json")`
+    static func categoryDataJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.categoryDataJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "eventData", withExtension: "json")`
+    static func eventDataJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventDataJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -224,18 +240,18 @@ struct R: Rswift.Validatable {
 
   /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
-    /// Image `AdultCategoty`.
-    static let adultCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategoty")
-    /// Image `AnimalsCategoty`.
-    static let animalsCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "AnimalsCategoty")
-    /// Image `ChildCategoty`.
-    static let childCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "ChildCategoty")
-    /// Image `EventCategoty`.
-    static let eventCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "EventCategoty")
+    /// Image `AdultCategory`.
+    static let adultCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategory")
+    /// Image `AnimalsCategory`.
+    static let animalsCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "AnimalsCategory")
+    /// Image `ChildCategory`.
+    static let childCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "ChildCategory")
+    /// Image `EventCategory`.
+    static let eventCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "EventCategory")
     /// Image `ImageShadow`.
     static let imageShadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "ImageShadow")
-    /// Image `OldCategoty`.
-    static let oldCategoty = Rswift.ImageResource(bundle: R.hostingBundle, name: "OldCategoty")
+    /// Image `OldCategory`.
+    static let oldCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "OldCategory")
     /// Image `calendarIcon`.
     static let calendarIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "calendarIcon")
     /// Image `logo-2`.
@@ -250,30 +266,30 @@ struct R: Rswift.Validatable {
     static let yellowHeart = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellowHeart")
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "AdultCategoty", bundle: ..., traitCollection: ...)`
-    static func adultCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.adultCategoty, compatibleWith: traitCollection)
+    /// `UIImage(named: "AdultCategory", bundle: ..., traitCollection: ...)`
+    static func adultCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.adultCategory, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "AnimalsCategoty", bundle: ..., traitCollection: ...)`
-    static func animalsCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.animalsCategoty, compatibleWith: traitCollection)
+    /// `UIImage(named: "AnimalsCategory", bundle: ..., traitCollection: ...)`
+    static func animalsCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.animalsCategory, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ChildCategoty", bundle: ..., traitCollection: ...)`
-    static func childCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.childCategoty, compatibleWith: traitCollection)
+    /// `UIImage(named: "ChildCategory", bundle: ..., traitCollection: ...)`
+    static func childCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.childCategory, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "EventCategoty", bundle: ..., traitCollection: ...)`
-    static func eventCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.eventCategoty, compatibleWith: traitCollection)
+    /// `UIImage(named: "EventCategory", bundle: ..., traitCollection: ...)`
+    static func eventCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eventCategory, compatibleWith: traitCollection)
     }
     #endif
 
@@ -285,9 +301,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "OldCategoty", bundle: ..., traitCollection: ...)`
-    static func oldCategoty(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.oldCategoty, compatibleWith: traitCollection)
+    /// `UIImage(named: "OldCategory", bundle: ..., traitCollection: ...)`
+    static func oldCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.oldCategory, compatibleWith: traitCollection)
     }
     #endif
 
