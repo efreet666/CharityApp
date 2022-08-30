@@ -8,11 +8,11 @@
 import Foundation
 
 // MARK: - EventElement
-struct EventModel: Codable {
+struct EventModelElement: Codable {
     let id: String?
     let category: [String]?
     let title, subTitle, timeout, fond: String?
     let adress, phones, infoText: String?
 }
 
-typealias Event = [EventModel]
+typealias EventModel = [EventModelElement]

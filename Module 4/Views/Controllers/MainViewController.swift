@@ -22,10 +22,7 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
-    fileprivate func parseData() {
-        categoriesData = Bundle.main.decode(CategoriesModel.self, from: "categoryData.json")
-        print(categoriesData!)
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +38,12 @@ final class MainViewController: UIViewController {
 //        bar.tintColor = .blueGrey
 //        view.addSubview(bar)
        
+    }
+    
+    // MARK: - parsing data
+    private func parseData() {
+        categoriesData = Bundle.main.decode(CategoriesModel.self, from: "categoryData.json")
+        print(categoriesData!)
     }
     
     // MARK: - set light status bar
@@ -97,9 +100,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             return 0
         }
-        
-        
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,7 +110,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
         cell.backgroundColor = UIColor.lightGreyColor
-        print(categoriesData?[indexPath.row].image! ?? "")
+        
+        //print(categoriesData?[indexPath.row].image! ?? "")
         cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
                    , text: categoriesData?[indexPath.row].title ?? "")
         return cell
@@ -121,8 +122,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         print("Cell №\(indexPath.row + 1) tapped")
         
         let vc = CurrentCategoryViewController()
-        vc.currentCategoryName = categoryData[indexPath.row].text
-        
+        vc.currentCategoryName = categoriesData?[indexPath.row].title ?? ""
+        vc.currentCategoryId = categoriesData?[indexPath.row].id ?? ""
         self.hidesBottomBarWhenPushed = false
         self.navigationController?.pushViewController(vc, animated: true)
         

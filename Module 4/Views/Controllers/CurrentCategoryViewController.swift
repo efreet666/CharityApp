@@ -12,6 +12,9 @@ class CurrentCategoryViewController: UIViewController {
 
     
     var currentCategoryName: String?
+    var currentCategoryId: String?
+    var arrayOfCategoryNews: [EventModelElement] = []
+  
     
     private enum Constants {
         static let cellHeight: CGFloat = 413
@@ -31,12 +34,25 @@ class CurrentCategoryViewController: UIViewController {
         view.backgroundColor = UIColor.mainGreenColor
         setupTableView()
         configureNavBar()
-        
+        parseData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+    private func parseData() {
+        
+        let currentEvent = Bundle.main.decode(EventModel.self, from: "eventData.json")
+        
+        
+        for el in currentEvent {
+            guard let currentCategoryId = currentCategoryId else {
+                return
+            }
+            let currentArrayCategory = el.category.flatMap { $0 } as! [String]
+            
+            if currentArrayCategory.contains(currentCategoryId) {
+                arrayOfCategoryNews.append(el)
+            }
+        
+        }
     }
     
     private func setupTableView() {
@@ -68,13 +84,13 @@ class CurrentCategoryViewController: UIViewController {
 extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return arrayOfCategoryNews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryNewsTableViewCell.identifier, for: indexPath) as? CategoryNewsTableViewCell else { return UITableViewCell() }
         
-        cell.setup(image: R.image.newsImages() ?? UIImage() , title: "Спонсоры отремонтируют школу-интернат", subtitle: "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …", timeoutTitle: "Осталось 13 дней (21.09 – 20.10)")
+        cell.setup(image: R.image.newsImages() ?? UIImage() , title: arrayOfCategoryNews[indexPath.row].title ?? "Error", subtitle: arrayOfCategoryNews[indexPath.row].subTitle ?? "Error", timeoutTitle: arrayOfCategoryNews[indexPath.row].timeout ?? "Error")
         return cell
     }
     
