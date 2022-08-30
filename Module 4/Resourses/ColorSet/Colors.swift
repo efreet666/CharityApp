@@ -36,6 +36,9 @@ extension UIColor {
     static var darkSlateBlue: UIColor {
         return UIColor.rgb(r: 22, g: 59, b: 79)
     }
+    static var greyColor: UIColor {
+        return UIColor.rgb(r: 148, g: 153, b: 138)
+    }
     
 
 }

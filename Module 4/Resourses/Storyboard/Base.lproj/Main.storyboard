@@ -11,7 +11,6 @@
         <!--Помочь-->
         <scene sceneID="vhE-gZ-F2V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RJ0-ks-bC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="6jF-fD-iIq" customClass="MainViewController" customModule="Module_4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xtm-av-jZx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -26,6 +25,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJ0-ks-bC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2718.840579710145" y="83.705357142857139"/>
         </scene>

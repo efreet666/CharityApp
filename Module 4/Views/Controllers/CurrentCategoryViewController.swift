@@ -30,11 +30,16 @@ class CurrentCategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.mainGreenColor
         setupTableView()
         configureNavBar()
         parseData()
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func parseData() {
@@ -97,4 +102,11 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
         return Constants.cellHeight
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)")
+        let vc = EventDetailViewController()
+        vc.pageTitle = arrayOfCategoryNews[indexPath.row].title ?? "Error"
+        vc.currentEventDetail = arrayOfCategoryNews[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

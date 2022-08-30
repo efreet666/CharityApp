@@ -70,7 +70,9 @@ class CategoryNewsTableViewCell: UITableViewCell {
     private lazy var greenBarView: UIView = {
         let greenBar = UIView()
         greenBar.backgroundColor = UIColor.mainGreenColor
-        greenBar.clipsToBounds = true
+        greenBar.clipsToBounds = false
+        greenBar.layer.cornerRadius = 5
+        greenBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         return greenBar
     }()
     

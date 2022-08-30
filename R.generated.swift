@@ -238,12 +238,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 12 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `AdultCategory`.
     static let adultCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategory")
     /// Image `AnimalsCategory`.
     static let animalsCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "AnimalsCategory")
+    /// Image `CalendarGrayIcon`.
+    static let calendarGrayIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "CalendarGrayIcon")
     /// Image `ChildCategory`.
     static let childCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "ChildCategory")
     /// Image `EventCategory`.
@@ -276,6 +278,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "AnimalsCategory", bundle: ..., traitCollection: ...)`
     static func animalsCategory(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.animalsCategory, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "CalendarGrayIcon", bundle: ..., traitCollection: ...)`
+    static func calendarGrayIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.calendarGrayIcon, compatibleWith: traitCollection)
     }
     #endif
 

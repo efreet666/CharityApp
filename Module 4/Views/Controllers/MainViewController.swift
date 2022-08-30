@@ -111,9 +111,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.backgroundColor = UIColor.lightGreyColor
         
-        //print(categoriesData?[indexPath.row].image! ?? "")
         cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
-                   , text: categoriesData?[indexPath.row].title ?? "")
+                   ,text: categoriesData?[indexPath.row].title ?? "")
         return cell
 
     }
