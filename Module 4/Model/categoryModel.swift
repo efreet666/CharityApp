@@ -13,6 +13,7 @@ struct CategoryModel {
     let text: String
 }
 
+
 // MARK: - Data
 
 let categoryData: [CategoryModel] = [

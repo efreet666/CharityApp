@@ -1,17 +1,23 @@
 [
     {
-       "category" : "Дети"
+       "id": "child",
+       "title" : "Дети"
+
     },
     {
-       "category" : "Взрослые"
+       "id": "Adult",
+        "title" : "Взрослые"
     },
     {
-       "category" : "Пожилые"
+       "id": "Old",
+       "title" : "Пожилые"
     },
     {
-       "category" : "Животные"
+       "id": "Animals",
+       "title" : "Животные"
     },
     {
-       "category" : "Мероприятия"
+       "id": "Event",
+       "title" : "Мероприятия"
     }
 ]
