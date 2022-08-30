@@ -25,6 +25,7 @@
 		F547F90C28BD5E15006D215B /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F90B28BD5E15006D215B /* EventModel.swift */; };
 		F547F90E28BE19CC006D215B /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F90D28BE19CC006D215B /* CategoriesModel.swift */; };
 		F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F43D928BE1C0900C03947 /* DataParser.swift */; };
+		F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */; };
 		F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */; };
 		F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */; };
 		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
@@ -58,6 +59,7 @@
 		F547F90B28BD5E15006D215B /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		F547F90D28BE19CC006D215B /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		F54F43D928BE1C0900C03947 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToDataFile.swift; sourceTree = "<group>"; };
 		F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				F547F90D28BE19CC006D215B /* CategoriesModel.swift */,
 				F547F90B28BD5E15006D215B /* EventModel.swift */,
 				F54F43D928BE1C0900C03947 /* DataParser.swift */,
+				F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				F5C2ADFE28B0C0290031B6D4 /* CategoryModel.swift in Sources */,
 				F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
+				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
 				F547F8ED28B960AB006D215B /* R.generated.swift in Sources */,
 				F547F90C28BD5E15006D215B /* EventModel.swift in Sources */,
 				F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */,

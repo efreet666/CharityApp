@@ -42,7 +42,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - parsing data
     private func parseData() {
-        categoriesData = Bundle.main.decode(CategoriesModel.self, from: "categoryData.json")
+        categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
         print(categoriesData!)
     }
     

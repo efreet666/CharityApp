@@ -39,13 +39,11 @@ class CurrentCategoryViewController: UIViewController {
     
     private func parseData() {
         
-        let currentEvent = Bundle.main.decode(EventModel.self, from: "eventData.json")
-        
-        
+        let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+    
         for el in currentEvent {
-            guard let currentCategoryId = currentCategoryId else {
-                return
-            }
+            guard let currentCategoryId = currentCategoryId else { return }
+            
             let currentArrayCategory = el.category.flatMap { $0 } as! [String]
             
             if currentArrayCategory.contains(currentCategoryId) {
@@ -57,6 +55,7 @@ class CurrentCategoryViewController: UIViewController {
     
     private func setupTableView() {
         
+        newsTableView.backgroundColor = UIColor.lightGreyColor
         newsTableView.dataSource = self
         newsTableView.delegate = self
         newsTableView.register(CategoryNewsTableViewCell.self, forCellReuseIdentifier: CategoryNewsTableViewCell.identifier)
@@ -90,7 +89,7 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryNewsTableViewCell.identifier, for: indexPath) as? CategoryNewsTableViewCell else { return UITableViewCell() }
         
-        cell.setup(image: R.image.newsImages() ?? UIImage() , title: arrayOfCategoryNews[indexPath.row].title ?? "Error", subtitle: arrayOfCategoryNews[indexPath.row].subTitle ?? "Error", timeoutTitle: arrayOfCategoryNews[indexPath.row].timeout ?? "Error")
+        cell.setup(image: UIImage(named: "\(arrayOfCategoryNews[indexPath.row].images?.first ?? "")") ?? UIImage() , title: arrayOfCategoryNews[indexPath.row].title ?? "Error", subtitle: arrayOfCategoryNews[indexPath.row].subTitle ?? "Error", timeoutTitle: arrayOfCategoryNews[indexPath.row].timeout ?? "Error")
         return cell
     }
     

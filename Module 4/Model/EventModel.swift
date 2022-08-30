@@ -10,7 +10,7 @@ import Foundation
 // MARK: - EventElement
 struct EventModelElement: Codable {
     let id: String?
-    let category: [String]?
+    let category, images: [String]?
     let title, subTitle, timeout, fond: String?
     let adress, phones, infoText: String?
 }

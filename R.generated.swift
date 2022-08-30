@@ -258,8 +258,8 @@ struct R: Rswift.Validatable {
     static let logo2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo-2")
     /// Image `logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
-    /// Image `newsImages`.
-    static let newsImages = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages")
+    /// Image `newsImages1`.
+    static let newsImages1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages1")
     /// Image `simbirSoft`.
     static let simbirSoft = Rswift.ImageResource(bundle: R.hostingBundle, name: "simbirSoft")
     /// Image `yellowHeart`.
@@ -329,9 +329,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "newsImages", bundle: ..., traitCollection: ...)`
-    static func newsImages(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.newsImages, compatibleWith: traitCollection)
+    /// `UIImage(named: "newsImages1", bundle: ..., traitCollection: ...)`
+    static func newsImages1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.newsImages1, compatibleWith: traitCollection)
     }
     #endif
 
