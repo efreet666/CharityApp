@@ -103,9 +103,9 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)")
+
         let vc = EventDetailViewController()
-        vc.pageTitle = arrayOfCategoryNews[indexPath.row].title ?? "Error"
+        //push data
         vc.currentEventDetail = arrayOfCategoryNews[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
