@@ -99,16 +99,13 @@ class EventDetailViewController: UIViewController {
     
     private lazy var supportIconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.image = R.image.mail()
         return imageView
     }()
     
     private lazy var supportButton: UIButton = {
         let button = UIButton()
-        
-        button.setTitleColor(UIColor.mainGreenColor, for: .normal)
-        //button. = R.font.sfuiTextRegular(size: 15)
         return button
     }()
     
@@ -133,8 +130,112 @@ class EventDetailViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var infoTextLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.charcoalGreyColor
+        label.textAlignment = .left
+        label.font = R.font.sfuiTextRegular(size: 15)
+        label.numberOfLines = 0
+        return label
+    }()
 
+    private lazy var openSiteLinkButton: UIButton = {
+        let button = UIButton()
+        button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        return button
+    }()
     
+    private lazy var graySharingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    // MARK: - users icons
+    
+    
+    private lazy var userIcon1ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 18
+        return imageView
+    }()
+    
+    private lazy var userIcon1GrayView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 19
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    private lazy var userIcon2ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 18
+        return imageView
+    }()
+    
+    private lazy var userIcon2GrayView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 19
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    private lazy var userIcon3ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 18
+        return imageView
+    }()
+    
+    private lazy var userIcon3GrayView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 19
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    private lazy var userIcon4ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 18
+        return imageView
+    }()
+    
+    private lazy var userIcon4GrayView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 19
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    private lazy var userIcon5ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 18
+        return imageView
+    }()
+    
+    private lazy var userIcon5GrayView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 19
+        view.backgroundColor = UIColor.lightGreyColor
+        return view
+    }()
+    
+    private lazy var totalUsersLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.greyColor
+        label.textAlignment = .left
+        label.font = R.font.ubuntuRegular(size: 13)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var actionBarWhiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.whiteColor
+        return view
+    }()
+    
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.mainGreenColor
         self.tabBarController?.tabBar.isHidden = true
@@ -145,14 +246,15 @@ class EventDetailViewController: UIViewController {
     }
     
     private func configireTextData() {
-        //title
+        
+        // MARK: - title label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         let attrString = NSMutableAttributedString(string: currentEventDetail?.title ?? "error")
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         titleLabel.attributedText = attrString
         
-        //timeoutLabel
+        // MARK: - labels
         timeoutLabel.text = currentEventDetail?.timeout ?? "error"
         
         fondNameLabel.text = currentEventDetail?.fond ?? "error"
@@ -163,17 +265,54 @@ class EventDetailViewController: UIViewController {
         
         supportLabel.text = "У вас есть вопросы?"
         
-        supportButton.setTitle("Напишите нам", for: .normal)
+        // MARK: - supportButton
+        let yourAttributes: [NSAttributedString.Key: Any] = [
+            .font: R.font.sfuiTextRegular(size: 15) ?? UIFont(),
+              .foregroundColor: UIColor.mainGreenColor,
+              .underlineStyle: NSUnderlineStyle.single.rawValue
+          ]
+        let attributeString = NSMutableAttributedString(
+                string: "Напишите нам",
+                attributes: yourAttributes)
+        supportButton.setAttributedTitle(attributeString, for: .normal)
         
-        bigLeftImageView.image = R.image.newsImages1()
-        topRightImageView.image = R.image.newsImages1()
-        bottomRightImageView.image = R.image.newsImages1()
+        // MARK: - images
+        bigLeftImageView.image = UIImage(named: "\(currentEventDetail?.images?[0] ?? "")") ?? UIImage()
+        topRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[1] ?? "")") ?? UIImage()
+        bottomRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[2] ?? "")") ?? UIImage()
+        
+        // MARK: - info event text
+        infoTextLabel.text = currentEventDetail?.infoText ?? "error"
+        
+        // MARK: - open site button
+        let siteTextAttributes: [NSAttributedString.Key: Any] = [
+            .font: R.font.sfuiTextRegular(size: 15) ?? UIFont(),
+              .foregroundColor: UIColor.mainGreenColor,
+              .underlineStyle: NSUnderlineStyle.single.rawValue
+          ]
+        let siteAttributeString = NSMutableAttributedString(
+                string: "Перейти на сайт организаии",
+                attributes: siteTextAttributes)
+        openSiteLinkButton.setAttributedTitle(siteAttributeString, for: .normal)
+        
+        //users icon
+        userIcon1ImageView.image = R.image.userIcon1()
+        userIcon2ImageView.image = R.image.userIcon2()
+        userIcon3ImageView.image = R.image.userIcon3()
+        userIcon4ImageView.image = R.image.userIcon4()
+        userIcon5ImageView.image = R.image.userIcon5()
+        
+        totalUsersLabel.text = "+102"
     }
+    
     private func setupUI() {
+        
         view.addSubview(scrollView)
+        
         scrollView.snp.makeConstraints { make in
             make.bottom.trailing.leading.equalToSuperview()
             make.top.equalTo(80)
+            
         }
         
         scrollView.addSubview(titleLabel)
@@ -208,10 +347,10 @@ class EventDetailViewController: UIViewController {
         
         scrollView.addSubview(adressLabel)
         adressLabel.snp.makeConstraints { make in
-            make.top.equalTo(fondNameLabel).inset(35)
+            make.top.equalTo(fondNameLabel).inset(38)
             make.height.equalTo(40)
             make.width.equalTo(296)
-            make.leading.equalTo(46)
+            make.leading.equalTo(43)
         }
         
         scrollView.addSubview(navIconImageView)
@@ -226,14 +365,14 @@ class EventDetailViewController: UIViewController {
             make.top.equalTo(adressLabel).inset(56)
             make.height.equalTo(40)
             make.width.equalTo(296)
-            make.leading.equalTo(46)
+            make.leading.equalTo(43)
         }
         
         scrollView.addSubview(phoneIconImageView)
         phoneIconImageView.snp.makeConstraints { make in
              make.leading.equalToSuperview().inset(20)
              make.height.width.equalTo(14)
-             make.top.equalTo(adressLabel).inset(61)
+             make.top.equalTo(adressLabel).inset(59)
           }
         
         scrollView.addSubview(supportLabel)
@@ -241,22 +380,23 @@ class EventDetailViewController: UIViewController {
             make.top.equalTo(phoneLabel).inset(56)
             make.height.equalTo(20)
             make.width.equalTo(152)
-            make.leading.equalTo(46)
+            make.leading.equalTo(47)
         }
         
         scrollView.addSubview(supportIconImageView)
         supportIconImageView.snp.makeConstraints { make in
              make.leading.equalToSuperview().inset(20)
-             make.height.width.equalTo(14)
-             make.top.equalTo(phoneLabel).inset(58)
+             make.height.equalTo(11)
+             make.width.equalTo(18)
+             make.top.equalTo(phoneLabel).inset(61)
           }
         
         scrollView.addSubview(supportButton)
         supportButton.snp.makeConstraints { make in
-             make.leading.equalTo(supportLabel).inset(153)
+             make.leading.equalTo(supportLabel).inset(144)
              make.height.equalTo(20)
              make.width.equalTo(129)
-             make.top.equalTo(phoneLabel).inset(58)
+             make.top.equalTo(phoneLabel).inset(55)
           }
         
         scrollView.addSubview(bigLeftImageView)
@@ -282,8 +422,125 @@ class EventDetailViewController: UIViewController {
             make.width.equalTo(103)
             make.top.equalTo(topRightImageView).inset(89)
           }
+        
+        scrollView.addSubview(infoTextLabel)
+        infoTextLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(150)
+            make.width.equalTo(335)
+            make.top.equalTo(bottomRightImageView).inset(89)
+          }
+        
+        scrollView.addSubview(openSiteLinkButton)
+        openSiteLinkButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+            make.width.equalTo(220)
+            make.top.equalTo(infoTextLabel).inset(156)
+          }
+        
+        // users icons
+        scrollView.addSubview(graySharingView)
+        graySharingView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.height.equalTo(68)
+            make.width.equalToSuperview()
+            make.top.equalTo(openSiteLinkButton).inset(52)
+          }
+        
+        scrollView.addSubview(userIcon5GrayView)
+        userIcon5GrayView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(154)
+            make.height.width.equalTo(40)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon5ImageView)
+        userIcon5ImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(156)
+            make.height.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon4GrayView)
+        userIcon4GrayView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(120)
+            make.height.width.equalTo(40)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon4ImageView)
+        userIcon4ImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(122)
+            make.height.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon3GrayView)
+        userIcon3GrayView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(86)
+            make.height.width.equalTo(40)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon3ImageView)
+        userIcon3ImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(88)
+            make.height.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon2GrayView)
+        userIcon2GrayView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(52)
+            make.height.width.equalTo(40)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon2ImageView)
+        userIcon2ImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(54)
+            make.height.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon1GrayView)
+        userIcon1GrayView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(18)
+            make.height.width.equalTo(40)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(userIcon1ImageView)
+        userIcon1ImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.height.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(totalUsersLabel)
+        totalUsersLabel.snp.makeConstraints { make in
+            make.leading.equalTo(userIcon5GrayView).inset(46)
+            make.height.equalTo(20)
+            make.width.equalTo(36)
+            make.centerY.equalTo(graySharingView).inset(18)
+          }
+        
+        scrollView.addSubview(actionBarWhiteView)
+        actionBarWhiteView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.height.equalTo(70)
+            make.width.equalToSuperview()
+            make.top.equalTo(graySharingView).inset(68)
+            make.bottom.equalToSuperview()
+          }
+        
+        
+        
     }
+    
     private func configureNavBar() {
+        
         self.title = currentEventDetail?.title ?? "error"
         
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
@@ -297,7 +554,11 @@ class EventDetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
+    // Mark: - Activity controller
+    var activitiViewContorller: UIActivityViewController? = nil
     @objc func sharingLink() {
-        print("share smth")
+        
+        self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail?.title ?? "error"], applicationActivities: nil)
+        self.present(self.activitiViewContorller!, animated: true, completion: nil)
     }
 }

@@ -159,12 +159,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `OfficinaSansExtraBoldC.ttf`.
     static let officinaSansExtraBoldCTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "OfficinaSansExtraBoldC", pathExtension: "ttf")
     /// Resource file `SFUIText-Regular.ttf`.
     static let sfuiTextRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "SFUIText-Regular", pathExtension: "ttf")
+    /// Resource file `Ubuntu-Regular.ttf`.
+    static let ubuntuRegularTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "Ubuntu-Regular", pathExtension: "ttf")
     /// Resource file `categoryData.json`.
     static let categoryDataJson = Rswift.FileResource(bundle: R.hostingBundle, name: "categoryData", pathExtension: "json")
     /// Resource file `eventData.json`.
@@ -181,6 +183,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "SFUIText-Regular", withExtension: "ttf")`
     static func sfuiTextRegularTtf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.sfuiTextRegularTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Ubuntu-Regular", withExtension: "ttf")`
+    static func ubuntuRegularTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.ubuntuRegularTtf
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -205,7 +213,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.font` struct is generated, and contains static references to 3 fonts.
+  /// This `R.font` struct is generated, and contains static references to 4 fonts.
   struct font: Rswift.Validatable {
     /// Font `OfficinaSansExtraBoldC`.
     static let officinaSansExtraBoldC = Rswift.FontResource(fontName: "OfficinaSansExtraBoldC")
@@ -213,6 +221,8 @@ struct R: Rswift.Validatable {
     static let sfuiTextMedium = Rswift.FontResource(fontName: "SFUIText-Medium")
     /// Font `SFUIText-Regular`.
     static let sfuiTextRegular = Rswift.FontResource(fontName: "SFUIText-Regular")
+    /// Font `Ubuntu-Regular`.
+    static let ubuntuRegular = Rswift.FontResource(fontName: "Ubuntu-Regular")
 
     /// `UIFont(name: "OfficinaSansExtraBoldC", size: ...)`
     static func officinaSansExtraBoldC(size: CGFloat) -> UIKit.UIFont? {
@@ -229,16 +239,22 @@ struct R: Rswift.Validatable {
       return UIKit.UIFont(resource: sfuiTextRegular, size: size)
     }
 
+    /// `UIFont(name: "Ubuntu-Regular", size: ...)`
+    static func ubuntuRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: ubuntuRegular, size: size)
+    }
+
     static func validate() throws {
       if R.font.officinaSansExtraBoldC(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'OfficinaSansExtraBoldC' could not be loaded, is 'OfficinaSansExtraBoldC.ttf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.sfuiTextMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFUIText-Medium' could not be loaded, is 'sf-ui-text-medium.ttf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.sfuiTextRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'SFUIText-Regular' could not be loaded, is 'SFUIText-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.ubuntuRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Ubuntu-Regular' could not be loaded, is 'Ubuntu-Regular.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 16 images.
+  /// This `R.image` struct is generated, and contains static references to 23 images.
   struct image {
     /// Image `AdultCategory`.
     static let adultCategory = Rswift.ImageResource(bundle: R.hostingBundle, name: "AdultCategory")
@@ -268,8 +284,22 @@ struct R: Rswift.Validatable {
     static let mail = Rswift.ImageResource(bundle: R.hostingBundle, name: "mail")
     /// Image `newsImages1`.
     static let newsImages1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages1")
+    /// Image `newsImages2`.
+    static let newsImages2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages2")
+    /// Image `newsImages3`.
+    static let newsImages3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "newsImages3")
     /// Image `simbirSoft`.
     static let simbirSoft = Rswift.ImageResource(bundle: R.hostingBundle, name: "simbirSoft")
+    /// Image `userIcon1`.
+    static let userIcon1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "userIcon1")
+    /// Image `userIcon2`.
+    static let userIcon2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "userIcon2")
+    /// Image `userIcon3`.
+    static let userIcon3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "userIcon3")
+    /// Image `userIcon4`.
+    static let userIcon4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "userIcon4")
+    /// Image `userIcon5`.
+    static let userIcon5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "userIcon5")
     /// Image `yellowHeart`.
     static let yellowHeart = Rswift.ImageResource(bundle: R.hostingBundle, name: "yellowHeart")
 
@@ -372,9 +402,58 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "newsImages2", bundle: ..., traitCollection: ...)`
+    static func newsImages2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.newsImages2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "newsImages3", bundle: ..., traitCollection: ...)`
+    static func newsImages3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.newsImages3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "simbirSoft", bundle: ..., traitCollection: ...)`
     static func simbirSoft(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.simbirSoft, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "userIcon1", bundle: ..., traitCollection: ...)`
+    static func userIcon1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.userIcon1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "userIcon2", bundle: ..., traitCollection: ...)`
+    static func userIcon2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.userIcon2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "userIcon3", bundle: ..., traitCollection: ...)`
+    static func userIcon3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.userIcon3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "userIcon4", bundle: ..., traitCollection: ...)`
+    static func userIcon4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.userIcon4, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "userIcon5", bundle: ..., traitCollection: ...)`
+    static func userIcon5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.userIcon5, compatibleWith: traitCollection)
     }
     #endif
 

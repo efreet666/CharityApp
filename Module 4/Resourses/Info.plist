@@ -6,6 +6,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Ubuntu-Regular.ttf</string>
 		<string>OfficinaSansExtraBoldC.ttf</string>
 		<string>SFUIText-Regular.ttf</string>
 		<string>sf-ui-text-medium.ttf</string>

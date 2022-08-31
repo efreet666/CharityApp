@@ -27,10 +27,10 @@
 		F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F43D928BE1C0900C03947 /* DataParser.swift */; };
 		F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */; };
 		F54F43DE28BE906300C03947 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F43DD28BE906300C03947 /* EventDetailViewController.swift */; };
+		F54F43E128BFA9D500C03947 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54F43E028BFA9D500C03947 /* Ubuntu-Regular.ttf */; };
 		F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */; };
 		F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */; };
 		F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */; };
-		F5C2ADFE28B0C0290031B6D4 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2ADFD28B0C0290031B6D4 /* CategoryModel.swift */; };
 		F5C2AE0328B0DCC20031B6D4 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */; };
 		F5C2AE0728B152270031B6D4 /* OfficinaSansExtraBoldC.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5C2AE0628B152270031B6D4 /* OfficinaSansExtraBoldC.ttf */; };
 		F5C2AE0928B157680031B6D4 /* SFUIText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5C2AE0828B157680031B6D4 /* SFUIText-Regular.ttf */; };
@@ -62,10 +62,10 @@
 		F54F43D928BE1C0900C03947 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathToDataFile.swift; sourceTree = "<group>"; };
 		F54F43DD28BE906300C03947 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		F54F43E028BFA9D500C03947 /* Ubuntu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Regular.ttf"; sourceTree = "<group>"; };
 		F5797F0528AF808000FE85D3 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F5A927DF28ABAD3700E8DA4E /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		F5C2ADFD28B0C0290031B6D4 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		F5C2AE0128B0DCC20031B6D4 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		F5C2AE0628B152270031B6D4 /* OfficinaSansExtraBoldC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OfficinaSansExtraBoldC.ttf; sourceTree = "<group>"; };
 		F5C2AE0828B157680031B6D4 /* SFUIText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIText-Regular.ttf"; sourceTree = "<group>"; };
@@ -219,7 +219,6 @@
 		F5C2ADFC28B0C0040031B6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F5C2ADFD28B0C0290031B6D4 /* CategoryModel.swift */,
 				F547F90D28BE19CC006D215B /* CategoriesModel.swift */,
 				F547F90B28BD5E15006D215B /* EventModel.swift */,
 				F54F43D928BE1C0900C03947 /* DataParser.swift */,
@@ -251,6 +250,7 @@
 			children = (
 				F5C2AE0828B157680031B6D4 /* SFUIText-Regular.ttf */,
 				F5C2AE0628B152270031B6D4 /* OfficinaSansExtraBoldC.ttf */,
+				F54F43E028BFA9D500C03947 /* Ubuntu-Regular.ttf */,
 				F547F90328BD43A4006D215B /* sf-ui-text-medium.ttf */,
 			);
 			path = Fonts;
@@ -343,6 +343,7 @@
 				F5C2AE0728B152270031B6D4 /* OfficinaSansExtraBoldC.ttf in Resources */,
 				F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */,
 				F527D42928AB878200E3E792 /* Main.storyboard in Resources */,
+				F54F43E128BFA9D500C03947 /* Ubuntu-Regular.ttf in Resources */,
 				F547F90428BD43A4006D215B /* sf-ui-text-medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,7 +423,6 @@
 				F547F8E928B95EBD006D215B /* Colors.swift in Sources */,
 				F527D42628AB878200E3E792 /* MainViewController.swift in Sources */,
 				F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */,
-				F5C2ADFE28B0C0290031B6D4 /* CategoryModel.swift in Sources */,
 				F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
 				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
