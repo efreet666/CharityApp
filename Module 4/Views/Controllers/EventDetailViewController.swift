@@ -138,7 +138,7 @@ class EventDetailViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-
+    
     private lazy var openSiteLinkButton: UIButton = {
         let button = UIButton()
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
@@ -228,12 +228,47 @@ class EventDetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var actionBarWhiteView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.whiteColor
-        return view
+    private lazy var helpClothesButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel!.textAlignment = .center
+        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
+        button.titleLabel!.numberOfLines = 2
+        return button
     }()
     
+    private lazy var helpVoloteerButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel!.textAlignment = .center
+        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
+        button.titleLabel!.numberOfLines = 2
+        return button
+    }()
+    
+    private lazy var helpProfButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel!.textAlignment = .center
+        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
+        button.titleLabel!.numberOfLines = 2
+        return button
+    }()
+    
+    private lazy var helpMoneyButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel!.textAlignment = .center
+        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
+        button.titleLabel!.numberOfLines = 2
+        return button
+    }()
+    
+    private lazy var actionButtoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.backgroundColor = UIColor.whiteColor
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        return stackView
+    }()
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -268,12 +303,12 @@ class EventDetailViewController: UIViewController {
         // MARK: - supportButton
         let yourAttributes: [NSAttributedString.Key: Any] = [
             .font: R.font.sfuiTextRegular(size: 15) ?? UIFont(),
-              .foregroundColor: UIColor.mainGreenColor,
-              .underlineStyle: NSUnderlineStyle.single.rawValue
-          ]
+            .foregroundColor: UIColor.mainGreenColor,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
         let attributeString = NSMutableAttributedString(
-                string: "Напишите нам",
-                attributes: yourAttributes)
+            string: "Напишите нам",
+            attributes: yourAttributes)
         supportButton.setAttributedTitle(attributeString, for: .normal)
         
         // MARK: - images
@@ -287,12 +322,12 @@ class EventDetailViewController: UIViewController {
         // MARK: - open site button
         let siteTextAttributes: [NSAttributedString.Key: Any] = [
             .font: R.font.sfuiTextRegular(size: 15) ?? UIFont(),
-              .foregroundColor: UIColor.mainGreenColor,
-              .underlineStyle: NSUnderlineStyle.single.rawValue
-          ]
+            .foregroundColor: UIColor.mainGreenColor,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
         let siteAttributeString = NSMutableAttributedString(
-                string: "Перейти на сайт организаии",
-                attributes: siteTextAttributes)
+            string: "Перейти на сайт организаии",
+            attributes: siteTextAttributes)
         openSiteLinkButton.setAttributedTitle(siteAttributeString, for: .normal)
         
         //users icon
@@ -303,8 +338,36 @@ class EventDetailViewController: UIViewController {
         userIcon5ImageView.image = R.image.userIcon5()
         
         totalUsersLabel.text = "+102"
+        
+        // MARK: - stackView with help buttons
+        let helpTextAttributes: [NSAttributedString.Key: Any] = [
+            .font: R.font.sfuiTextMedium(size: 10) ?? UIFont(),
+            .foregroundColor: UIColor.warmGreyColor,
+        ]
+        
+        let clothesAttributeString = NSMutableAttributedString(
+            string: "Помочь \nвещами",
+            attributes: helpTextAttributes)
+        helpClothesButton.setAttributedTitle(clothesAttributeString, for: .normal)
+        
+        let volonteerAttributeString = NSMutableAttributedString(
+            string: "Стать \nволонтером",
+            attributes: helpTextAttributes)
+        helpVoloteerButton.setAttributedTitle(volonteerAttributeString, for: .normal)
+        
+        let profAttributeString = NSMutableAttributedString(
+            string: "Проф. \nпомощь",
+            attributes: helpTextAttributes)
+        helpProfButton.setAttributedTitle(profAttributeString, for: .normal)
+        
+        let moneyAttributeString = NSMutableAttributedString(
+            string: "Помочь \nденьгами",
+            attributes: helpTextAttributes)
+        helpMoneyButton.setAttributedTitle(moneyAttributeString, for: .normal)
     }
     
+    
+    // MARK: - set constraints
     private func setupUI() {
         
         view.addSubview(scrollView)
@@ -312,7 +375,6 @@ class EventDetailViewController: UIViewController {
         scrollView.snp.makeConstraints { make in
             make.bottom.trailing.leading.equalToSuperview()
             make.top.equalTo(80)
-            
         }
         
         scrollView.addSubview(titleLabel)
@@ -328,14 +390,14 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(13)
             make.height.equalTo(230)
             make.top.equalTo(titleLabel).inset(63)
-         }
-         
+        }
+        
         scrollView.addSubview(calendarIconImageView)
-         calendarIconImageView.snp.makeConstraints { make in
-             make.leading.equalToSuperview().inset(20)
-             make.height.width.equalTo(14)
-             make.top.equalTo(titleLabel).inset(63)
-          }
+        calendarIconImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.height.width.equalTo(14)
+            make.top.equalTo(titleLabel).inset(63)
+        }
         
         scrollView.addSubview(fondNameLabel)
         fondNameLabel.snp.makeConstraints { make in
@@ -355,10 +417,10 @@ class EventDetailViewController: UIViewController {
         
         scrollView.addSubview(navIconImageView)
         navIconImageView.snp.makeConstraints { make in
-             make.leading.equalToSuperview().inset(20)
-             make.height.width.equalTo(14)
-             make.top.equalTo(fondNameLabel).inset(42)
-          }
+            make.leading.equalToSuperview().inset(20)
+            make.height.width.equalTo(14)
+            make.top.equalTo(fondNameLabel).inset(42)
+        }
         
         scrollView.addSubview(phoneLabel)
         phoneLabel.snp.makeConstraints { make in
@@ -370,10 +432,10 @@ class EventDetailViewController: UIViewController {
         
         scrollView.addSubview(phoneIconImageView)
         phoneIconImageView.snp.makeConstraints { make in
-             make.leading.equalToSuperview().inset(20)
-             make.height.width.equalTo(14)
-             make.top.equalTo(adressLabel).inset(59)
-          }
+            make.leading.equalToSuperview().inset(20)
+            make.height.width.equalTo(14)
+            make.top.equalTo(adressLabel).inset(59)
+        }
         
         scrollView.addSubview(supportLabel)
         supportLabel.snp.makeConstraints { make in
@@ -385,27 +447,27 @@ class EventDetailViewController: UIViewController {
         
         scrollView.addSubview(supportIconImageView)
         supportIconImageView.snp.makeConstraints { make in
-             make.leading.equalToSuperview().inset(20)
-             make.height.equalTo(11)
-             make.width.equalTo(18)
-             make.top.equalTo(phoneLabel).inset(61)
-          }
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(11)
+            make.width.equalTo(18)
+            make.top.equalTo(phoneLabel).inset(61)
+        }
         
         scrollView.addSubview(supportButton)
         supportButton.snp.makeConstraints { make in
-             make.leading.equalTo(supportLabel).inset(144)
-             make.height.equalTo(20)
-             make.width.equalTo(129)
-             make.top.equalTo(phoneLabel).inset(55)
-          }
+            make.leading.equalTo(supportLabel).inset(144)
+            make.height.equalTo(20)
+            make.width.equalTo(129)
+            make.top.equalTo(phoneLabel).inset(55)
+        }
         
         scrollView.addSubview(bigLeftImageView)
         bigLeftImageView.snp.makeConstraints { make in
-             make.leading.equalToSuperview().inset(20)
-             make.height.equalTo(168)
-             make.width.equalTo(222)
-             make.top.equalTo(supportLabel).inset(36)
-          }
+            make.leading.equalToSuperview().inset(20)
+            make.height.equalTo(168)
+            make.width.equalTo(222)
+            make.top.equalTo(supportLabel).inset(36)
+        }
         
         scrollView.addSubview(topRightImageView)
         topRightImageView.snp.makeConstraints { make in
@@ -413,7 +475,7 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(79)
             make.width.equalTo(103)
             make.top.equalTo(supportLabel).inset(36)
-          }
+        }
         
         scrollView.addSubview(bottomRightImageView)
         bottomRightImageView.snp.makeConstraints { make in
@@ -421,7 +483,7 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(79)
             make.width.equalTo(103)
             make.top.equalTo(topRightImageView).inset(89)
-          }
+        }
         
         scrollView.addSubview(infoTextLabel)
         infoTextLabel.snp.makeConstraints { make in
@@ -429,7 +491,7 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(150)
             make.width.equalTo(335)
             make.top.equalTo(bottomRightImageView).inset(89)
-          }
+        }
         
         scrollView.addSubview(openSiteLinkButton)
         openSiteLinkButton.snp.makeConstraints { make in
@@ -437,7 +499,7 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(20)
             make.width.equalTo(220)
             make.top.equalTo(infoTextLabel).inset(156)
-          }
+        }
         
         // users icons
         scrollView.addSubview(graySharingView)
@@ -446,77 +508,77 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(68)
             make.width.equalToSuperview()
             make.top.equalTo(openSiteLinkButton).inset(52)
-          }
+        }
         
         scrollView.addSubview(userIcon5GrayView)
         userIcon5GrayView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(154)
             make.height.width.equalTo(40)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon5ImageView)
         userIcon5ImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(156)
             make.height.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon4GrayView)
         userIcon4GrayView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(120)
             make.height.width.equalTo(40)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon4ImageView)
         userIcon4ImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(122)
             make.height.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon3GrayView)
         userIcon3GrayView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(86)
             make.height.width.equalTo(40)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon3ImageView)
         userIcon3ImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(88)
             make.height.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon2GrayView)
         userIcon2GrayView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(52)
             make.height.width.equalTo(40)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon2ImageView)
         userIcon2ImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(54)
             make.height.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon1GrayView)
         userIcon1GrayView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(18)
             make.height.width.equalTo(40)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(userIcon1ImageView)
         userIcon1ImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.height.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
         scrollView.addSubview(totalUsersLabel)
         totalUsersLabel.snp.makeConstraints { make in
@@ -524,18 +586,21 @@ class EventDetailViewController: UIViewController {
             make.height.equalTo(20)
             make.width.equalTo(36)
             make.centerY.equalTo(graySharingView).inset(18)
-          }
+        }
         
-        scrollView.addSubview(actionBarWhiteView)
-        actionBarWhiteView.snp.makeConstraints { make in
+        scrollView.addSubview(actionButtoStackView)
+        actionButtoStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.height.equalTo(70)
             make.width.equalToSuperview()
             make.top.equalTo(graySharingView).inset(68)
             make.bottom.equalToSuperview()
-          }
+        }
         
-        
+        actionButtoStackView.addArrangedSubview(helpClothesButton)
+        actionButtoStackView.addArrangedSubview(helpVoloteerButton)
+        actionButtoStackView.addArrangedSubview(helpProfButton)
+        actionButtoStackView.addArrangedSubview(helpMoneyButton)
         
     }
     

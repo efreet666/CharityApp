@@ -39,7 +39,9 @@ extension UIColor {
     static var greyColor: UIColor {
         return UIColor.rgb(r: 148, g: 153, b: 138)
     }
-    
+    static var warmGreyColor: UIColor {
+        return UIColor.rgb(r: 146, g: 146, b: 146)
+    }
 
 }
 
