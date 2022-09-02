@@ -16,17 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        // swiftlint:disable all
-        // guard let _ = (scene as? UIWindowScene) else { return }
-        // swiftlint:enable all
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
             window?.windowScene = windowScene
             window?.makeKeyAndVisible()
-
             let viewController = MainTabBarViewController()
-            //let viewController = EventDetailViewController()
             window?.rootViewController = viewController
     }
 

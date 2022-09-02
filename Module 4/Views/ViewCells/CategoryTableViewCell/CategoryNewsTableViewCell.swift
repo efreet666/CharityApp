@@ -97,7 +97,6 @@ class CategoryNewsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.backgroundColor = UIColor.lightGreyColor
         
         addSubview(whiteBackView)
@@ -170,7 +169,7 @@ class CategoryNewsTableViewCell: UITableViewCell {
     func setup(image: UIImage, title: String, subtitle: String, timeoutTitle: String) {
         newsTitleLabel.text = title
         let paragraphStyle = NSMutableParagraphStyle()
-        //line height size
+        // MARK: - line height size
         paragraphStyle.lineSpacing = 2
         let attrString = NSMutableAttributedString(string: subtitle)
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
@@ -183,7 +182,6 @@ class CategoryNewsTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 
 }

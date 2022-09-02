@@ -14,7 +14,7 @@ extension UIColor {
         return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
     
-    //Mark: - Colors
+    // MARK: - Colors
     static var mainGreenColor: UIColor {
         return UIColor.rgb(r: 102, g: 166, b: 54)
     }
@@ -42,6 +42,5 @@ extension UIColor {
     static var warmGreyColor: UIColor {
         return UIColor.rgb(r: 146, g: 146, b: 146)
     }
-
 }
 

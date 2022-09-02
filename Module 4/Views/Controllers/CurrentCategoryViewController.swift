@@ -8,18 +8,15 @@
 import UIKit
 import SnapKit
 
-class CurrentCategoryViewController: UIViewController {
+final class CurrentCategoryViewController: UIViewController {
 
-    
-    var currentCategoryName: String?
-    var currentCategoryId: String?
-    var arrayOfCategoryNews: [EventModelElement] = []
+    var currentCategoryTitle: String?
+    var currentCategoryId: String = ""
+    var categoryNewsArray: [EventModelElement] = []
   
-    
     private enum Constants {
         static let cellHeight: CGFloat = 413
     }
-    
     
     private lazy var newsTableView: UITableView = {
         let tableView = UITableView()
@@ -38,23 +35,16 @@ class CurrentCategoryViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         self.tabBarController?.tabBar.isHidden = false
     }
     
     private func parseData() {
-        
         let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
-    
-        for el in currentEvent {
-            guard let currentCategoryId = currentCategoryId else { return }
-            
-            let currentArrayCategory = el.category.flatMap { $0 } as! [String]
-            
+        currentEvent.forEach { (el) in
+            let currentArrayCategory = el.category!.compactMap { $0 as String }
             if currentArrayCategory.contains(currentCategoryId) {
-                arrayOfCategoryNews.append(el)
+                categoryNewsArray.append(el)
             }
-        
         }
     }
     
@@ -78,8 +68,8 @@ class CurrentCategoryViewController: UIViewController {
     private func configureNavBar() {
         self.navigationController?.navigationBar.backgroundColor = UIColor.mainGreenColor
         self.navigationController?.navigationBar.barTintColor = UIColor.mainGreenColor
-        self.navigationController?.title = currentCategoryName
-        self.title = currentCategoryName
+        self.navigationController?.title = currentCategoryTitle
+        self.title = currentCategoryTitle
         self.tabBarController?.tabBar.backgroundColor = .whiteColor
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor
     }
@@ -88,13 +78,13 @@ class CurrentCategoryViewController: UIViewController {
 extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfCategoryNews.count
+        return categoryNewsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryNewsTableViewCell.identifier, for: indexPath) as? CategoryNewsTableViewCell else { return UITableViewCell() }
         
-        cell.setup(image: UIImage(named: "\(arrayOfCategoryNews[indexPath.row].images?.first ?? "")") ?? UIImage() , title: arrayOfCategoryNews[indexPath.row].title ?? "Error", subtitle: arrayOfCategoryNews[indexPath.row].subTitle ?? "Error", timeoutTitle: arrayOfCategoryNews[indexPath.row].timeout ?? "Error")
+        cell.setup(image: UIImage(named: "\(categoryNewsArray[indexPath.row].images?.first ?? "")") ?? UIImage() , title: categoryNewsArray[indexPath.row].title ?? "error", subtitle: categoryNewsArray[indexPath.row].subTitle ?? "", timeoutTitle: categoryNewsArray[indexPath.row].timeout ?? "")
         return cell
     }
     
@@ -104,9 +94,7 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let vc = EventDetailViewController()
-        //push data
-        vc.currentEventDetail = arrayOfCategoryNews[indexPath.row]
+        let vc = EventDetailViewController(currentEventDetail: categoryNewsArray[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

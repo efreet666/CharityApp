@@ -10,34 +10,21 @@ import Rswift
 
 final class MainViewController: UIViewController {
     
-    //var tabBar : CustomTabBar!
-    
     var categoriesData: CategoriesModel? = nil
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        //collectionView.backgroundColor = UIColor.whiteColor
         return collectionView
     }()
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
-        
         parseData()
-        
-//        guard let bar = tabBar else { return }
-//        bar.tintColor = .blueGrey
-//        view.addSubview(bar)
-       
     }
     
     // MARK: - parsing data
@@ -52,7 +39,6 @@ final class MainViewController: UIViewController {
     }
     // MARK: - setup collectionView
     private func setupCollectionView() {
-
         // MARK: - collection view layout
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
@@ -68,9 +54,7 @@ final class MainViewController: UIViewController {
 
     // MARK: - setup navigation bar
     private func setupNavBar() {
-
         self.title = R.string.localizable.helpTitle()
-        
         let closeItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                         style: .plain,
                                         target: self,
@@ -86,14 +70,14 @@ final class MainViewController: UIViewController {
     // MARK: - back button
     @objc func popVC() {
         print("Button tapped")
-        // close application
+        // MARK: - close application
         exit(-1)
     }
 }
 
-// Mark: - UICollectionViewDelegate, UICollectionViewDataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = categoriesData?.count {
             return count
@@ -103,14 +87,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
         else {
             return UICollectionViewCell()
         }
-        
         cell.backgroundColor = UIColor.lightGreyColor
-        
         cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
                    ,text: categoriesData?[indexPath.row].title ?? "")
         return cell
@@ -118,10 +99,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Cell №\(indexPath.row + 1) tapped")
-        
         let vc = CurrentCategoryViewController()
-        vc.currentCategoryName = categoriesData?[indexPath.row].title ?? ""
+        vc.currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
         vc.currentCategoryId = categoriesData?[indexPath.row].id ?? ""
         self.hidesBottomBarWhenPushed = false
         self.navigationController?.pushViewController(vc, animated: true)
@@ -139,9 +118,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
 }
     
-// Mark: - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: 57)
     }

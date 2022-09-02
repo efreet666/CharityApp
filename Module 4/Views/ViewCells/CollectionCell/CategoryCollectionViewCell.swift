@@ -19,8 +19,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-  
-
     private lazy var categoryNameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false

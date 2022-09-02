@@ -8,9 +8,22 @@
 import UIKit
 import SnapKit
 
+protocol helpButtonTapDelegate {
+    func helpButtonAction(buttonTitle: String)
+}
+
 class EventDetailViewController: UIViewController {
     
-    var currentEventDetail: EventModelElement?
+    var currentEventDetail: EventModelElement
+    
+    init(currentEventDetail: EventModelElement) {
+        self.currentEventDetail = currentEventDetail
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -19,7 +32,7 @@ class EventDetailViewController: UIViewController {
         return scrollView
     }()
     
-    //Mark: - UI elements
+    //MARK: - UI elements
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.blueGrey
@@ -153,7 +166,6 @@ class EventDetailViewController: UIViewController {
     
     // MARK: - users icons
     
-    
     private lazy var userIcon1ImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 18
@@ -228,56 +240,18 @@ class EventDetailViewController: UIViewController {
         return label
     }()
     
-    private lazy var helpClothesButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel!.textAlignment = .center
-        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
-        button.titleLabel!.numberOfLines = 2
-        return button
-    }()
+    let bottomHelpBarView = HelpBarView()
     
-    private lazy var helpVoloteerButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel!.textAlignment = .center
-        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
-        button.titleLabel!.numberOfLines = 2
-        return button
-    }()
-    
-    private lazy var helpProfButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel!.textAlignment = .center
-        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
-        button.titleLabel!.numberOfLines = 2
-        return button
-    }()
-    
-    private lazy var helpMoneyButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel!.textAlignment = .center
-        button.titleLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
-        button.titleLabel!.numberOfLines = 2
-        return button
-    }()
-    
-    private lazy var actionButtoStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.backgroundColor = UIColor.whiteColor
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 5
-        return stackView
-    }()
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.mainGreenColor
         self.tabBarController?.tabBar.isHidden = true
-        
+        bottomHelpBarView.delegate = self
         configureNavBar()
         setupUI()
         configireTextData()
+        bottomHelpBarView.configure(eventModelElement: currentEventDetail)
     }
     
     private func configireTextData() {
@@ -285,18 +259,18 @@ class EventDetailViewController: UIViewController {
         // MARK: - title label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
-        let attrString = NSMutableAttributedString(string: currentEventDetail?.title ?? "error")
+        let attrString = NSMutableAttributedString(string: currentEventDetail.title ?? "error")
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         titleLabel.attributedText = attrString
         
         // MARK: - labels
-        timeoutLabel.text = currentEventDetail?.timeout ?? "error"
+        timeoutLabel.text = currentEventDetail.timeout
         
-        fondNameLabel.text = currentEventDetail?.fond ?? "error"
+        fondNameLabel.text = currentEventDetail.fond
         
-        adressLabel.text = currentEventDetail?.adress ?? "error"
+        adressLabel.text = currentEventDetail.adress
         
-        phoneLabel.text = currentEventDetail?.phones ?? "error"
+        phoneLabel.text = currentEventDetail.phones
         
         supportLabel.text = "У вас есть вопросы?"
         
@@ -312,12 +286,12 @@ class EventDetailViewController: UIViewController {
         supportButton.setAttributedTitle(attributeString, for: .normal)
         
         // MARK: - images
-        bigLeftImageView.image = UIImage(named: "\(currentEventDetail?.images?[0] ?? "")") ?? UIImage()
-        topRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[1] ?? "")") ?? UIImage()
-        bottomRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[2] ?? "")") ?? UIImage()
+        bigLeftImageView.image = UIImage(named: "\(currentEventDetail.images?[0] ?? "")") ?? UIImage()
+        topRightImageView.image = UIImage(named: "\(currentEventDetail.images?[1] ?? "")") ?? UIImage()
+        bottomRightImageView.image = UIImage(named: "\(currentEventDetail.images?[2] ?? "")") ?? UIImage()
         
         // MARK: - info event text
-        infoTextLabel.text = currentEventDetail?.infoText ?? "error"
+        infoTextLabel.text = currentEventDetail.infoText
         
         // MARK: - open site button
         let siteTextAttributes: [NSAttributedString.Key: Any] = [
@@ -339,34 +313,13 @@ class EventDetailViewController: UIViewController {
         
         totalUsersLabel.text = "+102"
         
-        // MARK: - stackView with help buttons
-        let helpTextAttributes: [NSAttributedString.Key: Any] = [
-            .font: R.font.sfuiTextMedium(size: 10) ?? UIFont(),
-            .foregroundColor: UIColor.warmGreyColor,
-        ]
-        
-        let clothesAttributeString = NSMutableAttributedString(
-            string: "Помочь \nвещами",
-            attributes: helpTextAttributes)
-        helpClothesButton.setAttributedTitle(clothesAttributeString, for: .normal)
-        
-        let volonteerAttributeString = NSMutableAttributedString(
-            string: "Стать \nволонтером",
-            attributes: helpTextAttributes)
-        helpVoloteerButton.setAttributedTitle(volonteerAttributeString, for: .normal)
-        
-        let profAttributeString = NSMutableAttributedString(
-            string: "Проф. \nпомощь",
-            attributes: helpTextAttributes)
-        helpProfButton.setAttributedTitle(profAttributeString, for: .normal)
-        
-        let moneyAttributeString = NSMutableAttributedString(
-            string: "Помочь \nденьгами",
-            attributes: helpTextAttributes)
-        helpMoneyButton.setAttributedTitle(moneyAttributeString, for: .normal)
+       
     }
     
-    
+    // MARK: - set help bar
+    private func setupBottomHelpBar() {
+        
+    }
     // MARK: - set constraints
     private func setupUI() {
         
@@ -588,25 +541,19 @@ class EventDetailViewController: UIViewController {
             make.centerY.equalTo(graySharingView).inset(18)
         }
         
-        scrollView.addSubview(actionButtoStackView)
-        actionButtoStackView.snp.makeConstraints { make in
+        scrollView.addSubview(bottomHelpBarView)
+        bottomHelpBarView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.height.equalTo(70)
             make.width.equalToSuperview()
             make.top.equalTo(graySharingView).inset(68)
             make.bottom.equalToSuperview()
         }
-        
-        actionButtoStackView.addArrangedSubview(helpClothesButton)
-        actionButtoStackView.addArrangedSubview(helpVoloteerButton)
-        actionButtoStackView.addArrangedSubview(helpProfButton)
-        actionButtoStackView.addArrangedSubview(helpMoneyButton)
-        
     }
     
     private func configureNavBar() {
         
-        self.title = currentEventDetail?.title ?? "error"
+        self.title = currentEventDetail.title
         
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
@@ -619,11 +566,20 @@ class EventDetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
-    // Mark: - Activity controller
+    // MARK: - Activity controller
     var activitiViewContorller: UIActivityViewController? = nil
     @objc func sharingLink() {
         
-        self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail?.title ?? "error"], applicationActivities: nil)
+        self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail.title ?? "error"], applicationActivities: nil)
         self.present(self.activitiViewContorller!, animated: true, completion: nil)
     }
+    
+    
+}
+
+extension EventDetailViewController: helpButtonTapDelegate {
+    func helpButtonAction(buttonTitle: String) {
+        print(buttonTitle)
+    }
+    
 }
