@@ -13,9 +13,9 @@ protocol helpButtonTapDelegate {
 }
 
 class EventDetailViewController: UIViewController {
-    
+    //MARK: - current event detail data
     var currentEventDetail: EventModelElement
-    
+    //MARK: - init data
     init(currentEventDetail: EventModelElement) {
         self.currentEventDetail = currentEventDetail
         super.init(nibName: nil, bundle: nil)
@@ -240,8 +240,8 @@ class EventDetailViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Help bar
     let bottomHelpBarView = HelpBarView()
-    
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -255,23 +255,18 @@ class EventDetailViewController: UIViewController {
     }
     
     private func configireTextData() {
-        
         // MARK: - title label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         let attrString = NSMutableAttributedString(string: currentEventDetail.title ?? "error")
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         titleLabel.attributedText = attrString
-        
+       
         // MARK: - labels
         timeoutLabel.text = currentEventDetail.timeout
-        
         fondNameLabel.text = currentEventDetail.fond
-        
         adressLabel.text = currentEventDetail.adress
-        
         phoneLabel.text = currentEventDetail.phones
-        
         supportLabel.text = "У вас есть вопросы?"
         
         // MARK: - supportButton
@@ -304,27 +299,17 @@ class EventDetailViewController: UIViewController {
             attributes: siteTextAttributes)
         openSiteLinkButton.setAttributedTitle(siteAttributeString, for: .normal)
         
-        //users icon
+        //MARK: - users icons
         userIcon1ImageView.image = R.image.userIcon1()
         userIcon2ImageView.image = R.image.userIcon2()
         userIcon3ImageView.image = R.image.userIcon3()
         userIcon4ImageView.image = R.image.userIcon4()
         userIcon5ImageView.image = R.image.userIcon5()
-        
         totalUsersLabel.text = "+102"
-        
-       
-    }
-    
-    // MARK: - set help bar
-    private func setupBottomHelpBar() {
-        
     }
     // MARK: - set constraints
     private func setupUI() {
-        
         view.addSubview(scrollView)
-        
         scrollView.snp.makeConstraints { make in
             make.bottom.trailing.leading.equalToSuperview()
             make.top.equalTo(80)
@@ -454,7 +439,7 @@ class EventDetailViewController: UIViewController {
             make.top.equalTo(infoTextLabel).inset(156)
         }
         
-        // users icons
+        //MARK: - user's icons
         scrollView.addSubview(graySharingView)
         graySharingView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -552,9 +537,7 @@ class EventDetailViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        
         self.title = currentEventDetail.title
-        
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
                                           target: self,
@@ -569,17 +552,14 @@ class EventDetailViewController: UIViewController {
     // MARK: - Activity controller
     var activitiViewContorller: UIActivityViewController? = nil
     @objc func sharingLink() {
-        
         self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail.title ?? "error"], applicationActivities: nil)
         self.present(self.activitiViewContorller!, animated: true, completion: nil)
     }
-    
-    
 }
 
 extension EventDetailViewController: helpButtonTapDelegate {
+    //MARK: - helpBar action
     func helpButtonAction(buttonTitle: String) {
         print(buttonTitle)
     }
-    
 }
