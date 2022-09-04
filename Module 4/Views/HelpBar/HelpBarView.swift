@@ -29,16 +29,16 @@ class HelpBarView: UIView {
     }
     
     func configure(eventModelElement: EventModelElement) {
-        let eventData = eventModelElement.actionButtons
+        guard let eventData = eventModelElement.actionButtons else { return}
         var counter = 0
-        eventData?.forEach({ el in
+        eventData.forEach({ event in
             counter += 1
             var container2 = AttributeContainer()
             container2.foregroundColor = UIColor.white
             container2.font = R.font.sfuiTextMedium(size: 10)
             var configuration = UIButton.Configuration.filled()
             // MARK: - set button icon
-            switch el.buttonID {
+            switch event.buttonID {
             case "1": configuration.image = R.image.shirt()
             case "2": configuration.image = R.image.hands()
             case "3": configuration.image = R.image.tools()
@@ -49,7 +49,7 @@ class HelpBarView: UIView {
                 print("some")
             }
             // MARK: - set title
-            configuration.subtitle = el.buttonTitle
+            configuration.subtitle = event.buttonTitle
             configuration.imagePlacement = .top
             configuration.baseForegroundColor = UIColor.warmGreyColor
             configuration.baseBackgroundColor = UIColor.white
@@ -67,16 +67,19 @@ class HelpBarView: UIView {
             actionButtoStackView.snp.makeConstraints { make in
                 make.bottom.top.leading.trailing.equalToSuperview()
             }
-            actionButtoStackView.addArrangedSubview(helpButton)
-            // MARK: - check last element
-            if eventData?.count != counter {
-                let separateImageView = UIImageView()
-                separateImageView.image = R.image.separator()
-                actionButtoStackView.addArrangedSubview(separateImageView)
-                separateImageView.snp.makeConstraints { make in
-                    make.width.equalTo(1)
-                    make.height.equalToSuperview()
-                    make.top.bottom.equalToSuperview()
+            // MARK: - check max buttons count on help bar
+            if counter <= 4 {
+                actionButtoStackView.addArrangedSubview(helpButton)
+                // MARK: - check last element
+                if eventData.count != counter {
+                    let separateImageView = UIImageView()
+                    separateImageView.image = R.image.separator()
+                    actionButtoStackView.addArrangedSubview(separateImageView)
+                    separateImageView.snp.makeConstraints { make in
+                        make.width.equalTo(1)
+                        make.height.equalToSuperview()
+                        make.top.bottom.equalToSuperview()
+                    }
                 }
             }
         })

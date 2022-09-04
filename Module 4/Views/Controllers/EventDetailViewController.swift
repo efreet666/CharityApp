@@ -165,7 +165,6 @@ class EventDetailViewController: UIViewController {
     }()
     
     // MARK: - users icons
-    
     private lazy var userIcon1ImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 18

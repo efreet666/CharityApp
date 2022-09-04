@@ -12,6 +12,10 @@ final class MainViewController: UIViewController {
     
     var categoriesData: CategoriesModel? = nil
     
+    private enum Constants {
+        static let headerHeight: CGFloat = 57
+    }
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
@@ -19,24 +23,38 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
+    var activityView = UIActivityIndicatorView()
+    
+    private func showActivityIndicator() {
+        // MARK: - Show activity view
+        self.activityView = Spinner.activityIndicator(style: .large,
+                                                      center: self.view.center)
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
-        parseData()
+        showActivityIndicator()
+        // MARK: - parse data in background
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.parseData()
+        }
     }
     
-    // MARK: - parsing data
+    // MARK: - parsing JSON from bundle
     private func parseData() {
-        categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-        print(categoriesData!)
+        self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.activityView.stopAnimating()
+        }
     }
-    
-    // MARK: - set light status bar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-          return .lightContent
-    }
+   
     // MARK: - setup collectionView
     private func setupCollectionView() {
         // MARK: - collection view layout
@@ -122,6 +140,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension MainViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: 57)
+        return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
     }
 }
