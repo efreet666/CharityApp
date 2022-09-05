@@ -11,9 +11,9 @@ import UIKit
 
 open class Spinner {
     
-     static func activityIndicator(style: UIActivityIndicatorView.Style = .medium,
-                                       frame: CGRect? = nil,
-                                       center: CGPoint? = nil) -> UIActivityIndicatorView {
+    static func activityIndicator(style: UIActivityIndicatorView.Style = .medium,
+                                  frame: CGRect? = nil,
+                                  center: CGPoint? = nil) -> UIActivityIndicatorView {
         
         let activityIndicatorView = UIActivityIndicatorView(style: style)
         
@@ -27,4 +27,5 @@ open class Spinner {
         
         return activityIndicatorView
     }
+    
 }

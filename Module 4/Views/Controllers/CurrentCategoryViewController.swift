@@ -34,18 +34,15 @@ final class CurrentCategoryViewController: UIViewController {
         configureNavBar()
         
         showActivityIndicator()
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.parseData()
-        }
-       
+        parseData()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - Show activity view
     private func showActivityIndicator() {
-        // MARK: - Show activity view
         self.activityView = Spinner.activityIndicator(style: .large,
                                                       center: self.view.center)
         self.view.addSubview(self.activityView)
@@ -53,17 +50,19 @@ final class CurrentCategoryViewController: UIViewController {
     }
     
     private func parseData() {
-        let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
-        // MARK: - filter category array by id
-        currentEvent.forEach { (event) in
-            let currentCategoryArray = event.category!.compactMap { $0 as String }
-            if currentCategoryArray.contains(currentCategoryId) {
-                categoryNewsArray.append(event)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+            // MARK: - filter category array by id
+            currentEvent.forEach { (event) in
+                let currentCategoryArray = event.category!.compactMap { $0 as String }
+                if currentCategoryArray.contains(self.currentCategoryId) {
+                    self.categoryNewsArray.append(event)
+                }
             }
-        }
-        DispatchQueue.main.async {
-            self.newsTableView.reloadData()
-            self.activityView.stopAnimating()
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+                self.activityView.stopAnimating()
+            }
         }
     }
     
@@ -91,6 +90,7 @@ final class CurrentCategoryViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

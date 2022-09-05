@@ -40,18 +40,22 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         // MARK: - parse data in background
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.parseData()
-        }
+        parseData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: - parsing JSON from bundle
     private func parseData() {
-        self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-        
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.activityView.stopAnimating()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+            // MARK: - update UI
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.activityView.stopAnimating()
+            }
         }
     }
    
@@ -133,7 +137,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         header.configure()
         return header
     }
-    
 }
     
 // MARK: - UICollectionViewDelegateFlowLayout
