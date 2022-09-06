@@ -8,17 +8,19 @@
 import UIKit
 
 final class MainTabBarViewController: UITabBarController {
-
     
     private enum Constants {
         static let heartImageViewHeight: CGFloat = 15
         static let centerButtonDiameter: CGFloat = 42
+        static let centerButtonTopAnchorConstant: CGFloat = -10
+        static let heartImageViewWidth: CGFloat = 18
     }
 
     private lazy var centerButton: UIButton = {
         let centerButton = UIButton()
         centerButton.layer.cornerRadius = Constants.centerButtonDiameter / 2
-        centerButton.backgroundColor = mainGreenColor
+        centerButton.backgroundColor = UIColor.mainGreenColor
+
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         centerButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
         return centerButton
@@ -43,10 +45,11 @@ final class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         setupUI()
+        
     }
 
     private func setupUI() {
-        tabBar.tintColor = mainGreenColor
+        tabBar.tintColor = UIColor.mainGreenColor
 
         // MARK: - add subview
         tabBar.addSubview(centerButton)
@@ -57,13 +60,17 @@ final class MainTabBarViewController: UITabBarController {
             centerButton.heightAnchor.constraint(equalToConstant: Constants.centerButtonDiameter),
             centerButton.widthAnchor.constraint(equalToConstant: Constants.centerButtonDiameter),
             centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            centerButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10)
+            centerButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: Constants.centerButtonTopAnchorConstant)
         ])
 
         // MARK: - activate heart image constraints
         NSLayoutConstraint.activate([
             heartImageView.heightAnchor.constraint(equalToConstant: Constants.heartImageViewHeight),
             heartImageView.widthAnchor.constraint(equalToConstant: 18),
+
+            heartImageView.heightAnchor.constraint(equalToConstant: Constants.heartImageViewHeight),
+            heartImageView.widthAnchor.constraint(equalToConstant: Constants.heartImageViewWidth),
+
             heartImageView.centerXAnchor.constraint(equalTo: centerButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: centerButton.centerYAnchor)
         ])
@@ -71,41 +78,45 @@ final class MainTabBarViewController: UITabBarController {
         // MARK: - create VC
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
-        newsVC.tabBarItem.title = "Новости"
-        newsVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
+        newsVC.tabBarItem.title = R.string.localizable.newsTabCategory()
+        newsVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
         newsVC.tabBarItem.image = UIImage(systemName: "list.bullet")
 
         let searchVC = UIViewController()
         searchVC.view.backgroundColor = .green
-        searchVC.tabBarItem.title = "Поиск"
-        searchVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
+        searchVC.tabBarItem.title = R.string.localizable.searchTabCategory()
+        searchVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
         // MARK: - Main VC
         let helpVC = MainViewController()
-        helpVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
-        helpVC.tabBarItem.title = "Помочь"
-
+        helpVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
+        helpVC.tabBarItem.title = R.string.localizable.helpTabCategory()
+        
+        let navViewController = UINavigationController(rootViewController: helpVC)
+        
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .blue
-        historyVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
-        historyVC.tabBarItem.title = "История"
+        historyVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
+        historyVC.tabBarItem.title = R.string.localizable.historyTabCategory()
         historyVC.tabBarItem.image = UIImage(systemName: "clock.arrow.2.circlepath")
 
         let profileVC = UIViewController()
         profileVC.view.backgroundColor = .blue
-        profileVC.tabBarItem.title = "Профиль"
+        profileVC.tabBarItem.title = R.string.localizable.profileTabCategory()
         profileVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10)!], for: .normal)
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
 
-        viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
+        viewControllers = [newsVC, searchVC, navViewController, historyVC, profileVC]
         self.selectedIndex = 2
 
     }
     @objc private func didPressMiddleButton() {
         selectedIndex = 2
-        centerButton.backgroundColor = mainGreenColor
-//        centerButton.backgroundColor = .mainGreenColor
+        centerButton.backgroundColor = UIColor.mainGreenColor
     }
+
+    
+
 
 }

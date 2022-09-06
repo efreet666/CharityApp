@@ -7,4 +7,5 @@ target 'Module 4' do
 
   # Pods for Module 4
 pod 'R.swift'
+pod 'SnapKit', '~> 5.0.0'
 end
