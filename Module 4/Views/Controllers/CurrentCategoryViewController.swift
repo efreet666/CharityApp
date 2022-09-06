@@ -25,44 +25,59 @@ final class CurrentCategoryViewController: UIViewController {
         return tableView
     }()
     
+    var activityView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.mainGreenColor
         setupTableView()
         configureNavBar()
+        
+        showActivityIndicator()
         parseData()
-       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - Show activity view
+    private func showActivityIndicator() {
+        self.activityView = Spinner.activityIndicator(style: .large,
+                                                      center: self.view.center)
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+    }
+    
     private func parseData() {
-        let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
-        currentEvent.forEach { (el) in
-            let currentArrayCategory = el.category!.compactMap { $0 as String }
-            if currentArrayCategory.contains(currentCategoryId) {
-                categoryNewsArray.append(el)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+            // MARK: - filter category array by id
+            currentEvent.forEach { (event) in
+                let currentCategoryArray = event.category!.compactMap { $0 as String }
+                if currentCategoryArray.contains(self.currentCategoryId) {
+                    self.categoryNewsArray.append(event)
+                }
+            }
+            DispatchQueue.main.async {
+                self.newsTableView.reloadData()
+                self.activityView.stopAnimating()
             }
         }
     }
     
     private func setupTableView() {
-        
         newsTableView.backgroundColor = UIColor.lightGreyColor
         newsTableView.dataSource = self
         newsTableView.delegate = self
         newsTableView.register(CategoryNewsTableViewCell.self, forCellReuseIdentifier: CategoryNewsTableViewCell.identifier)
         
         view.addSubview(newsTableView)
-        
         newsTableView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(54)
             make.trailing.leading.equalToSuperview()
             make.bottom.equalToSuperview().inset(54)
         }
-     
     }
 
     private func configureNavBar() {
@@ -75,6 +90,7 @@ final class CurrentCategoryViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,7 +109,6 @@ extension CurrentCategoryViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let vc = EventDetailViewController(currentEventDetail: categoryNewsArray[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
     }

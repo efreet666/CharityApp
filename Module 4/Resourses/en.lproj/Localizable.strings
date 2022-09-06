@@ -10,3 +10,6 @@
 "HelpTabCategory" = "Help";
 "HistoryTabCategory" = "History";
 "ProfileTabCategory" = "Profile";
+"ErrorTitle" = "Error";
+"ErroSubtitle" = "Try again later";
+

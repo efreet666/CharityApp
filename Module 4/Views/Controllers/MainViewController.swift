@@ -12,6 +12,10 @@ final class MainViewController: UIViewController {
     
     var categoriesData: CategoriesModel? = nil
     
+    private enum Constants {
+        static let headerHeight: CGFloat = 57
+    }
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView()
         collectionView.backgroundColor = .gray
@@ -19,24 +23,47 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
 
+    var activityView = UIActivityIndicatorView()
+    
+    private func showActivityIndicator() {
+        // MARK: - Show activity view
+        self.activityView = Spinner.activityIndicator(style: .large,
+                                                      center: self.view.center)
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
+        showActivityIndicator()
+        // MARK: - parse data in background
         parseData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
-    // MARK: - parsing data
+    // MARK: - parsing JSON from bundle
     private func parseData() {
-        categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-        print(categoriesData!)
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+            
+            // MARK: - update UI
+            DispatchQueue.main.async {
+                // MARK: - Check if data is empty
+                if self.categoriesData?.isEmpty == true {
+                    self.errorAlert(title: R.string.localizable.errorTitle(), message: R.string.localizable.erroSubtitle(), style: .alert)
+                }
+                self.collectionView.reloadData()
+                self.activityView.stopAnimating()
+            }
+        }
     }
-    
-    // MARK: - set light status bar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-          return .lightContent
-    }
+   
     // MARK: - setup collectionView
     private func setupCollectionView() {
         // MARK: - collection view layout
@@ -64,6 +91,18 @@ final class MainViewController: UIViewController {
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.whiteColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+    }
+
+    func errorAlert(title: String, message: String, style: UIAlertController.Style){
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+            
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                
+            }
+           
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
         
     }
 
@@ -115,13 +154,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         header.configure()
         return header
     }
-    
 }
     
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: 57)
+        return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
     }
 }
