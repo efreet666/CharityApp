@@ -9,8 +9,8 @@ import UIKit
 
 // MARK: - Activity view indicator
 
-open class Spinner {
-    
+class Spinner {
+
     static func activityIndicator(style: UIActivityIndicatorView.Style = .medium,
                                   frame: CGRect? = nil,
                                   center: CGPoint? = nil) -> UIActivityIndicatorView {

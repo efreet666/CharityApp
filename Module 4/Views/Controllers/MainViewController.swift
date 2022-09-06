@@ -51,8 +51,13 @@ final class MainViewController: UIViewController {
     private func parseData() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+            
             // MARK: - update UI
             DispatchQueue.main.async {
+                // MARK: - Check if data is empty
+                if self.categoriesData?.isEmpty == true {
+                    self.errorAlert(title: R.string.localizable.errorTitle(), message: R.string.localizable.erroSubtitle(), style: .alert)
+                }
                 self.collectionView.reloadData()
                 self.activityView.stopAnimating()
             }
@@ -86,6 +91,18 @@ final class MainViewController: UIViewController {
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.whiteColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+    }
+
+    func errorAlert(title: String, message: String, style: UIAlertController.Style){
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+            
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                
+            }
+           
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
         
     }
 

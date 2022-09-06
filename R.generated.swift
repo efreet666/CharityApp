@@ -545,7 +545,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 12 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 14 localization keys.
     struct localizable {
       /// en translation: Adult
       ///
@@ -563,6 +563,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let chooseCategory = Rswift.StringResource(key: "ChooseCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Error
+      ///
+      /// Locales: en, ru
+      static let errorTitle = Rswift.StringResource(key: "ErrorTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
       /// en translation: Event
       ///
       /// Locales: en, ru
@@ -595,6 +599,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ru
       static let searchTabCategory = Rswift.StringResource(key: "SearchTabCategory", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
+      /// en translation: Try again later
+      ///
+      /// Locales: en, ru
+      static let erroSubtitle = Rswift.StringResource(key: "ErroSubtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ru"], comment: nil)
 
       /// en translation: Adult
       ///
@@ -654,6 +662,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("ChooseCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error
+      ///
+      /// Locales: en, ru
+      static func errorTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ErrorTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ErrorTitle"
+        }
+
+        return NSLocalizedString("ErrorTitle", bundle: bundle, comment: "")
       }
 
       /// en translation: Event
@@ -774,6 +797,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("SearchTabCategory", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Try again later
+      ///
+      /// Locales: en, ru
+      static func erroSubtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ErroSubtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ErroSubtitle"
+        }
+
+        return NSLocalizedString("ErroSubtitle", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

@@ -10,3 +10,5 @@
 "HelpTabCategory" = "Помочь";
 "HistoryTabCategory" = "История";
 "ProfileTabCategory" = "Профиль";
+"ErrorTitle" = "Произошла ошибка";
+"ErroSubtitle" = "Повторите попытку позже";
