@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActionButton" representedClassName="ActionButton" syncable="YES" codeGenerationType="class">
+        <attribute name="buttonID" optional="YES" attributeType="String"/>
+        <attribute name="buttonTitle" optional="YES" attributeType="String"/>
+        <relationship name="contain" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="have" inverseEntity="Event"/>
+    </entity>
+    <entity name="Category" representedClassName=".Category" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
+        <attribute name="actionButtons" optional="YES" attributeType="Transformable"/>
+        <attribute name="adress" optional="YES" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="fond" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="infoText" optional="YES" attributeType="String"/>
+        <attribute name="phones" optional="YES" attributeType="String"/>
+        <attribute name="subTitle" optional="YES" attributeType="String"/>
+        <attribute name="timeout" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="have" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActionButton" inverseName="contain" inverseEntity="ActionButton"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-65.56109619140625" positionY="-112.5035705566406" width="128" height="88"/>
+        <element name="Event" positionX="155.6742553710938" positionY="-111.6019897460938" width="128" height="223"/>
+        <element name="ActionButton" positionX="-36" positionY="99" width="123.110107421875" height="88"/>
+    </elements>
+</model>
