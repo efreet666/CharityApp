@@ -13,11 +13,11 @@ struct EventModelElement: Codable {
     let category, images: [String]?
     let title, subTitle, timeout, fond: String?
     let adress, phones, infoText: String?
-    let actionButtons: [ActionButton]?
+    let actionButtons: [EventActionButton]?
 }
 
 // MARK: - ActionButton
-struct ActionButton: Codable {
+struct EventActionButton: Codable {
     let buttonTitle, buttonID: String?
 
     enum CodingKeys: String, CodingKey {
