@@ -1,5 +1,5 @@
 //
-//  ActionButton+CoreDataClass.swift
+//  Categories+CoreDataClass.swift
 //  Module 4
 //
 //  Created by Влад Бокин on 11.09.2022.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(ActionButton)
-public class ActionButton: NSManagedObject {
+
+public class Categories: NSManagedObject {
 
 }

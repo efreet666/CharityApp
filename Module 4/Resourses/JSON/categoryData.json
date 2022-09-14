@@ -5,7 +5,7 @@
        "image" : "ChildCategory"
     },
     {
-       "id": "Adult",
+        "id": "Adult",
         "title" : "Взрослые",
         "image" : "AdultCategory"
     },

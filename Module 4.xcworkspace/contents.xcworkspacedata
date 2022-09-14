@@ -2,24 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Category+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Category+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Event+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Event+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:ActionButton+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:ActionButton+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:Module 4.xcodeproj">
    </FileRef>
    <FileRef

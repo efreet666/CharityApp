@@ -5,12 +5,15 @@
 //  Created by Влад Бокин on 16.08.2022.
 //
 
+import Foundation
 import UIKit
 import Rswift
+import CoreData
 
 final class MainViewController: UIViewController {
     
-    var categoriesData: CategoriesModel? = nil
+    var categoriesData: CategoriesModel? = []
+    private var categories = [Categories]()
     
     private enum Constants {
         static let headerHeight: CGFloat = 57
@@ -33,20 +36,52 @@ final class MainViewController: UIViewController {
         self.activityView.startAnimating()
     }
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
         showActivityIndicator()
+        
         // MARK: - parse data in background
-        parseData()
+        //parseData()
+        
+        CoreDataManager.saveData()
+        
+     
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.categories = CoreDataManager.readData()
+            for el in self.categories {
+                print(el.image as Any)
+            }
+            self.convertToModel(CoreDataCategories: self.categories)
+        }
+        
+        self.collectionView.reloadData()
+        self.activityView.stopAnimating()
     }
     
+    private func convertToModel(CoreDataCategories: [Categories]) {
+        var i = 0
+        for _ in CoreDataCategories {
+            let el = CategoriesModelElement(id: CoreDataCategories[i].id,
+                                            title: CoreDataCategories[i].title,
+                                            image: CoreDataCategories[i].image)
+            categoriesData?.append(el)
+            i += 1
+        }
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+    }
     // MARK: - parsing JSON from bundle
     private func parseData() {
         DispatchQueue.global(qos: .userInitiated).async {
