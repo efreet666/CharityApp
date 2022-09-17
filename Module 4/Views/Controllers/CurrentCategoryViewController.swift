@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 
 final class CurrentCategoryViewController: UIViewController {
-
+    
     var currentCategoryTitle: String?
     var currentCategoryId: String = ""
-    var categoryNewsArray: [EventModelElement] = []
-  
+    
+    private var categoryEvents = [Event]()
+    private var categoryNewsArray: [EventModelElement] = []
+    
     private enum Constants {
         static let cellHeight: CGFloat = 413
     }
@@ -34,11 +36,61 @@ final class CurrentCategoryViewController: UIViewController {
         configureNavBar()
         
         showActivityIndicator()
-        parseData()
+        
+        CoreDataManager.saveEventData()
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.categoryEvents = CoreDataManager.readEventData()
+            
+            self.convertToModel(eventDataCategories: self.categoryEvents)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+    }
+    
+    // MARK: - convert data from CoreData to model
+    private func convertToModel(eventDataCategories: [Event]) {
+        let actionButtonData = CoreDataManager.readActionButtonData()
+        var currentEventArray: [EventModelElement] = []
+        var i = 0
+        var actionButtons : [EventActionButton]? = []
+        
+        for _ in eventDataCategories {
+            for action in actionButtonData {
+                //print(action.buttonTitle)
+                actionButtons?.append(EventActionButton(buttonTitle: action.buttonTitle, buttonID: action.buttonID))
+            }
+            let el = EventModelElement(id: eventDataCategories[i].id,
+                                       category: eventDataCategories[i].category,
+                                       images: eventDataCategories[i].images,
+                                       title: eventDataCategories[i].title,
+                                       subTitle: eventDataCategories[i].subTitle,
+                                       timeout: eventDataCategories[i].timeout,
+                                       fond: eventDataCategories[i].fond,
+                                       adress: eventDataCategories[i].adress,
+                                       phones: eventDataCategories[i].phones,
+                                       infoText: eventDataCategories[i].infoText,
+                                       actionButtons: actionButtons)
+            
+            currentEventArray.append(el)
+            i += 1
+        }
+        
+        // MARK: - filter category array by id
+        currentEventArray.forEach { (event) in
+            let currentCategoryArray = event.category!.compactMap { $0 as String }
+            if currentCategoryArray.contains(self.currentCategoryId) {
+                self.categoryNewsArray.append(event)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.newsTableView.reloadData()
+            self.activityView.stopAnimating()
+        }
     }
     
     // MARK: - Show activity view
@@ -47,23 +99,6 @@ final class CurrentCategoryViewController: UIViewController {
                                                       center: self.view.center)
         self.view.addSubview(self.activityView)
         self.activityView.startAnimating()
-    }
-    
-    private func parseData() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let currentEvent = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
-            // MARK: - filter category array by id
-            currentEvent.forEach { (event) in
-                let currentCategoryArray = event.category!.compactMap { $0 as String }
-                if currentCategoryArray.contains(self.currentCategoryId) {
-                    self.categoryNewsArray.append(event)
-                }
-            }
-            DispatchQueue.main.async {
-                self.newsTableView.reloadData()
-                self.activityView.stopAnimating()
-            }
-        }
     }
     
     private func setupTableView() {
@@ -79,7 +114,7 @@ final class CurrentCategoryViewController: UIViewController {
             make.bottom.equalToSuperview().inset(54)
         }
     }
-
+    
     private func configureNavBar() {
         self.navigationController?.navigationBar.backgroundColor = UIColor.mainGreenColor
         self.navigationController?.navigationBar.barTintColor = UIColor.mainGreenColor

@@ -12,7 +12,7 @@ import CoreData
 
 final class MainViewController: UIViewController {
     
-    var categoriesData: CategoriesModel? = []
+    private var categoriesData: CategoriesModel? = []
     private var categories = [Categories]()
     
     private enum Constants {
@@ -44,27 +44,17 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         
-        // MARK: - parse data in background
-        //parseData()
-        
-        CoreDataManager.saveData()
+        CoreDataManager.saveCategoryData()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.categories = CoreDataManager.readCategoryData()
+            self.convertToModel(CoreDataCategories: self.categories)
+        }
         
      
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.categories = CoreDataManager.readData()
-            for el in self.categories {
-                print(el.image as Any)
-            }
-            self.convertToModel(CoreDataCategories: self.categories)
-        }
-        
-        self.collectionView.reloadData()
-        self.activityView.stopAnimating()
     }
     
     private func convertToModel(CoreDataCategories: [Categories]) {
@@ -76,26 +66,9 @@ final class MainViewController: UIViewController {
             categoriesData?.append(el)
             i += 1
         }
-        
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-        }
-        
-    }
-    // MARK: - parsing JSON from bundle
-    private func parseData() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-            
-            // MARK: - update UI
-            DispatchQueue.main.async {
-                // MARK: - Check if data is empty
-                if self.categoriesData?.isEmpty == true {
-                    self.errorAlert(title: R.string.localizable.errorTitle(), message: R.string.localizable.erroSubtitle(), style: .alert)
-                }
-                self.collectionView.reloadData()
-                self.activityView.stopAnimating()
-            }
+            self.activityView.stopAnimating()
         }
     }
    

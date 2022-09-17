@@ -25,8 +25,8 @@
         <relationship name="have" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActionButton" inverseName="contain" inverseEntity="ActionButton"/>
     </entity>
     <elements>
-        <element name="ActionButton" positionX="-36" positionY="99" width="123.110107421875" height="74"/>
-        <element name="Categories" positionX="-65.56109619140625" positionY="-112.5035705566406" width="128" height="74"/>
-        <element name="Event" positionX="155.6742553710938" positionY="-111.6019897460938" width="128" height="209"/>
+        <element name="ActionButton" positionX="-43.795166015625" positionY="105.4510498046875" width="123.110107421875" height="88"/>
+        <element name="Categories" positionX="-65.302978515625" positionY="-120.9131774902343" width="128" height="74"/>
+        <element name="Event" positionX="155.6742553710938" positionY="-111.6019897460938" width="128" height="223"/>
     </elements>
 </model>
