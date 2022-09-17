@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.swift
 //  Module 4
 //
-//  Created by Влад Бокин on 11.09.2022.
+//  Created by Влад Бокин on 17.09.2022.
 //
 //
 
@@ -16,7 +16,7 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
-    @NSManaged public var actionButtons: NSObject?
+    @NSManaged public var actionButtons: [NSObject]?
     @NSManaged public var adress: String?
     @NSManaged public var category: [String]?
     @NSManaged public var fond: String?

@@ -11,7 +11,7 @@
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="actionButtons" optional="YES" attributeType="Transformable"/>
+        <attribute name="actionButtons" optional="YES" attributeType="Transformable" customClassName="[NSObject]"/>
         <attribute name="adress" optional="YES" attributeType="String"/>
         <attribute name="category" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="fond" optional="YES" attributeType="String"/>

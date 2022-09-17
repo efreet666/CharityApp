@@ -44,13 +44,11 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         
-        CoreDataManager.saveCategoryData()
         DispatchQueue.global(qos: .userInitiated).async {
+            CoreDataManager.saveCategoryData()
             self.categories = CoreDataManager.readCategoryData()
             self.convertToModel(CoreDataCategories: self.categories)
         }
-        
-     
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,8 +65,8 @@ final class MainViewController: UIViewController {
             i += 1
         }
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
             self.activityView.stopAnimating()
+            self.collectionView.reloadData()
         }
     }
    

@@ -33,38 +33,44 @@ class CoreDataManager {
     
     static func saveEventData() {
         // MARK: - check if data loaded from JSON
-        if readEventData().isEmpty {
+        if readEventData().isEmpty && readActionButtonData().isEmpty {
+            
             let eventData = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+            
             let storeManager = DataStoreManager()
             let context = storeManager.persistentContainer.viewContext
             
             guard let entity = NSEntityDescription.entity(forEntityName: "Event", in: context) else { return }
-            guard let actionButtonEntity = NSEntityDescription.entity(forEntityName: "ActionButton", in: context) else { return }
             
             for el in eventData {
-                print(el.actionButtons?.count)
+                
+                guard let actionButtonEntity = NSEntityDescription.entity(forEntityName: "ActionButton", in: context) else { return }
+                
                 let eventEntityData = Event(entity: entity, insertInto: context)
                 eventEntityData.title = el.title
                 eventEntityData.category = el.category
                 eventEntityData.id = el.id
                 eventEntityData.adress = el.adress
                 eventEntityData.fond = el.fond
-                
                 eventEntityData.infoText = el.infoText
                 eventEntityData.images = el.images
                 eventEntityData.subTitle = el.subTitle
                 eventEntityData.timeout = el.timeout
                 eventEntityData.phones = el.phones
-
-                let actionButtonData = ActionButton(entity: actionButtonEntity, insertInto: context)
                 
                 el.actionButtons?.forEach({ el1 in
-                    print(el1.buttonTitle)
+                    
+                    let actionButtonData = ActionButton(entity: actionButtonEntity, insertInto: context)
+                    var actionButtonArray: [NSObject] = []
                     actionButtonData.buttonID = el1.buttonID
                     actionButtonData.buttonTitle = el1.buttonTitle
+                    actionButtonArray.append(actionButtonData)
+                    eventEntityData.actionButtons = el.actionButtons.map { $0 } as? [NSObject]
                 })
-              }
-            storeManager.saveContext()
+                
+                storeManager.saveContext()
+                eventEntityData.actionButtons? = []
+            }
         }
     }
     

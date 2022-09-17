@@ -41,7 +41,6 @@ final class CurrentCategoryViewController: UIViewController {
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.categoryEvents = CoreDataManager.readEventData()
-            
             self.convertToModel(eventDataCategories: self.categoryEvents)
         }
     }
@@ -59,10 +58,11 @@ final class CurrentCategoryViewController: UIViewController {
         var actionButtons : [EventActionButton]? = []
         
         for _ in eventDataCategories {
+            
             for action in actionButtonData {
-                //print(action.buttonTitle)
                 actionButtons?.append(EventActionButton(buttonTitle: action.buttonTitle, buttonID: action.buttonID))
             }
+            
             let el = EventModelElement(id: eventDataCategories[i].id,
                                        category: eventDataCategories[i].category,
                                        images: eventDataCategories[i].images,
@@ -77,6 +77,7 @@ final class CurrentCategoryViewController: UIViewController {
             
             currentEventArray.append(el)
             i += 1
+            actionButtons = []
         }
         
         // MARK: - filter category array by id
