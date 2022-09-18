@@ -16,6 +16,9 @@
 		F527D42928AB878200E3E792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42728AB878200E3E792 /* Main.storyboard */; };
 		F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527D42A28AB878600E3E792 /* Assets.xcassets */; };
 		F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */; };
+		F52BE7D128D75F8200E4F22A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D028D75F8200E4F22A /* RealmModel.swift */; };
+		F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */; };
+		F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */; };
 		F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F547AE5628C8925700316699 /* CharityModel.xcdatamodeld */; };
 		F547F8E928B95EBD006D215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8E828B95EBD006D215B /* Colors.swift */; };
 		F547F8ED28B960AB006D215B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8EC28B960AB006D215B /* R.generated.swift */; };
@@ -61,6 +64,9 @@
 		F527D42A28AB878600E3E792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F527D42D28AB878600E3E792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F527D42F28AB878600E3E792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F52BE7D028D75F8200E4F22A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
+		F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingDataBaseFlag.swift; sourceTree = "<group>"; };
 		F547AE5728C8925700316699 /* CharityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CharityModel.xcdatamodel; sourceTree = "<group>"; };
 		F547F8E828B95EBD006D215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F547F8EC28B960AB006D215B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -194,6 +200,15 @@
 			path = "Module 4";
 			sourceTree = "<group>";
 		};
+		F52BE7CF28D75F5600E4F22A /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7D028D75F8200E4F22A /* RealmModel.swift */,
+				F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		F547F8EA28B95F5F006D215B /* ColorSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,9 +316,11 @@
 		F5C2ADFC28B0C0040031B6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F52BE7CF28D75F5600E4F22A /* Realm */,
 				F517004F28CB63D800B6227B /* DataStoreManager */,
 				F511A20228CE6E420036613C /* Models */,
 				F511A20328CE6E530036613C /* Parsing */,
+				F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F547F8FF28BBC004006D215B /* CategoryNewsTableViewCell.swift in Sources */,
+				F52BE7D128D75F8200E4F22A /* RealmModel.swift in Sources */,
 				F547F8FD28BB7F6C006D215B /* CurrentCategoryViewController.swift in Sources */,
 				F5C2AE0328B0DCC20031B6D4 /* HeaderCollectionReusableView.swift in Sources */,
 				F582019628D5EF4500259018 /* Categories+CoreDataClass.swift in Sources */,
@@ -516,9 +534,11 @@
 				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
 				F547F8ED28B960AB006D215B /* R.generated.swift in Sources */,
 				F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */,
+				F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */,
 				F582019528D5EF4500259018 /* Event+CoreDataProperties.swift in Sources */,
 				F511A20528CF33C40036613C /* CoreDataManager.swift in Sources */,
 				F547F90C28BD5E15006D215B /* EventModel.swift in Sources */,
+				F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */,
 				F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */,
 				F517005128CB640E00B6227B /* DataStoreManager.swift in Sources */,
 				F547F90E28BE19CC006D215B /* CategoriesModel.swift in Sources */,

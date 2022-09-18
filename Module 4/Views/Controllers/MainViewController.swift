@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import Rswift
-import CoreData
 
 final class MainViewController: UIViewController {
     
@@ -44,15 +43,38 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            CoreDataManager.saveCategoryData()
-            self.categories = CoreDataManager.readCategoryData()
-            self.convertToModel(CoreDataCategories: self.categories)
+        // MARK: - Check flag for using DB
+        switch UsingDataBaseFlag.flag {
+        case .coreData:
+            DispatchQueue.global(qos: .userInitiated).async {
+                CoreDataManager.saveCategoryData()
+                self.categories = CoreDataManager.readCategoryData()
+                self.convertToModel(CoreDataCategories: self.categories)
+            }
+        case .Realm:
+            RealmDataManager.saveCategoryData()
+            convertRealmDataToModel()
         }
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func convertRealmDataToModel() {
+        let data = RealmDataManager.readCategoryData()
+        
+        data.forEach { category in
+            let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
+            categoriesData?.append(currentCategory)
+        }
+        
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
+            self.collectionView.reloadData()
+        }
     }
     
     private func convertToModel(CoreDataCategories: [Categories]) {

@@ -37,12 +37,21 @@ final class CurrentCategoryViewController: UIViewController {
         
         showActivityIndicator()
         
-        CoreDataManager.saveEventData()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.categoryEvents = CoreDataManager.readEventData()
-            self.convertToModel(eventDataCategories: self.categoryEvents)
+        // MARK: - Check flag for using DB
+        switch UsingDataBaseFlag.flag {
+        case .coreData:
+            CoreDataManager.saveEventData()
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.categoryEvents = CoreDataManager.readEventData()
+                self.convertToModel(eventDataCategories: self.categoryEvents)
+            }
+        case .Realm:
+            RealmDataManager.saveEventData()
+            convertRealmDataToModel()
         }
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,6 +59,30 @@ final class CurrentCategoryViewController: UIViewController {
         
     }
     
+    private func convertRealmDataToModel() {
+        let data = RealmDataManager.readEventData()
+        print(data)
+        
+        data.forEach { currentEvent in
+            let currentCategory: EventModelElement = EventModelElement(id: currentEvent.id,
+                                                                       category: Array(currentEvent.category),
+                                                                       images: Array(currentEvent.images),
+                                                                       title: currentEvent.title,
+                                                                       subTitle: currentEvent.subTitle,
+                                                                       timeout: currentEvent.timeout,
+                                                                       fond: currentEvent.fond,
+                                                                       adress: currentEvent.adress,
+                                                                       phones: currentEvent.phones,
+                                                                       infoText: currentEvent.infoText,
+                                                                       actionButtons: nil)
+            categoryNewsArray.append(currentCategory)
+        }
+        
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
+            self.newsTableView.reloadData()
+        }
+    }
     // MARK: - convert data from CoreData to model
     private func convertToModel(eventDataCategories: [Event]) {
         let actionButtonData = CoreDataManager.readActionButtonData()
