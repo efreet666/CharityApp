@@ -41,7 +41,7 @@ class RealmDataManager {
             for eventData in eventsData {
                 
                 let events = Events()
-                let realm = try! Realm()
+                //let realm = try! Realm()
                 
                 events.id = eventData.id ?? ""
                 events.title = eventData.title ?? ""

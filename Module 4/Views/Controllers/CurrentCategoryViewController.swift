@@ -62,8 +62,13 @@ final class CurrentCategoryViewController: UIViewController {
     private func convertRealmDataToModel() {
         let data = RealmDataManager.readEventData()
         print(data)
-        
+        var currentEventArray: [EventModelElement] = []
         data.forEach { currentEvent in
+            var actionButtonArray : [EventActionButton]? = []
+            currentEvent.actionButtons.forEach { event in
+                actionButtonArray?.append(EventActionButton(buttonTitle: event.buttonTitle, buttonID: event.buttonID))
+            }
+            
             let currentCategory: EventModelElement = EventModelElement(id: currentEvent.id,
                                                                        category: Array(currentEvent.category),
                                                                        images: Array(currentEvent.images),
@@ -74,8 +79,17 @@ final class CurrentCategoryViewController: UIViewController {
                                                                        adress: currentEvent.adress,
                                                                        phones: currentEvent.phones,
                                                                        infoText: currentEvent.infoText,
-                                                                       actionButtons: nil)
-            categoryNewsArray.append(currentCategory)
+                                                                       actionButtons: actionButtonArray )
+            print(currentEvent.actionButtons)
+            currentEventArray.append(currentCategory)
+        }
+        
+        // MARK: - filter category array by id
+        currentEventArray.forEach { (event) in
+            let currentCategoryArray = event.category!.compactMap { $0 as String }
+            if currentCategoryArray.contains(self.currentCategoryId) {
+                self.categoryNewsArray.append(event)
+            }
         }
         
         DispatchQueue.main.async {
