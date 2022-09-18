@@ -10,6 +10,7 @@ import CoreData
 
 class CoreDataManager {
     
+    // MARK: - Save data to CoreData
     static func saveCategoryData() {
         // MARK: - check if data loaded from JSON
         if readCategoryData().isEmpty {
@@ -42,30 +43,30 @@ class CoreDataManager {
             
             guard let entity = NSEntityDescription.entity(forEntityName: "Event", in: context) else { return }
             
-            for el in eventData {
+            for event in eventData {
                 
                 guard let actionButtonEntity = NSEntityDescription.entity(forEntityName: "ActionButton", in: context) else { return }
                 
                 let eventEntityData = Event(entity: entity, insertInto: context)
-                eventEntityData.title = el.title
-                eventEntityData.category = el.category
-                eventEntityData.id = el.id
-                eventEntityData.adress = el.adress
-                eventEntityData.fond = el.fond
-                eventEntityData.infoText = el.infoText
-                eventEntityData.images = el.images
-                eventEntityData.subTitle = el.subTitle
-                eventEntityData.timeout = el.timeout
-                eventEntityData.phones = el.phones
+                eventEntityData.title = event.title
+                eventEntityData.category = event.category
+                eventEntityData.id = event.id
+                eventEntityData.adress = event.adress
+                eventEntityData.fond = event.fond
+                eventEntityData.infoText = event.infoText
+                eventEntityData.images = event.images
+                eventEntityData.subTitle = event.subTitle
+                eventEntityData.timeout = event.timeout
+                eventEntityData.phones = event.phones
                 
-                el.actionButtons?.forEach({ el1 in
+                event.actionButtons?.forEach({ button in
                     
                     let actionButtonData = ActionButton(entity: actionButtonEntity, insertInto: context)
                     var actionButtonArray: [NSObject] = []
-                    actionButtonData.buttonID = el1.buttonID
-                    actionButtonData.buttonTitle = el1.buttonTitle
+                    actionButtonData.buttonID = button.buttonID
+                    actionButtonData.buttonTitle = button.buttonTitle
                     actionButtonArray.append(actionButtonData)
-                    eventEntityData.actionButtons = el.actionButtons.map { $0 } as? [NSObject]
+                    eventEntityData.actionButtons = event.actionButtons.map { $0 } as? [ActionButton]
                 })
                 
                 storeManager.saveContext()
@@ -73,6 +74,8 @@ class CoreDataManager {
             }
         }
     }
+    
+    // MARK: - Read data from CoreData
     
     static func readCategoryData() -> ([Categories]) {
         var categories = [Categories]()
