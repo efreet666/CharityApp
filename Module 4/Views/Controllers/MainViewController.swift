@@ -57,12 +57,12 @@ final class MainViewController: UIViewController {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - write Realm data and convert our model
     private func convertRealmDataToModel() {
         let data = RealmDataManager.readCategoryData()
         
@@ -77,6 +77,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - write CoreData data and convert our model
     private func convertToModel(CoreDataCategories: [Categories]) {
         var i = 0
         for _ in CoreDataCategories {

@@ -59,16 +59,19 @@ final class CurrentCategoryViewController: UIViewController {
         
     }
     
+    // MARK: - write Realm data
     private func convertRealmDataToModel() {
         let data = RealmDataManager.readEventData()
-        print(data)
         var currentEventArray: [EventModelElement] = []
+        
+        // MARK: - create action buttons array
         data.forEach { currentEvent in
             var actionButtonArray : [EventActionButton]? = []
             currentEvent.actionButtons.forEach { event in
                 actionButtonArray?.append(EventActionButton(buttonTitle: event.buttonTitle, buttonID: event.buttonID))
             }
             
+            // MARK: - create category element
             let currentCategory: EventModelElement = EventModelElement(id: currentEvent.id,
                                                                        category: Array(currentEvent.category),
                                                                        images: Array(currentEvent.images),
@@ -80,7 +83,6 @@ final class CurrentCategoryViewController: UIViewController {
                                                                        phones: currentEvent.phones,
                                                                        infoText: currentEvent.infoText,
                                                                        actionButtons: actionButtonArray )
-            print(currentEvent.actionButtons)
             currentEventArray.append(currentCategory)
         }
         
