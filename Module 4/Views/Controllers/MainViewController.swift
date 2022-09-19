@@ -52,8 +52,10 @@ final class MainViewController: UIViewController {
                 self.convertToModel(CoreDataCategories: self.categories)
             }
         case .Realm:
-            RealmDataManager.saveCategoryData()
-            convertRealmDataToModel()
+            DispatchQueue.global(qos: .userInitiated).async {
+                RealmDataManager.saveCategoryData()
+                self.convertRealmDataToModel()
+            }
         }
     }
     

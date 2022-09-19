@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Choose DB for use
 class UsingDataBaseFlag {
     
     enum dataBases {

@@ -316,11 +316,11 @@
 		F5C2ADFC28B0C0040031B6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */,
 				F52BE7CF28D75F5600E4F22A /* Realm */,
 				F517004F28CB63D800B6227B /* DataStoreManager */,
 				F511A20228CE6E420036613C /* Models */,
 				F511A20328CE6E530036613C /* Parsing */,
-				F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

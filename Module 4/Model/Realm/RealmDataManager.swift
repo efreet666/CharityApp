@@ -12,7 +12,6 @@ class RealmDataManager {
     
     static func saveCategoryData() {
         let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-        
         let realm = try! Realm()
         
         if realm.objects(Category.self).isEmpty {
@@ -34,14 +33,13 @@ class RealmDataManager {
     
     static func saveEventData() {
         let eventsData = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
-
         let realm = try! Realm()
+        
         if realm.objects(Events.self).isEmpty {
             
             for eventData in eventsData {
                 
                 let events = Events()
-                //let realm = try! Realm()
                 
                 events.id = eventData.id ?? ""
                 events.title = eventData.title ?? ""
@@ -56,10 +54,10 @@ class RealmDataManager {
                 events.category.append(objectsIn: eventData.category ?? [] )
                 events.images.append(objectsIn: eventData.images ?? [] )
                 
-                for el in eventData.actionButtons.unsafelyUnwrapped {
+                eventData.actionButtons?.forEach { button in
                     let actionButton = ActionButtons()
-                    actionButton.buttonTitle = el.buttonTitle ?? ""
-                    actionButton.buttonID = el.buttonID ?? ""
+                    actionButton.buttonTitle = button.buttonTitle ?? ""
+                    actionButton.buttonID = button.buttonID ?? ""
                     events.actionButtons.append(actionButton)
                 }
                 
@@ -68,8 +66,6 @@ class RealmDataManager {
                 }
             }
         }
-        
-        
     }
     
     static func readCategoryData() -> (Results<Category>) {

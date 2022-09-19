@@ -47,8 +47,10 @@ final class CurrentCategoryViewController: UIViewController {
                 self.convertToModel(eventDataCategories: self.categoryEvents)
             }
         case .Realm:
-            RealmDataManager.saveEventData()
-            convertRealmDataToModel()
+            DispatchQueue.global(qos: .userInitiated).async {
+                RealmDataManager.saveEventData()
+                self.convertRealmDataToModel()
+            }
         }
         
         
@@ -84,6 +86,7 @@ final class CurrentCategoryViewController: UIViewController {
                                                                        infoText: currentEvent.infoText,
                                                                        actionButtons: actionButtonArray )
             currentEventArray.append(currentCategory)
+            print(currentCategory)
         }
         
         // MARK: - filter category array by id

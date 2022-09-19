@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 
+// MARK: - Realm entities
 class Category: Object {
     @objc dynamic var id = ""
     @objc dynamic var title = ""
@@ -25,6 +26,7 @@ class Events: Object {
     @objc dynamic var adress = ""
     @objc dynamic var phones = ""
     @objc dynamic var infoText = ""
+    // MARK: - Array of actionButtons entities
     let actionButtons = List<ActionButtons>()
 }
 
