@@ -75,23 +75,39 @@ final class MainViewController: UIViewController {
     func networkRequestData() -> CategoriesModel {
         
         var categoryData: CategoriesModel?
-        
         let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         
-        
-        let categoryRequest = Request(title: "")
-        APIClient().send(categoryRequest, URL: Networking.url) { (result: Result<CategoriesModel, APIError>) -> Void in
-            switch result {
-            case .success(let data):
-                print(data)
-                categoryData = data
-            case .failure(let error):
-                print(error)
+        switch UsingNetworkServiceFlag.flag {
+        case .URLSession:
+                    let categoryRequest = Request(title: "")
+                    APIClient().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
+                        switch result {
+                        case .success(let data):
+                            print(data)
+                            categoryData = data
+                        case .failure(let error):
+                            print(error)
+                        }
+                        semaphore.signal()
+                    }
+                    semaphore.wait()
+                    //return categoryData ?? CategoriesModel()
+            
+        case .Alamofire:
+            MyNetworkService.fetchData(NetworkingURL.categoryURL) { result in
+                switch result {
+                case .success(let categoriesData):
+                    print(categoriesData)
+                    categoryData = categoriesData
+                case .failure(let err):
+                    print(err)
+                }
             }
-            semaphore.signal()
         }
-        semaphore.wait()
         return categoryData ?? CategoriesModel()
+        
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

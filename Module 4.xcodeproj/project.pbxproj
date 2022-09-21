@@ -19,9 +19,11 @@
 		F52BE7D128D75F8200E4F22A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D028D75F8200E4F22A /* RealmModel.swift */; };
 		F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */; };
 		F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */; };
-		F52BE7D928DA55B000E4F22A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D828DA55B000E4F22A /* Networking.swift */; };
+		F52BE7D928DA55B000E4F22A /* NetworkingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */; };
 		F52BE7DB28DB2EE100E4F22A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */; };
 		F52BE7DD28DB632700E4F22A /* LocalJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */; };
+		F52BE7E128DB7ACB00E4F22A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */; };
+		F52BE7E328DB7CA000E4F22A /* UsingNetworkServiceFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */; };
 		F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F547AE5628C8925700316699 /* CharityModel.xcdatamodeld */; };
 		F547F8E928B95EBD006D215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8E828B95EBD006D215B /* Colors.swift */; };
 		F547F8ED28B960AB006D215B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8EC28B960AB006D215B /* R.generated.swift */; };
@@ -70,9 +72,11 @@
 		F52BE7D028D75F8200E4F22A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
 		F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingDataBaseFlag.swift; sourceTree = "<group>"; };
-		F52BE7D828DA55B000E4F22A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingURL.swift; sourceTree = "<group>"; };
 		F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONData.swift; sourceTree = "<group>"; };
+		F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingNetworkServiceFlag.swift; sourceTree = "<group>"; };
 		F547AE5728C8925700316699 /* CharityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CharityModel.xcdatamodel; sourceTree = "<group>"; };
 		F547F8E828B95EBD006D215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F547F8EC28B960AB006D215B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -231,10 +235,28 @@
 		F52BE7D728DA558700E4F22A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F52BE7D828DA55B000E4F22A /* Networking.swift */,
-				F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */,
+				F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */,
+				F52BE7DF28DB785900E4F22A /* Alamofire */,
+				F52BE7DE28DB783700E4F22A /* URLSession */,
+				F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		F52BE7DE28DB783700E4F22A /* URLSession */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */,
+			);
+			path = URLSession;
+			sourceTree = "<group>";
+		};
+		F52BE7DF28DB785900E4F22A /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */,
+			);
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
 		F547F8EA28B95F5F006D215B /* ColorSet */ = {
@@ -552,6 +574,7 @@
 				F582019828D5EF4500259018 /* ActionButton+CoreDataClass.swift in Sources */,
 				F582019728D5EF4500259018 /* Categories+CoreDataProperties.swift in Sources */,
 				F598040E28C490430050AE63 /* ActivityView.swift in Sources */,
+				F52BE7E328DB7CA000E4F22A /* UsingNetworkServiceFlag.swift in Sources */,
 				F527D42628AB878200E3E792 /* MainViewController.swift in Sources */,
 				F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */,
 				F582019428D5EF4500259018 /* Event+CoreDataClass.swift in Sources */,
@@ -562,6 +585,7 @@
 				F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */,
 				F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */,
 				F582019528D5EF4500259018 /* Event+CoreDataProperties.swift in Sources */,
+				F52BE7E128DB7ACB00E4F22A /* NetworkService.swift in Sources */,
 				F511A20528CF33C40036613C /* CoreDataManager.swift in Sources */,
 				F547F90C28BD5E15006D215B /* EventModel.swift in Sources */,
 				F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */,
@@ -572,7 +596,7 @@
 				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
 				F54F43DE28BE906300C03947 /* EventDetailViewController.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,
-				F52BE7D928DA55B000E4F22A /* Networking.swift in Sources */,
+				F52BE7D928DA55B000E4F22A /* NetworkingURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
