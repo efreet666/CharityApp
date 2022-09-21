@@ -11,10 +11,11 @@ import CoreData
 class CoreDataManager {
     
     // MARK: - Save data to CoreData
-    static func saveCategoryData() {
+    static func saveCategoryData(categoriesData: CategoriesModel) {
         // MARK: - check if data loaded from JSON
         if readCategoryData().isEmpty {
-            let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+            
+            //let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
             
             let storeManager = DataStoreManager()
             let context = storeManager.persistentContainer.viewContext

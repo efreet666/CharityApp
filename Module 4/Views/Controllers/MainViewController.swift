@@ -47,28 +47,51 @@ final class MainViewController: UIViewController {
         switch UsingDataBaseFlag.flag {
         case .coreData:
             DispatchQueue.global(qos: .userInitiated).async {
-                CoreDataManager.saveCategoryData()
+                CoreDataManager.saveCategoryData(categoriesData: self.categoryDataRequest())
+                
                 self.categories = CoreDataManager.readCategoryData()
+                
                 self.convertToModel(CoreDataCategories: self.categories)
             }
+            
         case .Realm:
-            DispatchQueue.global(qos: .userInitiated).async {
-                RealmDataManager.saveCategoryData(categoriesData: <#CategoriesModel#>)
+            
+            DispatchQueue.global(qos: .userInitiated).sync {
+                RealmDataManager.saveCategoryData(categoriesData: categoryDataRequest())
                 self.convertRealmDataToModel()
             }
         }
+    }
+    
+    func categoryDataRequest() -> CategoriesModel {
+        var requestData = self.networkRequestData()
+        print(requestData)
+        if requestData.isEmpty {
+            requestData = LocalJSONData.parseCategoryDataFromJSON()
+        }
+        return requestData
+    }
+    
+    func networkRequestData() -> CategoriesModel {
         
-        categoriesData
+        var categoryData: CategoriesModel?
+        
+        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        
         
         let categoryRequest = Request(title: "")
-        APIClient().send(categoryRequest, URL: Networking.url!) { (result: Result<CategoriesModel, APIError>) -> Void in
+        APIClient().send(categoryRequest, URL: Networking.url) { (result: Result<CategoriesModel, APIError>) -> Void in
             switch result {
             case .success(let data):
                 print(data)
+                categoryData = data
             case .failure(let error):
                 print(error)
             }
+            semaphore.signal()
         }
+        semaphore.wait()
+        return categoryData ?? CategoriesModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +102,6 @@ final class MainViewController: UIViewController {
     // MARK: - write Realm data and convert our model
     private func convertRealmDataToModel() {
         let data = RealmDataManager.readCategoryData()
-        
         data.forEach { category in
             let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
             categoriesData?.append(currentCategory)

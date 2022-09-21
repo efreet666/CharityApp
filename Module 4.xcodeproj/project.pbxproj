@@ -21,6 +21,7 @@
 		F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */; };
 		F52BE7D928DA55B000E4F22A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D828DA55B000E4F22A /* Networking.swift */; };
 		F52BE7DB28DB2EE100E4F22A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */; };
+		F52BE7DD28DB632700E4F22A /* LocalJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */; };
 		F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F547AE5628C8925700316699 /* CharityModel.xcdatamodeld */; };
 		F547F8E928B95EBD006D215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8E828B95EBD006D215B /* Colors.swift */; };
 		F547F8ED28B960AB006D215B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8EC28B960AB006D215B /* R.generated.swift */; };
@@ -71,6 +72,7 @@
 		F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingDataBaseFlag.swift; sourceTree = "<group>"; };
 		F52BE7D828DA55B000E4F22A /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONData.swift; sourceTree = "<group>"; };
 		F547AE5728C8925700316699 /* CharityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CharityModel.xcdatamodel; sourceTree = "<group>"; };
 		F547F8E828B95EBD006D215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		F547F8EC28B960AB006D215B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -160,6 +162,7 @@
 			children = (
 				F54F43D928BE1C0900C03947 /* DataParser.swift */,
 				F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */,
+				F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */,
 			);
 			path = Parsing;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */,
 				F517005128CB640E00B6227B /* DataStoreManager.swift in Sources */,
 				F547F90E28BE19CC006D215B /* CategoriesModel.swift in Sources */,
+				F52BE7DD28DB632700E4F22A /* LocalJSONData.swift in Sources */,
 				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
 				F54F43DE28BE906300C03947 /* EventDetailViewController.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,

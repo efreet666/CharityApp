@@ -7,7 +7,6 @@
 
 import Foundation
 
-// API Request Abstraction
 
 public enum RequestType: String {
     case GET, POST
@@ -37,7 +36,6 @@ extension APIRequest {
     }
 }
 
-
 class Request: APIRequest {
     var method = RequestType.GET
     var path = ""
@@ -49,15 +47,11 @@ class Request: APIRequest {
     }
 }
 
-///
-/// API Client
-///
 enum APIError: Error {
     case SomeError
 }
 
 class APIClient {
-    private let baseURL = URL(string: "https://6329cdf14c626ff832caf8ad.mockapi.io/CategotyData")!
     
     func send<T: Codable>(_ apiRequest: APIRequest, URL: URL, completion: @escaping (Result<T, APIError>) -> Void) {
         
@@ -80,5 +74,6 @@ class APIClient {
             }
         }
         task.resume()
+        
     }
 }
