@@ -52,8 +52,6 @@ final class CurrentCategoryViewController: UIViewController {
                 self.convertRealmDataToModel()
             }
         }
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

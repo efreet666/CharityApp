@@ -10,8 +10,10 @@ import RealmSwift
 
 class RealmDataManager {
     
-    static func saveCategoryData() {
-        let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+    static func saveCategoryData(categoriesData: CategoriesModel) {
+       // var categoriesData: CategoriesModel?
+        
+        //let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
         let realm = try! Realm()
         
         if realm.objects(Category.self).isEmpty {

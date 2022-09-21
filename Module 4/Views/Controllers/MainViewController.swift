@@ -53,8 +53,20 @@ final class MainViewController: UIViewController {
             }
         case .Realm:
             DispatchQueue.global(qos: .userInitiated).async {
-                RealmDataManager.saveCategoryData()
+                RealmDataManager.saveCategoryData(categoriesData: <#CategoriesModel#>)
                 self.convertRealmDataToModel()
+            }
+        }
+        
+        categoriesData
+        
+        let categoryRequest = Request(title: "")
+        APIClient().send(categoryRequest, URL: Networking.url!) { (result: Result<CategoriesModel, APIError>) -> Void in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -134,7 +146,6 @@ final class MainViewController: UIViewController {
            
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: nil)
-        
     }
 
     // MARK: - back button
