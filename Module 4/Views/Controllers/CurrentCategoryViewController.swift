@@ -34,29 +34,87 @@ final class CurrentCategoryViewController: UIViewController {
         view.backgroundColor = UIColor.mainGreenColor
         setupTableView()
         configureNavBar()
-        
         showActivityIndicator()
         
+        setupPersistance()
+    }
+    // MARK: - Persistance setup
+    private func setupPersistance() {
         // MARK: - Check flag for using DB
         switch UsingDataBaseFlag.flag {
-        case .coreData:
-            CoreDataManager.saveEventData()
             
+        case .coreData:
             DispatchQueue.global(qos: .userInitiated).async {
+                // MARK: - save data from network request
+                CoreDataManager.saveEventData(eventData: self.eventDataRequest())
+                
+                // MARK: - Read data from CoreData
                 self.categoryEvents = CoreDataManager.readEventData()
-                self.convertToModel(eventDataCategories: self.categoryEvents)
+                
+                // MARK: - Convert to our model
+                self.convertCoreDataToModel(eventDataCategories: self.categoryEvents)
             }
+            
         case .Realm:
-            DispatchQueue.global(qos: .userInitiated).async {
-                RealmDataManager.saveEventData()
+            DispatchQueue.global(qos: .userInitiated).sync {
+                // MARK: - save data from network to Realm
+                RealmDataManager.saveEventData(eventsData: self.eventDataRequest())
+                
+                // MARK: - Convert to our model
                 self.convertRealmDataToModel()
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: - Data request
+    private func eventDataRequest() -> EventModel {
+        var requestData = self.networkRequestData()
+        if requestData.isEmpty {
+            requestData = LocalJSONData.parseEventDataFromJSON()
+        }
+        return requestData
+    }
+    
+    // MARK: - Network request
+    func networkRequestData() -> EventModel {
         
+        var eventData: EventModel?
+        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        
+        // MARK: - Check flag
+        switch UsingNetworkServiceFlag.flag {
+            
+        case .URLSession:
+            let categoryRequest = Request(title: "")
+            APIClient().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    eventData = data
+                case .failure(let error):
+                    print(error)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+            
+        case .Alamofire:
+            MyNetworkService.fetchEventData(NetworkingURL.eventURL) { result in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    eventData = data
+                case .failure(let err):
+                    print(err)
+                }
+            }
+        }
+        return eventData ?? EventModel()
     }
     
     // MARK: - write Realm data
@@ -101,7 +159,7 @@ final class CurrentCategoryViewController: UIViewController {
         }
     }
     // MARK: - convert data from CoreData to model
-    private func convertToModel(eventDataCategories: [Event]) {
+    private func convertCoreDataToModel(eventDataCategories: [Event]) {
         let actionButtonData = CoreDataManager.readActionButtonData()
         var currentEventArray: [EventModelElement] = []
         var i = 0

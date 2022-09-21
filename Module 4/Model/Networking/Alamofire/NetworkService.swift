@@ -8,14 +8,19 @@
 import Foundation
 import Alamofire
 
-enum ObtainResult {
+enum ObtainCategoryResult {
     case success(CategoriesModel)
+    case failure(Error)
+}
+
+enum ObtainEventResult {
+    case success(EventModel)
     case failure(Error)
 }
 
 class MyNetworkService {
     
-    class func fetchData(_ Url: URL, completion: @escaping (ObtainResult) -> Void) {
+    class func fetchCategoryData(_ Url: URL, completion: @escaping (ObtainCategoryResult) -> Void) {
         AF.request(Url).responseDecodable(of: CategoriesModel.self) { responseJson in
             switch responseJson.result {
             case .success(let json):
@@ -26,6 +31,17 @@ class MyNetworkService {
             }
         }
     }
+
+    class func fetchEventData(_ Url: URL, completion: @escaping (ObtainEventResult) -> Void) {
+        AF.request(Url).responseDecodable(of: EventModel.self) { responseJson in
+            switch responseJson.result {
+            case .success(let json):
+                completion(.success(json))
+                print(completion(.success(json)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
-   
 }

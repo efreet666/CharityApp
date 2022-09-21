@@ -24,7 +24,7 @@ final class MainViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-
+    
     var activityView = UIActivityIndicatorView()
     
     private func showActivityIndicator() {
@@ -43,58 +43,68 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         
+        setupPersistance()
+    }
+    
+    private func setupPersistance() {
         // MARK: - Check flag for using DB
         switch UsingDataBaseFlag.flag {
+            
         case .coreData:
             DispatchQueue.global(qos: .userInitiated).async {
+                // MARK: - save data from network request
                 CoreDataManager.saveCategoryData(categoriesData: self.categoryDataRequest())
                 
+                // MARK: - Read data from CoreData
                 self.categories = CoreDataManager.readCategoryData()
                 
-                self.convertToModel(CoreDataCategories: self.categories)
+                // MARK: - Convert to our model
+                self.convertCoreDataToModel(CoreDataCategories: self.categories)
             }
             
         case .Realm:
-            
             DispatchQueue.global(qos: .userInitiated).sync {
-                RealmDataManager.saveCategoryData(categoriesData: categoryDataRequest())
+                // MARK: - save data from network to Realm
+                RealmDataManager.saveCategoryData(categoriesData: self.categoryDataRequest())
+                
+                // MARK: - Convert to our model
                 self.convertRealmDataToModel()
             }
         }
     }
     
-    func categoryDataRequest() -> CategoriesModel {
+    private func categoryDataRequest() -> CategoriesModel {
         var requestData = self.networkRequestData()
-        print(requestData)
         if requestData.isEmpty {
             requestData = LocalJSONData.parseCategoryDataFromJSON()
         }
         return requestData
     }
     
-    func networkRequestData() -> CategoriesModel {
+    private func networkRequestData() -> CategoriesModel {
         
         var categoryData: CategoriesModel?
         let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         
+        // MARK: - Check flag
         switch UsingNetworkServiceFlag.flag {
+            
         case .URLSession:
-                    let categoryRequest = Request(title: "")
-                    APIClient().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
-                        switch result {
-                        case .success(let data):
-                            print(data)
-                            categoryData = data
-                        case .failure(let error):
-                            print(error)
-                        }
-                        semaphore.signal()
-                    }
-                    semaphore.wait()
-                    //return categoryData ?? CategoriesModel()
+            let categoryRequest = Request(title: "")
+            APIClient().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    categoryData = data
+                case .failure(let error):
+                    print(error)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
             
         case .Alamofire:
-            MyNetworkService.fetchData(NetworkingURL.categoryURL) { result in
+            MyNetworkService.fetchCategoryData(NetworkingURL.categoryURL) { result in
                 switch result {
                 case .success(let categoriesData):
                     print(categoriesData)
@@ -105,9 +115,6 @@ final class MainViewController: UIViewController {
             }
         }
         return categoryData ?? CategoriesModel()
-        
-        
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,7 +137,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - write CoreData data and convert our model
-    private func convertToModel(CoreDataCategories: [Categories]) {
+    private func convertCoreDataToModel(CoreDataCategories: [Categories]) {
         var i = 0
         for _ in CoreDataCategories {
             let el = CategoriesModelElement(id: CoreDataCategories[i].id,
@@ -144,7 +151,7 @@ final class MainViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
-   
+    
     // MARK: - setup collectionView
     private func setupCollectionView() {
         // MARK: - collection view layout
@@ -152,14 +159,14 @@ final class MainViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         view.addSubview(collectionView)
     }
-
+    
     // MARK: - setup navigation bar
     private func setupNavBar() {
         self.title = R.string.localizable.helpTitle()
@@ -174,18 +181,18 @@ final class MainViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
     }
-
+    
     func errorAlert(title: String, message: String, style: UIAlertController.Style){
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in
             
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                
-            }
-           
-            alertController.addAction(action)
-            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
     }
-
+    
     // MARK: - back button
     @objc func popVC() {
         print("Button tapped")
@@ -196,7 +203,7 @@ final class MainViewController: UIViewController {
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = categoriesData?.count {
             return count
@@ -204,7 +211,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 0
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
         else {
@@ -214,9 +221,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
                    ,text: categoriesData?[indexPath.row].title ?? "")
         return cell
-
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = CurrentCategoryViewController()
         vc.currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
@@ -225,7 +232,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                            withReuseIdentifier: HeaderCollectionReusableView.identifier,
@@ -235,10 +242,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return header
     }
 }
-    
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
     }

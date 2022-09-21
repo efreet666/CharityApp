@@ -31,8 +31,7 @@ class RealmDataManager {
         }
     }
     
-    static func saveEventData() {
-        let eventsData = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+    static func saveEventData(eventsData: EventModel) {
         let realm = try! Realm()
         
         if realm.objects(Events.self).isEmpty {
