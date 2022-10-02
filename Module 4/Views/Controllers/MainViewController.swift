@@ -43,119 +43,137 @@ final class MainViewController: UIViewController {
         setupNavBar()
         showActivityIndicator()
         
-        setupPersistance()
-    }
-    
-    private func setupPersistance() {
-        // MARK: - Check flag for using DB
-        switch UsingDataBaseFlag.flag {
-            
-        case .coreData:
-            DispatchQueue.global(qos: .userInitiated).async {
-                // MARK: - save data from network request
-                CoreDataManager.saveCategoryData(categoriesData: self.categoryDataRequest())
-                
-                // MARK: - Read data from CoreData
-                self.categories = CoreDataManager.readCategoryData()
-                
-                // MARK: - Convert to our model
-                self.convertCoreDataToModel(CoreDataCategories: self.categories)
-            }
-            
-        case .Realm:
-            DispatchQueue.global(qos: .userInitiated).sync {
-                // MARK: - save data from network to Realm
-                RealmDataManager.saveCategoryData(categoriesData: self.categoryDataRequest())
-                
-                // MARK: - Convert to our model
-                self.convertRealmDataToModel()
-            }
-        }
-    }
-    
-    private func categoryDataRequest() -> CategoriesModel {
-        var requestData = self.networkRequestData()
-        if requestData.isEmpty {
-            requestData = LocalJSONData.parseCategoryDataFromJSON()
-        }
-        return requestData
-    }
-    
-    private func networkRequestData() -> CategoriesModel {
+//        setupPersistance()
         
-        var categoryData: CategoriesModel?
-        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
-        
-        // MARK: - Check flag
-        switch UsingNetworkServiceFlag.flag {
-            
-        case .URLSession:
-            let categoryRequest = Request(title: "")
-            APIClient().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
-                switch result {
-                case .success(let data):
-                    print(data)
-                    categoryData = data
-                case .failure(let error):
-                    print(error)
-                }
-                semaphore.signal()
-            }
-            semaphore.wait()
-            
-        case .Alamofire:
-            MyNetworkService.fetchCategoryData(NetworkingURL.categoryURL) { result in
-                switch result {
-                case .success(let categoriesData):
-                    print(categoriesData)
-                    categoryData = categoriesData
-                case .failure(let err):
-                    print(err)
-                }
-            }
-        }
-        return categoryData ?? CategoriesModel()
+        //categoriesData = CategoriesService.getCategories()
+        setupUI()
     }
+    func setupUI() {
+        DispatchQueue.global(qos: .userInitiated).sync {
+        
+        self.categoriesData = CategoriesService.getCategories()
+        
+            print(self.categoriesData)
+            DispatchQueue.main.async {
+                        self.activityView.stopAnimating()
+                        self.collectionView.reloadData()
+                        print("update end")
+                    }
+        }
+       
+    }
+    
+//    private func setupPersistance() {
+//        // MARK: - Check flag for using DB
+//        switch UsingDataBaseFlag.flag {
+//
+//        case .coreData:
+//            DispatchQueue.global(qos: .userInitiated).async {
+//                // MARK: - save data from network request
+//                CoreDataClient.saveCategoryData(categoriesData: self.categoryDataRequest())
+//
+//                // MARK: - Read data from CoreData
+//                self.categories = CoreDataClient.readCategoryData()
+//
+//                // MARK: - Convert to our model
+//                ///self.convertCoreDataToModel(CoreDataCategories: self.categories)
+//            }
+//
+//        case .Realm:
+//            DispatchQueue.global(qos: .userInitiated).sync {
+//                // MARK: - save data from network to Realm
+//                RealmClient.saveCategoryData(categoriesData: self.categoryDataRequest())
+//
+//                // MARK: - Convert to our model
+//                self.convertRealmDataToModel()
+//            }
+//        }
+//    }
+    
+//    private func categoryDataRequest() -> CategoriesModel {
+//        var requestData = self.networkRequestData()
+//        if requestData.isEmpty {
+//            requestData = LocalJSONData.parseCategoryDataFromJSON()
+//        }
+//        return requestData
+//    }
+    
+//    private func networkRequestData() -> CategoriesModel { // completion block
+//
+//        var categoryData: CategoriesModel?
+//        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+//
+//        // MARK: - Check flag
+//        switch UsingNetworkServiceFlag.flag {
+//
+//        case .URLSession:
+//            let categoryRequest = Request(title: "")
+//            URLSessionManager().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
+//                switch result {
+//                case .success(let data):
+//                    print(data)
+//                    categoryData = data
+//                case .failure(let error):
+//                    print(error)
+//                }
+//                semaphore.signal()
+//            }
+//            semaphore.wait()
+//
+//        case .Alamofire:
+//            AlamofireManager.requestCategoryData(NetworkingURL.categoryURL) { result in
+//                switch result {
+//                case .success(let categoriesData):
+//                    print(categoriesData)
+//                    categoryData = categoriesData
+//                case .failure(let err):
+//                    print(err)
+//                }
+//            }
+//        }
+//        return categoryData ?? CategoriesModel()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: - write Realm data and convert our model
-    private func convertRealmDataToModel() {
-        let data = RealmDataManager.readCategoryData()
-        data.forEach { category in
-            let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
-            categoriesData?.append(currentCategory)
-        }
-        
-        DispatchQueue.main.async {
-            self.activityView.stopAnimating()
-            self.collectionView.reloadData()
-        }
-    }
+//    // MARK: - write Realm data and convert our model
+//    private func convertRealmDataToModel() {
+//        let data = RealmClient.readCategoryData()
+//        data.forEach { category in
+//            let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
+//            categoriesData?.append(currentCategory)
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.activityView.stopAnimating()
+//            self.collectionView.reloadData()
+//        }
+//    }
     
-    // MARK: - write CoreData data and convert our model
-    private func convertCoreDataToModel(CoreDataCategories: [Categories]) {
-        var i = 0
-        for _ in CoreDataCategories {
-            let el = CategoriesModelElement(id: CoreDataCategories[i].id,
-                                            title: CoreDataCategories[i].title,
-                                            image: CoreDataCategories[i].image)
-            categoriesData?.append(el)
-            i += 1
-        }
-        DispatchQueue.main.async {
-            self.activityView.stopAnimating()
-            self.collectionView.reloadData()
-        }
-    }
+//    // MARK: - write CoreData data and convert our model
+//    private func convertCoreDataToModel(CoreDataCategories: [Categories]) {
+//        var i = 0
+//        for _ in CoreDataCategories {
+//            let el = CategoriesModelElement(id: CoreDataCategories[i].id,
+//                                            title: CoreDataCategories[i].title,
+//                                            image: CoreDataCategories[i].image)
+//            categoriesData?.append(el)
+//            i += 1
+//        }
+//        DispatchQueue.main.async {
+//            self.activityView.stopAnimating()
+//            self.collectionView.reloadData()
+//        }
+//    }
     
     // MARK: - setup collectionView
     private func setupCollectionView() {
         // MARK: - collection view layout
-        let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout() // UICollectionViewCompositionalLayout
+        // UICollecrtionViewDiffableDataSource
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)

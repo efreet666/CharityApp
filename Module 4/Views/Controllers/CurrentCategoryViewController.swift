@@ -46,10 +46,10 @@ final class CurrentCategoryViewController: UIViewController {
         case .coreData:
             DispatchQueue.global(qos: .userInitiated).async {
                 // MARK: - save data from network request
-                CoreDataManager.saveEventData(eventData: self.eventDataRequest())
+                CoreDataClient.saveEventData(eventData: self.eventDataRequest())
                 
                 // MARK: - Read data from CoreData
-                self.categoryEvents = CoreDataManager.readEventData()
+                self.categoryEvents = CoreDataClient.readEventData()
                 
                 // MARK: - Convert to our model
                 self.convertCoreDataToModel(eventDataCategories: self.categoryEvents)
@@ -58,7 +58,7 @@ final class CurrentCategoryViewController: UIViewController {
         case .Realm:
             DispatchQueue.global(qos: .userInitiated).sync {
                 // MARK: - save data from network to Realm
-                RealmDataManager.saveEventData(eventsData: self.eventDataRequest())
+                RealmClient.saveEventData(eventsData: self.eventDataRequest())
                 
                 // MARK: - Convert to our model
                 self.convertRealmDataToModel()
@@ -91,7 +91,7 @@ final class CurrentCategoryViewController: UIViewController {
             
         case .URLSession:
             let categoryRequest = Request(title: "")
-            APIClient().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
+            URLSessionManager().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
                 switch result {
                 case .success(let data):
                     print(data)
@@ -104,7 +104,7 @@ final class CurrentCategoryViewController: UIViewController {
             semaphore.wait()
             
         case .Alamofire:
-            MyNetworkService.fetchEventData(NetworkingURL.eventURL) { result in
+            AlamofireManager.requestEventData(NetworkingURL.eventURL) { result in
                 switch result {
                 case .success(let data):
                     print(data)
@@ -119,7 +119,7 @@ final class CurrentCategoryViewController: UIViewController {
     
     // MARK: - write Realm data
     private func convertRealmDataToModel() {
-        let data = RealmDataManager.readEventData()
+        let data = RealmClient.readEventData()
         var currentEventArray: [EventModelElement] = []
         
         // MARK: - create action buttons array
@@ -160,7 +160,7 @@ final class CurrentCategoryViewController: UIViewController {
     }
     // MARK: - convert data from CoreData to model
     private func convertCoreDataToModel(eventDataCategories: [Event]) {
-        let actionButtonData = CoreDataManager.readActionButtonData()
+        let actionButtonData = CoreDataClient.readActionButtonData()
         var currentEventArray: [EventModelElement] = []
         var i = 0
         var actionButtons : [EventActionButton]? = []

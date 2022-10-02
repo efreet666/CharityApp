@@ -18,9 +18,9 @@ enum ObtainEventResult {
     case failure(Error)
 }
 
-class MyNetworkService {
+class AlamofireManager {
     
-    class func fetchCategoryData(_ Url: URL, completion: @escaping (ObtainCategoryResult) -> Void) {
+    class func requestCategoryData(_ Url: URL, completion: @escaping (ObtainCategoryResult) -> Void) {
         AF.request(Url).responseDecodable(of: CategoriesModel.self) { responseJson in
             switch responseJson.result {
             case .success(let json):
@@ -32,7 +32,7 @@ class MyNetworkService {
         }
     }
 
-    class func fetchEventData(_ Url: URL, completion: @escaping (ObtainEventResult) -> Void) {
+    class func requestEventData(_ Url: URL, completion: @escaping (ObtainEventResult) -> Void) {
         AF.request(Url).responseDecodable(of: EventModel.self) { responseJson in
             switch responseJson.result {
             case .success(let json):

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5F29248B29E68C7A9609AED6 /* Pods_Module_4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423EDAC3806222401D766C0 /* Pods_Module_4.framework */; };
-		F511A20528CF33C40036613C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511A20428CF33C40036613C /* CoreDataManager.swift */; };
-		F517005128CB640E00B6227B /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517005028CB640E00B6227B /* DataStoreManager.swift */; };
+		F511A20528CF33C40036613C /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511A20428CF33C40036613C /* CoreDataClient.swift */; };
+		F517005128CB640E00B6227B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517005028CB640E00B6227B /* CoreDataManager.swift */; };
 		F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42128AB878200E3E792 /* AppDelegate.swift */; };
 		F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42328AB878200E3E792 /* SceneDelegate.swift */; };
 		F527D42628AB878200E3E792 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527D42528AB878200E3E792 /* MainViewController.swift */; };
@@ -17,12 +17,12 @@
 		F527D42B28AB878600E3E792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527D42A28AB878600E3E792 /* Assets.xcassets */; };
 		F527D42E28AB878600E3E792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F527D42C28AB878600E3E792 /* LaunchScreen.storyboard */; };
 		F52BE7D128D75F8200E4F22A /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D028D75F8200E4F22A /* RealmModel.swift */; };
-		F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */; };
+		F52BE7D328D7619A00E4F22A /* RealmClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D228D7619A00E4F22A /* RealmClient.swift */; };
 		F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */; };
 		F52BE7D928DA55B000E4F22A /* NetworkingURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */; };
-		F52BE7DB28DB2EE100E4F22A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */; };
+		F52BE7DB28DB2EE100E4F22A /* URLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DA28DB2EE100E4F22A /* URLSessionManager.swift */; };
 		F52BE7DD28DB632700E4F22A /* LocalJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */; };
-		F52BE7E128DB7ACB00E4F22A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */; };
+		F52BE7E128DB7ACB00E4F22A /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7E028DB7ACB00E4F22A /* AlamofireManager.swift */; };
 		F52BE7E328DB7CA000E4F22A /* UsingNetworkServiceFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */; };
 		F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F547AE5628C8925700316699 /* CharityModel.xcdatamodeld */; };
 		F547F8E928B95EBD006D215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547F8E828B95EBD006D215B /* Colors.swift */; };
@@ -46,6 +46,12 @@
 		F582019728D5EF4500259018 /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019128D5EF4500259018 /* Categories+CoreDataProperties.swift */; };
 		F582019828D5EF4500259018 /* ActionButton+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019228D5EF4500259018 /* ActionButton+CoreDataClass.swift */; };
 		F582019928D5EF4500259018 /* ActionButton+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019328D5EF4500259018 /* ActionButton+CoreDataProperties.swift */; };
+		F590697028E977BC00F6185D /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590696F28E977BC00F6185D /* CategoriesService.swift */; };
+		F590697328E97EDF00F6185D /* UserDefaultClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697228E97EDF00F6185D /* UserDefaultClient.swift */; };
+		F590697528E983D900F6185D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697428E983D900F6185D /* NetworkManager.swift */; };
+		F590697928E9A29300F6185D /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697828E9A29300F6185D /* PersistanceManager.swift */; };
+		F590697B28E9A7BE00F6185D /* URLSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697A28E9A7BE00F6185D /* URLSessionClient.swift */; };
+		F590697D28E9AA8300F6185D /* AlamofireClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697C28E9AA8300F6185D /* AlamofireClient.swift */; };
 		F598040628C22F400050AE63 /* HelpBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598040528C22F400050AE63 /* HelpBarView.swift */; };
 		F598040E28C490430050AE63 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F598040D28C490430050AE63 /* ActivityView.swift */; };
 		F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */; };
@@ -59,8 +65,8 @@
 		0423EDAC3806222401D766C0 /* Pods_Module_4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Module_4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC5BF0F81E9A3D0026F2842 /* Pods-Module 4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Module 4.release.xcconfig"; path = "Target Support Files/Pods-Module 4/Pods-Module 4.release.xcconfig"; sourceTree = "<group>"; };
 		908A318B24EF92E04C225D4E /* Pods-Module 4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Module 4.debug.xcconfig"; path = "Target Support Files/Pods-Module 4/Pods-Module 4.debug.xcconfig"; sourceTree = "<group>"; };
-		F511A20428CF33C40036613C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		F517005028CB640E00B6227B /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
+		F511A20428CF33C40036613C /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
+		F517005028CB640E00B6227B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F527D41E28AB878200E3E792 /* Module 4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Module 4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F527D42128AB878200E3E792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F527D42328AB878200E3E792 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,12 +76,12 @@
 		F527D42D28AB878600E3E792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F527D42F28AB878600E3E792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F52BE7D028D75F8200E4F22A /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
-		F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
+		F52BE7D228D7619A00E4F22A /* RealmClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmClient.swift; sourceTree = "<group>"; };
 		F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingDataBaseFlag.swift; sourceTree = "<group>"; };
 		F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingURL.swift; sourceTree = "<group>"; };
-		F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		F52BE7DA28DB2EE100E4F22A /* URLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionManager.swift; sourceTree = "<group>"; };
 		F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalJSONData.swift; sourceTree = "<group>"; };
-		F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		F52BE7E028DB7ACB00E4F22A /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsingNetworkServiceFlag.swift; sourceTree = "<group>"; };
 		F547AE5728C8925700316699 /* CharityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CharityModel.xcdatamodel; sourceTree = "<group>"; };
 		F547F8E828B95EBD006D215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -100,6 +106,12 @@
 		F582019128D5EF4500259018 /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F582019228D5EF4500259018 /* ActionButton+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionButton+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F582019328D5EF4500259018 /* ActionButton+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionButton+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		F590696F28E977BC00F6185D /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		F590697228E97EDF00F6185D /* UserDefaultClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultClient.swift; sourceTree = "<group>"; };
+		F590697428E983D900F6185D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F590697828E9A29300F6185D /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		F590697A28E9A7BE00F6185D /* URLSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionClient.swift; sourceTree = "<group>"; };
+		F590697C28E9AA8300F6185D /* AlamofireClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireClient.swift; sourceTree = "<group>"; };
 		F598040528C22F400050AE63 /* HelpBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpBarView.swift; sourceTree = "<group>"; };
 		F598040D28C490430050AE63 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F5A927DD28ABA9C500E8DA4E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -171,14 +183,14 @@
 			path = Parsing;
 			sourceTree = "<group>";
 		};
-		F517004F28CB63D800B6227B /* DataStoreManager */ = {
+		F517004F28CB63D800B6227B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				F511A1F328CE6DAE0036613C /* CoreDataClasses */,
-				F517005028CB640E00B6227B /* DataStoreManager.swift */,
-				F511A20428CF33C40036613C /* CoreDataManager.swift */,
+				F511A20428CF33C40036613C /* CoreDataClient.swift */,
+				F517005028CB640E00B6227B /* CoreDataManager.swift */,
 			);
-			path = DataStoreManager;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		F527D41528AB878200E3E792 = {
@@ -214,8 +226,8 @@
 		F52BE7CF28D75F5600E4F22A /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				F52BE7D228D7619A00E4F22A /* RealmClient.swift */,
 				F52BE7D028D75F8200E4F22A /* RealmModel.swift */,
-				F52BE7D228D7619A00E4F22A /* RealmDataManager.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -223,9 +235,7 @@
 		F52BE7D628DA554F00E4F22A /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */,
-				F52BE7CF28D75F5600E4F22A /* Realm */,
-				F517004F28CB63D800B6227B /* DataStoreManager */,
+				F590697728E9A1EC00F6185D /* Persistance containers */,
 				F511A20228CE6E420036613C /* Models */,
 				F511A20328CE6E530036613C /* Parsing */,
 			);
@@ -235,10 +245,11 @@
 		F52BE7D728DA558700E4F22A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */,
+				F590697428E983D900F6185D /* NetworkManager.swift */,
 				F52BE7DF28DB785900E4F22A /* Alamofire */,
 				F52BE7DE28DB783700E4F22A /* URLSession */,
 				F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */,
+				F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -246,7 +257,8 @@
 		F52BE7DE28DB783700E4F22A /* URLSession */ = {
 			isa = PBXGroup;
 			children = (
-				F52BE7DA28DB2EE100E4F22A /* ApiManager.swift */,
+				F590697A28E9A7BE00F6185D /* URLSessionClient.swift */,
+				F52BE7DA28DB2EE100E4F22A /* URLSessionManager.swift */,
 			);
 			path = URLSession;
 			sourceTree = "<group>";
@@ -254,7 +266,8 @@
 		F52BE7DF28DB785900E4F22A /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				F52BE7E028DB7ACB00E4F22A /* NetworkService.swift */,
+				F590697C28E9AA8300F6185D /* AlamofireClient.swift */,
+				F52BE7E028DB7ACB00E4F22A /* AlamofireManager.swift */,
 			);
 			path = Alamofire;
 			sourceTree = "<group>";
@@ -347,6 +360,34 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		F590697128E97EB300F6185D /* UserDefaultClient */ = {
+			isa = PBXGroup;
+			children = (
+				F590697228E97EDF00F6185D /* UserDefaultClient.swift */,
+			);
+			path = UserDefaultClient;
+			sourceTree = "<group>";
+		};
+		F590697628E9A1C300F6185D /* Persistance flag */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7D428D7765700E4F22A /* UsingDataBaseFlag.swift */,
+			);
+			path = "Persistance flag";
+			sourceTree = "<group>";
+		};
+		F590697728E9A1EC00F6185D /* Persistance containers */ = {
+			isa = PBXGroup;
+			children = (
+				F590697828E9A29300F6185D /* PersistanceManager.swift */,
+				F517004F28CB63D800B6227B /* CoreData */,
+				F52BE7CF28D75F5600E4F22A /* Realm */,
+				F590697128E97EB300F6185D /* UserDefaultClient */,
+				F590697628E9A1C300F6185D /* Persistance flag */,
+			);
+			path = "Persistance containers";
+			sourceTree = "<group>";
+		};
 		F598040728C29F970050AE63 /* HelpBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +407,7 @@
 		F5C2ADFC28B0C0040031B6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F590696F28E977BC00F6185D /* CategoriesService.swift */,
 				F52BE7D728DA558700E4F22A /* Networking */,
 				F52BE7D628DA554F00E4F22A /* Persistance */,
 			);
@@ -562,13 +604,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F52BE7DB28DB2EE100E4F22A /* ApiManager.swift in Sources */,
+				F590697528E983D900F6185D /* NetworkManager.swift in Sources */,
+				F52BE7DB28DB2EE100E4F22A /* URLSessionManager.swift in Sources */,
 				F547F8FF28BBC004006D215B /* CategoryNewsTableViewCell.swift in Sources */,
 				F52BE7D128D75F8200E4F22A /* RealmModel.swift in Sources */,
 				F547F8FD28BB7F6C006D215B /* CurrentCategoryViewController.swift in Sources */,
 				F5C2AE0328B0DCC20031B6D4 /* HeaderCollectionReusableView.swift in Sources */,
 				F582019628D5EF4500259018 /* Categories+CoreDataClass.swift in Sources */,
 				F582019928D5EF4500259018 /* ActionButton+CoreDataProperties.swift in Sources */,
+				F590697D28E9AA8300F6185D /* AlamofireClient.swift in Sources */,
 				F547F8E928B95EBD006D215B /* Colors.swift in Sources */,
 				F598040628C22F400050AE63 /* HelpBarView.swift in Sources */,
 				F582019828D5EF4500259018 /* ActionButton+CoreDataClass.swift in Sources */,
@@ -579,24 +623,28 @@
 				F5A927E028ABAD3700E8DA4E /* CustomTabBar.swift in Sources */,
 				F582019428D5EF4500259018 /* Event+CoreDataClass.swift in Sources */,
 				F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */,
+				F590697928E9A29300F6185D /* PersistanceManager.swift in Sources */,
+				F590697028E977BC00F6185D /* CategoriesService.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
 				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
 				F547F8ED28B960AB006D215B /* R.generated.swift in Sources */,
 				F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */,
-				F52BE7D328D7619A00E4F22A /* RealmDataManager.swift in Sources */,
+				F590697328E97EDF00F6185D /* UserDefaultClient.swift in Sources */,
+				F52BE7D328D7619A00E4F22A /* RealmClient.swift in Sources */,
 				F582019528D5EF4500259018 /* Event+CoreDataProperties.swift in Sources */,
-				F52BE7E128DB7ACB00E4F22A /* NetworkService.swift in Sources */,
-				F511A20528CF33C40036613C /* CoreDataManager.swift in Sources */,
+				F52BE7E128DB7ACB00E4F22A /* AlamofireManager.swift in Sources */,
+				F511A20528CF33C40036613C /* CoreDataClient.swift in Sources */,
 				F547F90C28BD5E15006D215B /* EventModel.swift in Sources */,
 				F52BE7D528D7765700E4F22A /* UsingDataBaseFlag.swift in Sources */,
 				F54F43DA28BE1C0900C03947 /* DataParser.swift in Sources */,
-				F517005128CB640E00B6227B /* DataStoreManager.swift in Sources */,
+				F517005128CB640E00B6227B /* CoreDataManager.swift in Sources */,
 				F547F90E28BE19CC006D215B /* CategoriesModel.swift in Sources */,
 				F52BE7DD28DB632700E4F22A /* LocalJSONData.swift in Sources */,
 				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
 				F54F43DE28BE906300C03947 /* EventDetailViewController.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,
 				F52BE7D928DA55B000E4F22A /* NetworkingURL.swift in Sources */,
+				F590697B28E9A7BE00F6185D /* URLSessionClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

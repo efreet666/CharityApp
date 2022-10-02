@@ -51,7 +51,7 @@ enum APIError: Error {
     case SomeError
 }
 
-class APIClient {
+class URLSessionManager {
     
     func send<T: Codable>(_ apiRequest: APIRequest, URL: URL, completion: @escaping (Result<T, APIError>) -> Void) {
         

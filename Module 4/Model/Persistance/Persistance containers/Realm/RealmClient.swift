@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmDataManager {
+class RealmClient {
     
     static func saveCategoryData(categoriesData: CategoriesModel) {
         
