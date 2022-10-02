@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - CategoriesModelElement
 struct CategoriesModelElement: Codable {
-    let id, title, image: String?
+    var id, title, image: String?
 }
 
 typealias CategoriesModel = [CategoriesModelElement]

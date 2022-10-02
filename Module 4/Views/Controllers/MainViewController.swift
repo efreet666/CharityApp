@@ -5,12 +5,14 @@
 //  Created by Влад Бокин on 16.08.2022.
 //
 
+import Foundation
 import UIKit
 import Rswift
 
 final class MainViewController: UIViewController {
     
-    var categoriesData: CategoriesModel? = nil
+    private var categoriesData: CategoriesModel? = []
+    private var categories = [Categories]()
     
     private enum Constants {
         static let headerHeight: CGFloat = 57
@@ -33,34 +35,63 @@ final class MainViewController: UIViewController {
         self.activityView.startAnimating()
     }
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mainGreenColor
         setupCollectionView()
         setupNavBar()
         showActivityIndicator()
-        // MARK: - parse data in background
-        parseData()
+        
+        // MARK: - Check flag for using DB
+        switch UsingDataBaseFlag.flag {
+        case .coreData:
+            DispatchQueue.global(qos: .userInitiated).async {
+                CoreDataManager.saveCategoryData()
+                self.categories = CoreDataManager.readCategoryData()
+                self.convertToModel(CoreDataCategories: self.categories)
+            }
+        case .Realm:
+            DispatchQueue.global(qos: .userInitiated).async {
+                RealmDataManager.saveCategoryData()
+                self.convertRealmDataToModel()
+            }
+        }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: - parsing JSON from bundle
-    private func parseData() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
-            
-            // MARK: - update UI
-            DispatchQueue.main.async {
-                // MARK: - Check if data is empty
-                if self.categoriesData?.isEmpty == true {
-                    self.errorAlert(title: R.string.localizable.errorTitle(), message: R.string.localizable.erroSubtitle(), style: .alert)
-                }
-                self.collectionView.reloadData()
-                self.activityView.stopAnimating()
-            }
+    // MARK: - write Realm data and convert our model
+    private func convertRealmDataToModel() {
+        let data = RealmDataManager.readCategoryData()
+        
+        data.forEach { category in
+            let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
+            categoriesData?.append(currentCategory)
+        }
+        
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
+            self.collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - write CoreData data and convert our model
+    private func convertToModel(CoreDataCategories: [Categories]) {
+        var i = 0
+        for _ in CoreDataCategories {
+            let el = CategoriesModelElement(id: CoreDataCategories[i].id,
+                                            title: CoreDataCategories[i].title,
+                                            image: CoreDataCategories[i].image)
+            categoriesData?.append(el)
+            i += 1
+        }
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
+            self.collectionView.reloadData()
         }
     }
    

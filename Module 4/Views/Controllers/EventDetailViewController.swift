@@ -15,6 +15,7 @@ protocol helpButtonTapDelegate {
 class EventDetailViewController: UIViewController {
     //MARK: - current event detail data
     var currentEventDetail: EventModelElement
+    
     //MARK: - init data
     init(currentEventDetail: EventModelElement) {
         self.currentEventDetail = currentEventDetail
