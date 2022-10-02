@@ -46,7 +46,7 @@
 		F582019728D5EF4500259018 /* Categories+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019128D5EF4500259018 /* Categories+CoreDataProperties.swift */; };
 		F582019828D5EF4500259018 /* ActionButton+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019228D5EF4500259018 /* ActionButton+CoreDataClass.swift */; };
 		F582019928D5EF4500259018 /* ActionButton+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F582019328D5EF4500259018 /* ActionButton+CoreDataProperties.swift */; };
-		F590697028E977BC00F6185D /* CategoriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590696F28E977BC00F6185D /* CategoriesService.swift */; };
+		F590697028E977BC00F6185D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590696F28E977BC00F6185D /* DataService.swift */; };
 		F590697328E97EDF00F6185D /* UserDefaultClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697228E97EDF00F6185D /* UserDefaultClient.swift */; };
 		F590697528E983D900F6185D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697428E983D900F6185D /* NetworkManager.swift */; };
 		F590697928E9A29300F6185D /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F590697828E9A29300F6185D /* PersistanceManager.swift */; };
@@ -106,7 +106,7 @@
 		F582019128D5EF4500259018 /* Categories+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		F582019228D5EF4500259018 /* ActionButton+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionButton+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		F582019328D5EF4500259018 /* ActionButton+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionButton+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		F590696F28E977BC00F6185D /* CategoriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesService.swift; sourceTree = "<group>"; };
+		F590696F28E977BC00F6185D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		F590697228E97EDF00F6185D /* UserDefaultClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultClient.swift; sourceTree = "<group>"; };
 		F590697428E983D900F6185D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F590697828E9A29300F6185D /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 		F5C2ADFC28B0C0040031B6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F590696F28E977BC00F6185D /* CategoriesService.swift */,
+				F590696F28E977BC00F6185D /* DataService.swift */,
 				F52BE7D728DA558700E4F22A /* Networking */,
 				F52BE7D628DA554F00E4F22A /* Persistance */,
 			);
@@ -624,7 +624,7 @@
 				F582019428D5EF4500259018 /* Event+CoreDataClass.swift in Sources */,
 				F5A927DE28ABA9C500E8DA4E /* MainTabBarController.swift in Sources */,
 				F590697928E9A29300F6185D /* PersistanceManager.swift in Sources */,
-				F590697028E977BC00F6185D /* CategoriesService.swift in Sources */,
+				F590697028E977BC00F6185D /* DataService.swift in Sources */,
 				F527D42228AB878200E3E792 /* AppDelegate.swift in Sources */,
 				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
 				F547F8ED28B960AB006D215B /* R.generated.swift in Sources */,

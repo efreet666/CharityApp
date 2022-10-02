@@ -25,5 +25,20 @@ final class AlamofireClient {
         return categoryData ?? CategoriesModel()
     }
     
+    static func fetchEventData() -> EventModel {
+        
+        var eventData: EventModel?
+        
+        AlamofireManager.requestEventData(NetworkingURL.eventURL) { result in
+            switch result {
+            case .success(let data):
+                print(data)
+                eventData = data
+            case .failure(let err):
+                print(err)
+            }
+        }
+        return eventData ?? EventModel()
+    }
 }
 
