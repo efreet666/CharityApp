@@ -18,7 +18,7 @@ enum ObtainEventResult {
     case failure(Error)
 }
 
-class AlamofireManager {
+final class AlamofireManager {
     
     class func requestCategoryData(_ Url: URL, completion: @escaping (ObtainCategoryResult) -> Void) {
         AF.request(Url).responseDecodable(of: CategoriesModel.self) { responseJson in

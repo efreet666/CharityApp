@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class DataStoreManager {
+final class DataStoreManager {
     
     // MARK: - Core Data stack
 

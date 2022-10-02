@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AlamofireClient {
+final class AlamofireClient {
     
     static func fetchCategoryData() -> CategoriesModel {
         

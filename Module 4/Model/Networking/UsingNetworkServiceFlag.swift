@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Choose DB for use
-class UsingNetworkServiceFlag {
+final class UsingNetworkServiceFlag {
     
     enum NetworkServices {
         case URLSession
@@ -16,5 +16,5 @@ class UsingNetworkServiceFlag {
     }
     
     // MARK: - Flag
-    static let flag: NetworkServices = .URLSession
+    static let flag: NetworkServices = .Alamofire
 }

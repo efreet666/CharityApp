@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Choose DB for use
-class UsingDataBaseFlag {
+final class UsingDataBaseFlag {
     
     enum dataBases {
         case coreData
@@ -16,5 +16,5 @@ class UsingDataBaseFlag {
     }
     
     // MARK: - Flag
-    static let flag: dataBases = .coreData
+    static let flag: dataBases = .Realm
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkingURL {
+final class NetworkingURL {
     
     static let categoryURL = URL(string: "https://6329cdf14c626ff832caf8ad.mockapi.io/CategotyData")!
     

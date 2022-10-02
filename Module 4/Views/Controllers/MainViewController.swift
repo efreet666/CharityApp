@@ -42,133 +42,34 @@ final class MainViewController: UIViewController {
         setupCollectionView()
         setupNavBar()
         showActivityIndicator()
-        
-//        setupPersistance()
-        
-        //categoriesData = CategoriesService.getCategories()
-        setupUI()
+        setupData()
     }
-    func setupUI() {
+    
+    func setupData() {
         DispatchQueue.global(qos: .userInitiated).sync {
-        
-        self.categoriesData = CategoriesService.getCategories()
-        
-            print(self.categoriesData)
+            
+            // MARK: - Get data
+            self.categoriesData = CategoriesService.getCategories()
+            
             DispatchQueue.main.async {
-                        self.activityView.stopAnimating()
-                        self.collectionView.reloadData()
-                        print("update end")
-                    }
+                self.activityView.stopAnimating()
+                self.collectionView.reloadData()
+                self.checkLoadedData(categoriesData: self.categoriesData ?? CategoriesModel())
+                print("updated")
+            }
         }
-       
     }
-    
-//    private func setupPersistance() {
-//        // MARK: - Check flag for using DB
-//        switch UsingDataBaseFlag.flag {
-//
-//        case .coreData:
-//            DispatchQueue.global(qos: .userInitiated).async {
-//                // MARK: - save data from network request
-//                CoreDataClient.saveCategoryData(categoriesData: self.categoryDataRequest())
-//
-//                // MARK: - Read data from CoreData
-//                self.categories = CoreDataClient.readCategoryData()
-//
-//                // MARK: - Convert to our model
-//                ///self.convertCoreDataToModel(CoreDataCategories: self.categories)
-//            }
-//
-//        case .Realm:
-//            DispatchQueue.global(qos: .userInitiated).sync {
-//                // MARK: - save data from network to Realm
-//                RealmClient.saveCategoryData(categoriesData: self.categoryDataRequest())
-//
-//                // MARK: - Convert to our model
-//                self.convertRealmDataToModel()
-//            }
-//        }
-//    }
-    
-//    private func categoryDataRequest() -> CategoriesModel {
-//        var requestData = self.networkRequestData()
-//        if requestData.isEmpty {
-//            requestData = LocalJSONData.parseCategoryDataFromJSON()
-//        }
-//        return requestData
-//    }
-    
-//    private func networkRequestData() -> CategoriesModel { // completion block
-//
-//        var categoryData: CategoriesModel?
-//        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
-//
-//        // MARK: - Check flag
-//        switch UsingNetworkServiceFlag.flag {
-//
-//        case .URLSession:
-//            let categoryRequest = Request(title: "")
-//            URLSessionManager().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
-//                switch result {
-//                case .success(let data):
-//                    print(data)
-//                    categoryData = data
-//                case .failure(let error):
-//                    print(error)
-//                }
-//                semaphore.signal()
-//            }
-//            semaphore.wait()
-//
-//        case .Alamofire:
-//            AlamofireManager.requestCategoryData(NetworkingURL.categoryURL) { result in
-//                switch result {
-//                case .success(let categoriesData):
-//                    print(categoriesData)
-//                    categoryData = categoriesData
-//                case .failure(let err):
-//                    print(err)
-//                }
-//            }
-//        }
-//        return categoryData ?? CategoriesModel()
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
-//    // MARK: - write Realm data and convert our model
-//    private func convertRealmDataToModel() {
-//        let data = RealmClient.readCategoryData()
-//        data.forEach { category in
-//            let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
-//            categoriesData?.append(currentCategory)
-//        }
-//
-//        DispatchQueue.main.async {
-//            self.activityView.stopAnimating()
-//            self.collectionView.reloadData()
-//        }
-//    }
-    
-//    // MARK: - write CoreData data and convert our model
-//    private func convertCoreDataToModel(CoreDataCategories: [Categories]) {
-//        var i = 0
-//        for _ in CoreDataCategories {
-//            let el = CategoriesModelElement(id: CoreDataCategories[i].id,
-//                                            title: CoreDataCategories[i].title,
-//                                            image: CoreDataCategories[i].image)
-//            categoriesData?.append(el)
-//            i += 1
-//        }
-//        DispatchQueue.main.async {
-//            self.activityView.stopAnimating()
-//            self.collectionView.reloadData()
-//        }
-//    }
-    
+    private func checkLoadedData(categoriesData: CategoriesModel) {
+        if categoriesData.isEmpty {
+            errorAlert(title: R.string.localizable.errorTitle() , message: R.string.localizable.erroSubtitle(), style: .alert)
+        }
+    }
     // MARK: - setup collectionView
     private func setupCollectionView() {
         // MARK: - collection view layout
@@ -202,9 +103,8 @@ final class MainViewController: UIViewController {
     
     func errorAlert(title: String, message: String, style: UIAlertController.Style){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
-            
+            self.setupData()
         }
         
         alertController.addAction(action)

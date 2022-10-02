@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataClient {
+final class CoreDataClient {
     
     // MARK: - Save data to CoreData
     static func saveCategoryData(categoriesData: CategoriesModel) {

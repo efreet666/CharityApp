@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalJSONData {
+final class LocalJSONData {
     
     static func parseCategoryDataFromJSON() -> CategoriesModel {
         return Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
