@@ -32,4 +32,23 @@ final class URLSessionClient {
         
     }
     
+    static func fetchEventData() -> EventModel {
+        var eventData: EventModel?
+        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
+        
+            let categoryRequest = Request(title: "")
+            URLSessionManager().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    eventData = data
+                case .failure(let error):
+                    print(error)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+        
+        return eventData ?? EventModel()
+    }
 }

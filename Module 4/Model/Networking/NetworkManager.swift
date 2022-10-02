@@ -32,4 +32,28 @@ final class NetworkManager {
             return categoriesModelData ?? CategoriesModel()
         }
     }
+    
+    static func fetchEventData() -> EventModel {
+        
+        var EventModelData: EventModel? = []
+        
+        // MARK: - Check flag
+        switch UsingNetworkServiceFlag.flag {
+            
+        case .URLSession:
+            EventModelData = URLSessionClient.fetchEventData()
+            
+        case .Alamofire:
+            EventModelData = AlamofireClient.fetchEventData()
+        }
+        
+        
+        // MARK: - Check if data == nil, parse from LocalJSON
+        if EventModelData?.count == 0 {
+            EventModelData = LocalJSONData.parseEventDataFromJSON()
+            return EventModelData ?? EventModel()
+        } else {
+            return EventModelData ?? EventModel()
+        }
+    }
 }

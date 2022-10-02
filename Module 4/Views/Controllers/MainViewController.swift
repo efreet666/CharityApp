@@ -12,7 +12,6 @@ import Rswift
 final class MainViewController: UIViewController {
     
     private var categoriesData: CategoriesModel? = []
-    private var categories = [Categories]()
     
     private enum Constants {
         static let headerHeight: CGFloat = 57
@@ -49,7 +48,7 @@ final class MainViewController: UIViewController {
         DispatchQueue.global(qos: .userInitiated).sync {
             
             // MARK: - Get data
-            self.categoriesData = CategoriesService.getCategories()
+            self.categoriesData = DataService.getCategories()
             
             DispatchQueue.main.async {
                 self.activityView.stopAnimating()

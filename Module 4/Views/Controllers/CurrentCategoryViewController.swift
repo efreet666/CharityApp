@@ -13,8 +13,7 @@ final class CurrentCategoryViewController: UIViewController {
     var currentCategoryTitle: String?
     var currentCategoryId: String = ""
     
-    private var categoryEvents = [Event]()
-    private var categoryNewsArray: [EventModelElement] = []
+    private var categoryNewsArray: EventModel = []
     
     private enum Constants {
         static let cellHeight: CGFloat = 413
@@ -35,33 +34,19 @@ final class CurrentCategoryViewController: UIViewController {
         setupTableView()
         configureNavBar()
         showActivityIndicator()
-        
-        setupPersistance()
+  
+        setupData()
     }
-    // MARK: - Persistance setup
-    private func setupPersistance() {
-        // MARK: - Check flag for using DB
-        switch UsingDataBaseFlag.flag {
+    
+    func setupData() {
+        DispatchQueue.global(qos: .userInitiated).sync {
             
-        case .coreData:
-            DispatchQueue.global(qos: .userInitiated).async {
-                // MARK: - save data from network request
-                CoreDataClient.saveEventData(eventData: self.eventDataRequest())
-                
-                // MARK: - Read data from CoreData
-                self.categoryEvents = CoreDataClient.readEventData()
-                
-                // MARK: - Convert to our model
-                self.convertCoreDataToModel(eventDataCategories: self.categoryEvents)
-            }
+            // MARK: - Get data
+            self.categoryNewsArray = DataService.getEvents(currentCategoryId: currentCategoryId)
             
-        case .Realm:
-            DispatchQueue.global(qos: .userInitiated).sync {
-                // MARK: - save data from network to Realm
-                RealmClient.saveEventData(eventsData: self.eventDataRequest())
-                
-                // MARK: - Convert to our model
-                self.convertRealmDataToModel()
+            DispatchQueue.main.async {
+                self.activityView.stopAnimating()
+                self.newsTableView.reloadData()
             }
         }
     }
@@ -70,138 +55,7 @@ final class CurrentCategoryViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
-    
-    // MARK: - Data request
-    private func eventDataRequest() -> EventModel {
-        var requestData = self.networkRequestData()
-        if requestData.isEmpty {
-            requestData = LocalJSONData.parseEventDataFromJSON()
-        }
-        return requestData
-    }
-    
-    // MARK: - Network request
-    func networkRequestData() -> EventModel {
-        
-        var eventData: EventModel?
-        let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
-        
-        // MARK: - Check flag
-        switch UsingNetworkServiceFlag.flag {
-            
-        case .URLSession:
-            let categoryRequest = Request(title: "")
-            URLSessionManager().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
-                switch result {
-                case .success(let data):
-                    print(data)
-                    eventData = data
-                case .failure(let error):
-                    print(error)
-                }
-                semaphore.signal()
-            }
-            semaphore.wait()
-            
-        case .Alamofire:
-            AlamofireManager.requestEventData(NetworkingURL.eventURL) { result in
-                switch result {
-                case .success(let data):
-                    print(data)
-                    eventData = data
-                case .failure(let err):
-                    print(err)
-                }
-            }
-        }
-        return eventData ?? EventModel()
-    }
-    
-    // MARK: - write Realm data
-    private func convertRealmDataToModel() {
-        let data = RealmClient.readEventData()
-        var currentEventArray: [EventModelElement] = []
-        
-        // MARK: - create action buttons array
-        data.forEach { currentEvent in
-            var actionButtonArray : [EventActionButton]? = []
-            currentEvent.actionButtons.forEach { event in
-                actionButtonArray?.append(EventActionButton(buttonTitle: event.buttonTitle, buttonID: event.buttonID))
-            }
-            
-            // MARK: - create category element
-            let currentCategory: EventModelElement = EventModelElement(id: currentEvent.id,
-                                                                       category: Array(currentEvent.category),
-                                                                       images: Array(currentEvent.images),
-                                                                       title: currentEvent.title,
-                                                                       subTitle: currentEvent.subTitle,
-                                                                       timeout: currentEvent.timeout,
-                                                                       fond: currentEvent.fond,
-                                                                       adress: currentEvent.adress,
-                                                                       phones: currentEvent.phones,
-                                                                       infoText: currentEvent.infoText,
-                                                                       actionButtons: actionButtonArray )
-            currentEventArray.append(currentCategory)
-            print(currentCategory)
-        }
-        
-        // MARK: - filter category array by id
-        currentEventArray.forEach { (event) in
-            let currentCategoryArray = event.category!.compactMap { $0 as String }
-            if currentCategoryArray.contains(self.currentCategoryId) {
-                self.categoryNewsArray.append(event)
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.activityView.stopAnimating()
-            self.newsTableView.reloadData()
-        }
-    }
-    // MARK: - convert data from CoreData to model
-    private func convertCoreDataToModel(eventDataCategories: [Event]) {
-        let actionButtonData = CoreDataClient.readActionButtonData()
-        var currentEventArray: [EventModelElement] = []
-        var i = 0
-        var actionButtons : [EventActionButton]? = []
-        
-        for _ in eventDataCategories {
-            
-            for action in actionButtonData {
-                actionButtons?.append(EventActionButton(buttonTitle: action.buttonTitle, buttonID: action.buttonID))
-            }
-            
-            let el = EventModelElement(id: eventDataCategories[i].id,
-                                       category: eventDataCategories[i].category,
-                                       images: eventDataCategories[i].images,
-                                       title: eventDataCategories[i].title,
-                                       subTitle: eventDataCategories[i].subTitle,
-                                       timeout: eventDataCategories[i].timeout,
-                                       fond: eventDataCategories[i].fond,
-                                       adress: eventDataCategories[i].adress,
-                                       phones: eventDataCategories[i].phones,
-                                       infoText: eventDataCategories[i].infoText,
-                                       actionButtons: actionButtons)
-            
-            currentEventArray.append(el)
-            i += 1
-            actionButtons = []
-        }
-        
-        // MARK: - filter category array by id
-        currentEventArray.forEach { (event) in
-            let currentCategoryArray = event.category!.compactMap { $0 as String }
-            if currentCategoryArray.contains(self.currentCategoryId) {
-                self.categoryNewsArray.append(event)
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.newsTableView.reloadData()
-            self.activityView.stopAnimating()
-        }
-    }
-    
+
     // MARK: - Show activity view
     private func showActivityIndicator() {
         self.activityView = Spinner.activityIndicator(style: .large,
