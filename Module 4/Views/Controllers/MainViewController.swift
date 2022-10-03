@@ -11,6 +11,8 @@ import Rswift
 
 final class MainViewController: UIViewController {
     
+    private let dataServise = DataService()
+    
     private var categoriesData: CategoriesModel? = []
     
     private enum Constants {
@@ -44,11 +46,11 @@ final class MainViewController: UIViewController {
         setupData()
     }
     
-    func setupData() {
+    private func setupData() {
         DispatchQueue.global(qos: .userInitiated).sync {
             
             // MARK: - Get data
-            self.categoriesData = DataService.getCategories()
+            self.categoriesData = dataServise.getCategories()
             
             DispatchQueue.main.async {
                 self.activityView.stopAnimating()
@@ -73,7 +75,7 @@ final class MainViewController: UIViewController {
     private func setupCollectionView() {
         // MARK: - collection view layout
         let layout = UICollectionViewFlowLayout() // UICollectionViewCompositionalLayout
-        // UICollecrtionViewDiffableDataSource
+        /// Use UICollectionViewDiffableDataSource
         layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
@@ -100,7 +102,7 @@ final class MainViewController: UIViewController {
         
     }
     
-    func errorAlert(title: String, message: String, style: UIAlertController.Style){
+    private func errorAlert(title: String, message: String, style: UIAlertController.Style){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
             self.setupData()
@@ -111,7 +113,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - back button
-    @objc func popVC() {
+    @objc private func popVC() {
         print("Button tapped")
         // MARK: - close application
         exit(-1)

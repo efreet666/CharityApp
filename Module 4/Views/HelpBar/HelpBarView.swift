@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HelpBarView: UIView {
+final class HelpBarView: UIView {
     
     var delegate: helpButtonTapDelegate?
     

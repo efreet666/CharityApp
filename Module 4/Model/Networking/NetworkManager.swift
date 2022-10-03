@@ -9,48 +9,53 @@ import Foundation
 
 final class NetworkManager {
     
-    static func fetchCategoryData() -> CategoriesModel {
+    private let urlSessionClient = URLSessionClient()
+    private let alamofireClient = AlamofireClient()
+    private let localJSONData = LocalJSONData()
+    private let usingNetworkServiceFlag = UsingNetworkServiceFlag()
+    
+    public func fetchCategoryData() -> CategoriesModel {
         
         var categoriesModelData: CategoriesModel? = [] 
         
         // MARK: - Check flag
-        switch UsingNetworkServiceFlag.flag {
+        switch usingNetworkServiceFlag.flag {
             
         case .URLSession:
-            categoriesModelData = URLSessionClient.fetchCategoryData()
+            categoriesModelData = urlSessionClient.fetchCategoryData()
             
         case .Alamofire:
-            categoriesModelData = AlamofireClient.fetchCategoryData()
+            categoriesModelData = alamofireClient.fetchCategoryData()
         }
         
         
         // MARK: - Check if data == nil, parse from LocalJSON
         if categoriesModelData?.count == 0 {
-            categoriesModelData = LocalJSONData.parseCategoryDataFromJSON()
+            categoriesModelData = localJSONData.parseCategoryDataFromJSON()
             return categoriesModelData ?? CategoriesModel()
         } else {
             return categoriesModelData ?? CategoriesModel()
         }
     }
     
-    static func fetchEventData() -> EventModel {
+    public func fetchEventData() -> EventModel {
         
         var EventModelData: EventModel? = []
         
         // MARK: - Check flag
-        switch UsingNetworkServiceFlag.flag {
+        switch usingNetworkServiceFlag.flag {
             
         case .URLSession:
-            EventModelData = URLSessionClient.fetchEventData()
+            EventModelData = urlSessionClient.fetchEventData()
             
         case .Alamofire:
-            EventModelData = AlamofireClient.fetchEventData()
+            EventModelData = alamofireClient.fetchEventData()
         }
         
         
         // MARK: - Check if data == nil, parse from LocalJSON
         if EventModelData?.count == 0 {
-            EventModelData = LocalJSONData.parseEventDataFromJSON()
+            EventModelData = localJSONData.parseEventDataFromJSON()
             return EventModelData ?? EventModel()
         } else {
             return EventModelData ?? EventModel()

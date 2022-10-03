@@ -9,33 +9,37 @@ import Foundation
 
 final class DataService {
     
+    private let userDefaultClient = UserDefaultClient()
+    private let persistanceManager = PersistanceManager()
+    private let networkManager = NetworkManager()
+    
     // MARK: - Categories
-    static func getCategories() -> CategoriesModel {
+    public func getCategories() -> CategoriesModel {
         var categoryData: CategoriesModel? = []
         
        // MARK: - Check if data
-        if UserDefaultClient.retrieveFlagHasCategoryData() == true {
-            return PersistanceManager.fetchCatagoryData()
+        if userDefaultClient.retrieveFlagHasCategoryData() == true {
+            return persistanceManager.fetchCatagoryData()
         } else {
-            categoryData = NetworkManager.fetchCategoryData()
-            PersistanceManager.saveCategoryData(categoriesData: categoryData ?? CategoriesModel())
-            categoryData = PersistanceManager.fetchCatagoryData()
+            categoryData = networkManager.fetchCategoryData()
+            persistanceManager.saveCategoryData(categoriesData: categoryData ?? CategoriesModel())
+            categoryData = persistanceManager.fetchCatagoryData()
         }
         
         return categoryData ?? CategoriesModel()
     }
     
     // MARK: - Events
-    static func getEvents(currentCategoryId: String) -> EventModel {
+    public func getEvents(currentCategoryId: String) -> EventModel {
         var eventData: EventModel? = []
         
        // MARK: - Check if data
-        if UserDefaultClient.retrieveFlagHasEventData() == true {
-            return PersistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
+        if userDefaultClient.retrieveFlagHasEventData() == true {
+            return persistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
         } else {
-            eventData = NetworkManager.fetchEventData()
-            PersistanceManager.saveEventData(eventData: eventData ?? EventModel())
-            eventData = PersistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
+            eventData = networkManager.fetchEventData()
+            persistanceManager.saveEventData(eventData: eventData ?? EventModel())
+            eventData = persistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
         }
         return eventData ?? EventModel()
     }

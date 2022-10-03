@@ -8,6 +8,6 @@
 import Foundation
 
 struct DataPath {
-    static let categoryData = "categoryData.json"
-    static let eventData = "eventData.json"
+    public let categoryData = "categoryData.json"
+    public let eventData = "eventData.json"
 }

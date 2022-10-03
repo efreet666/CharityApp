@@ -12,7 +12,7 @@ protocol helpButtonTapDelegate {
     func helpButtonAction(buttonTitle: String)
 }
 
-class EventDetailViewController: UIViewController {
+final class EventDetailViewController: UIViewController {
     //MARK: - current event detail data
     var currentEventDetail: EventModelElement
     

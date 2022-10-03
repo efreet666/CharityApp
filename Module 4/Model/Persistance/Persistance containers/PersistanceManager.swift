@@ -9,39 +9,44 @@ import Foundation
 
 final class PersistanceManager {
     
-    static func saveCategoryData(categoriesData: CategoriesModel) {
-        switch UsingDataBaseFlag.flag {
+    private let userDefaultClient = UserDefaultClient()
+    private let usingDataBaseFlag = UsingDataBaseFlag()
+    private let coreDataClient = CoreDataClient()
+    private let realmClient = RealmClient()
+    
+    public func saveCategoryData(categoriesData: CategoriesModel) {
+        switch usingDataBaseFlag.flag {
         case .coreData:
-            CoreDataClient.saveCategoryData(categoriesData: categoriesData)
+            coreDataClient.saveCategoryData(categoriesData: categoriesData)
         case .Realm:
-            RealmClient.saveCategoryData(categoriesData: categoriesData)
+            realmClient.saveCategoryData(categoriesData: categoriesData)
         }
-        UserDefaultClient.storeFlagHasCategoryData(isContain: true)
+        userDefaultClient.storeFlagHasCategoryData(isContain: true)
     }
     
-    static func saveEventData(eventData: EventModel) {
-        switch UsingDataBaseFlag.flag {
+    public func saveEventData(eventData: EventModel) {
+        switch usingDataBaseFlag.flag {
         case .coreData:
-            CoreDataClient.saveEventData(eventData: eventData)
+            coreDataClient.saveEventData(eventData: eventData)
         case .Realm:
-            RealmClient.saveEventData(eventsData: eventData)
+            realmClient.saveEventData(eventsData: eventData)
         }
-        UserDefaultClient.storeFlagHasEventData(isContain: true)
+        userDefaultClient.storeFlagHasEventData(isContain: true)
     }
     
     
-    static func fetchCatagoryData() -> CategoriesModel {
+    public func fetchCatagoryData() -> CategoriesModel {
         
         var categoriesData: CategoriesModel? = []
         
-        switch UsingDataBaseFlag.flag {
+        switch usingDataBaseFlag.flag {
             
             // MARK: - CoreData
         case .coreData:
             
             DispatchQueue.global(qos: .userInitiated).sync {
                 // MARK: - read data
-                let CoreDataCategories = CoreDataClient.readCategoryData()
+                let CoreDataCategories = coreDataClient.readCategoryData()
                 
                 // MARK: - convert coreData to our CategoriesModel
                 var i = 0
@@ -58,34 +63,32 @@ final class PersistanceManager {
             
             // MARK: - Realm
         case .Realm:
-            DispatchQueue.global(qos: .userInitiated).sync {
-                let data = RealmClient.readCategoryData()
+                let data = realmClient.readCategoryData()
                 data.forEach { category in
                     let currentCategory: CategoriesModelElement = CategoriesModelElement(id: category.id, title: category.title, image: category.image)
                     categoriesData?.append(currentCategory)
                 }
-            }
         }
         return categoriesData ?? CategoriesModel()
     }
     
     
-    static func fetchEventData(currentCategoryId: String) -> [EventModelElement] {
+    public func fetchEventData(currentCategoryId: String) -> [EventModelElement] {
         
         let currentCategoryId: String = currentCategoryId
         var categoryNewsArray: [EventModelElement] = []
         
-        switch UsingDataBaseFlag.flag {
+        switch usingDataBaseFlag.flag {
             
             // MARK: - CoreData
         case .coreData:
             
             DispatchQueue.global(qos: .userInitiated).sync {
                 // MARK: - read data
-                let eventDataCategories = CoreDataClient.readEventData()
+                let eventDataCategories = coreDataClient.readEventData()
                 
                 // MARK: - convert coreData to our CategoriesModel
-                let actionButtonData = CoreDataClient.readActionButtonData()
+                let actionButtonData = coreDataClient.readActionButtonData()
                 var currentEventArray: [EventModelElement] = []
                 var i = 0
                 var actionButtons : [EventActionButton]? = []
@@ -126,7 +129,7 @@ final class PersistanceManager {
             
             // MARK: - Realm
         case .Realm:
-            let data = RealmClient.readEventData()
+            let data = realmClient.readEventData()
             var currentEventArray: [EventModelElement] = []
             
             // MARK: - create action buttons array

@@ -9,12 +9,14 @@ import Foundation
 
 final class LocalJSONData {
     
-    static func parseCategoryDataFromJSON() -> CategoriesModel {
-        return Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+    private let dataPath = DataPath()
+    
+    public func parseCategoryDataFromJSON() -> CategoriesModel {
+        return Bundle.main.decode(CategoriesModel.self, from: dataPath.categoryData)
     }
     
-    static func parseEventDataFromJSON() -> EventModel {
-        return Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+    public func parseEventDataFromJSON() -> EventModel {
+        return Bundle.main.decode(EventModel.self, from: dataPath.eventData)
     }
     
 }

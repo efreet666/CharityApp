@@ -177,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				F54F43D928BE1C0900C03947 /* DataParser.swift */,
-				F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */,
 				F52BE7DC28DB632700E4F22A /* LocalJSONData.swift */,
+				F54F43DB28BE6A7200C03947 /* PathToDataFile.swift */,
 			);
 			path = Parsing;
 			sourceTree = "<group>";
@@ -248,8 +248,8 @@
 				F590697428E983D900F6185D /* NetworkManager.swift */,
 				F52BE7DF28DB785900E4F22A /* Alamofire */,
 				F52BE7DE28DB783700E4F22A /* URLSession */,
-				F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */,
-				F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */,
+				F590697E28EA2BB200F6185D /* Flag */,
+				F590697F28EA2BC300F6185D /* URL */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -386,6 +386,22 @@
 				F590697628E9A1C300F6185D /* Persistance flag */,
 			);
 			path = "Persistance containers";
+			sourceTree = "<group>";
+		};
+		F590697E28EA2BB200F6185D /* Flag */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7E228DB7CA000E4F22A /* UsingNetworkServiceFlag.swift */,
+			);
+			path = Flag;
+			sourceTree = "<group>";
+		};
+		F590697F28EA2BC300F6185D /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				F52BE7D828DA55B000E4F22A /* NetworkingURL.swift */,
+			);
+			path = URL;
 			sourceTree = "<group>";
 		};
 		F598040728C29F970050AE63 /* HelpBar */ = {

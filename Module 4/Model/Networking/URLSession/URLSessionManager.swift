@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public enum RequestType: String {
     case GET, POST
 }
@@ -36,7 +35,7 @@ extension APIRequest {
     }
 }
 
-class Request: APIRequest {
+final class Request: APIRequest {
     var method = RequestType.GET
     var path = ""
     var parameters = [String: String]()
@@ -51,9 +50,9 @@ enum APIError: Error {
     case SomeError
 }
 
-class URLSessionManager {
+final class URLSessionManager {
     
-    func send<T: Codable>(_ apiRequest: APIRequest, URL: URL, completion: @escaping (Result<T, APIError>) -> Void) {
+    public func send<T: Codable>(_ apiRequest: APIRequest, URL: URL, completion: @escaping (Result<T, APIError>) -> Void) {
         
         let request = apiRequest.request(with: URL)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in

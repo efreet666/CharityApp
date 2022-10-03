@@ -10,6 +10,8 @@ import SnapKit
 
 final class CurrentCategoryViewController: UIViewController {
     
+    private let dataServise = DataService()
+    
     var currentCategoryTitle: String?
     var currentCategoryId: String = ""
     
@@ -38,11 +40,11 @@ final class CurrentCategoryViewController: UIViewController {
         setupData()
     }
     
-    func setupData() {
+    private func setupData() {
         DispatchQueue.global(qos: .userInitiated).sync {
             
             // MARK: - Get data
-            self.categoryNewsArray = DataService.getEvents(currentCategoryId: currentCategoryId)
+            self.categoryNewsArray = dataServise.getEvents(currentCategoryId: currentCategoryId)
             
             DispatchQueue.main.async {
                 self.activityView.stopAnimating()

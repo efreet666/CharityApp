@@ -7,7 +7,8 @@
 
 import UIKit
 import Rswift
-class CategoryCollectionViewCell: UICollectionViewCell {
+
+final class CategoryCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "CategoryCollectionViewCell"
     
