@@ -8,13 +8,13 @@
 import Foundation
 import CoreData
 
-class CoreDataManager {
+final class CoreDataClient {
     
     // MARK: - Save data to CoreData
-    static func saveCategoryData() {
+    static func saveCategoryData(categoriesData: CategoriesModel) {
+        
         // MARK: - check if data loaded from JSON
         if readCategoryData().isEmpty {
-            let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
             
             let storeManager = DataStoreManager()
             let context = storeManager.persistentContainer.viewContext
@@ -32,11 +32,9 @@ class CoreDataManager {
         }
     }
     
-    static func saveEventData() {
+    static func saveEventData(eventData: EventModel) {
         // MARK: - check if data loaded from JSON
         if readEventData().isEmpty && readActionButtonData().isEmpty {
-            
-            let eventData = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
             
             let storeManager = DataStoreManager()
             let context = storeManager.persistentContainer.viewContext

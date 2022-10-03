@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class DataStoreManager {
+final class DataStoreManager {
     
     // MARK: - Core Data stack
 
@@ -26,7 +26,6 @@ class DataStoreManager {
     // MARK: - Core Data Saving support
 
     func saveContext() {
-        
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

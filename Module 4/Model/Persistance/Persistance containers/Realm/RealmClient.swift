@@ -8,10 +8,10 @@
 import Foundation
 import RealmSwift
 
-class RealmDataManager {
+final class RealmClient {
     
-    static func saveCategoryData() {
-        let categoriesData = Bundle.main.decode(CategoriesModel.self, from: DataPath.categoryData)
+    static func saveCategoryData(categoriesData: CategoriesModel) {
+        
         let realm = try! Realm()
         
         if realm.objects(Category.self).isEmpty {
@@ -31,8 +31,7 @@ class RealmDataManager {
         }
     }
     
-    static func saveEventData() {
-        let eventsData = Bundle.main.decode(EventModel.self, from: DataPath.eventData)
+    static func saveEventData(eventsData: EventModel) {
         let realm = try! Realm()
         
         if realm.objects(Events.self).isEmpty {
