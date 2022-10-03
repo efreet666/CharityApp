@@ -7,7 +7,12 @@
 
 import Foundation
 
-final class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchCategoryData() -> CategoriesModel
+    func fetchEventData() -> EventModel
+}
+
+final class NetworkManager: NetworkManagerProtocol {
     
     private let urlSessionClient = URLSessionClient()
     private let alamofireClient = AlamofireClient()

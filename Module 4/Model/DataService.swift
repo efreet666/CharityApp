@@ -7,7 +7,12 @@
 
 import Foundation
 
-final class DataService {
+protocol DataServiceProtocol {
+    func getCategories() -> CategoriesModel
+    func getEvents(currentCategoryId: String) -> EventModel
+}
+
+final class DataService: DataServiceProtocol {
     
     private let userDefaultClient = UserDefaultClient()
     private let persistanceManager = PersistanceManager()

@@ -7,7 +7,14 @@
 
 import Foundation
 
-final class PersistanceManager {
+protocol PersistanceManagerProtocol {
+    func saveCategoryData(categoriesData: CategoriesModel)
+    func saveEventData(eventData: EventModel)
+    func fetchCatagoryData() -> CategoriesModel
+    func fetchEventData(currentCategoryId: String) -> [EventModelElement]
+}
+
+final class PersistanceManager: PersistanceManagerProtocol {
     
     private let userDefaultClient = UserDefaultClient()
     private let usingDataBaseFlag = UsingDataBaseFlag()
