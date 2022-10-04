@@ -11,7 +11,7 @@
         <!--Помочь-->
         <scene sceneID="vhE-gZ-F2V">
             <objects>
-                <viewController id="6jF-fD-iIq" customClass="MainViewController" customModule="Module_4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6jF-fD-iIq" customClass="CategoriesView" customModule="Module_4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xtm-av-jZx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

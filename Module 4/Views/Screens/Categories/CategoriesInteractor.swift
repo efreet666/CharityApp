@@ -8,10 +8,12 @@
 import Foundation
 
 protocol CategoriesBisnesslogic {
-    func requestCategories() -> CategoriesModel
+    func requestCategories()
 }
 
 class CategoriesInteractor {
+    private let dataServise = DataService()
+    private var categoriesData: CategoriesModel? = []
     
     var presenter: CategoriesPresentationLogic?
 }
@@ -19,10 +21,15 @@ class CategoriesInteractor {
 // MARK: - Bisness Logic
 extension CategoriesInteractor: CategoriesBisnesslogic {
     
-    func requestCategories() -> CategoriesModel {
-        presenter?.presentData()
+    func requestCategories() {
         
-        return CategoriesModel()
+        DispatchQueue.global(qos: .userInitiated).sync {
+            // MARK: - Get data
+            self.categoriesData = dataServise.getCategories()
+        }
+        
+        presenter?.presentData(data: self.categoriesData ?? CategoriesModel())
+        
     }
     
 }

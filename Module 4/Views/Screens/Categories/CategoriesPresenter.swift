@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CategoriesPresentationLogic {
-    func presentData()
+    func presentData(data: CategoriesModel)
 }
 
 class CategoriesPresenter {
@@ -19,7 +19,9 @@ class CategoriesPresenter {
 
 // MARK: - Presentation Logic
 extension CategoriesPresenter: CategoriesPresentationLogic {
-    func presentData() {
+    func presentData(data: CategoriesModel) {
+        let viewModel = data
         
+        view?.display(categoriesData: viewModel)
     }
 }
