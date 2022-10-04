@@ -14,7 +14,7 @@ protocol CategoriesPresentationLogic {
 class CategoriesPresenter {
     
     // MARK: - External vars
-    weak var view: CategoriesDisplayLogic?
+    weak var viewController: CategoriesDisplayLogic?
 }
 
 // MARK: - Presentation Logic
@@ -22,6 +22,6 @@ extension CategoriesPresenter: CategoriesPresentationLogic {
     func presentData(data: CategoriesModel) {
         let viewModel = data
         
-        view?.display(categoriesData: viewModel)
+        viewController?.display(categoriesData: viewModel)
     }
 }
