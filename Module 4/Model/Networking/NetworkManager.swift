@@ -19,7 +19,7 @@ final class NetworkManager: NetworkManagerProtocol {
     private let localJSONData = LocalJSONData()
     private let usingNetworkServiceFlag = UsingNetworkServiceFlag()
     
-    public func fetchCategoryData() -> CategoriesModel {
+     func fetchCategoryData() -> CategoriesModel {
         
         var categoriesModelData: CategoriesModel? = [] 
         
@@ -43,7 +43,7 @@ final class NetworkManager: NetworkManagerProtocol {
         }
     }
     
-    public func fetchEventData() -> EventModel {
+    func fetchEventData() -> EventModel {
         
         var EventModelData: EventModel? = []
         

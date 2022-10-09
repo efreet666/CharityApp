@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CategoriesPresentationLogic {
-    func presentData(data: CategoriesModel)
+    func presentData(data: CategoriesEnum.ViewDidLoad.Response?)
 }
 
 class CategoriesPresenter {
@@ -19,8 +20,10 @@ class CategoriesPresenter {
 
 // MARK: - Presentation Logic
 extension CategoriesPresenter: CategoriesPresentationLogic {
-    func presentData(data: CategoriesModel) {
-        let viewModel = data
+    func presentData(data: CategoriesEnum.ViewDidLoad.Response?) {
+        
+        
+        let viewModel = CategoriesEnum.ViewDidLoad.ViewModel.init(categotiesArray: data!.categotiesArray)
         
         viewController?.display(categoriesData: viewModel)
     }

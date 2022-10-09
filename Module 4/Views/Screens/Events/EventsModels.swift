@@ -9,7 +9,7 @@ import Foundation
 
 enum EventsEnum {
 
-  enum UseCase {
+  enum ViewDidLoad {
 
     struct Request { }
 

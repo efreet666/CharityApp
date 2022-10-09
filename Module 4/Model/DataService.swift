@@ -19,7 +19,7 @@ final class DataService: DataServiceProtocol {
     private let networkManager = NetworkManager()
     
     // MARK: - Categories
-    public func getCategories() -> CategoriesModel {
+    func getCategories() -> CategoriesModel {
         var categoryData: CategoriesModel? = []
         
        // MARK: - Check if data
@@ -35,7 +35,7 @@ final class DataService: DataServiceProtocol {
     }
     
     // MARK: - Events
-    public func getEvents(currentCategoryId: String) -> EventModel {
+    func getEvents(currentCategoryId: String) -> EventModel {
         var eventData: EventModel? = []
         
        // MARK: - Check if data

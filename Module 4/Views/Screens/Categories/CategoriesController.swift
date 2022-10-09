@@ -9,7 +9,7 @@ import UIKit
 import Rswift
 
 protocol CategoriesDisplayLogic: AnyObject {
-        func display(categoriesData: CategoriesModel)
+    func display(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel)
 }
 
 class CategoriesController: UIViewController {
@@ -17,9 +17,11 @@ class CategoriesController: UIViewController {
     // MARK: - External vars
     private(set) var router: CategoriesRoutingLogic?
     
+    private lazy var adapter = CategoriesAdapter()
+    
     // MARK: - Internal vars
     private var interactor: CategoriesBisnesslogic?
-    private var categoriesData: CategoriesModel? = []
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -74,6 +76,7 @@ class CategoriesController: UIViewController {
         showActivityIndicator()
         
         interactor?.requestCategories()
+        
     }
     
     
@@ -97,8 +100,8 @@ class CategoriesController: UIViewController {
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView.dataSource = adapter
+        collectionView.delegate = adapter
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
         collectionView.register(HeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionReusableView.identifier)
         view.addSubview(collectionView)
@@ -140,66 +143,67 @@ class CategoriesController: UIViewController {
 
 // MARK: - Display logic
 extension CategoriesController: CategoriesDisplayLogic {
-    
-    func display(categoriesData: CategoriesModel) {
-        self.categoriesData = categoriesData
+    func display(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel) {
         self.activityView.stopAnimating()
         self.collectionView.reloadData()
-        self.checkLoadedData(categoriesData: self.categoriesData ?? CategoriesModel())
+        print(categoriesData)
+//        self.checkLoadedData(categoriesData: categoriesData ?? CategoriesModel())
     }
+    
+    
+//    func display(categoriesData: CategoriesModel) {
+//        //self.categoriesData = categoriesData
+//        self.activityView.stopAnimating()
+//        self.collectionView.reloadData()
+//        self.checkLoadedData(categoriesData: categoriesData ?? CategoriesModel())
+//    }
 }
 
-// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-extension CategoriesController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = categoriesData?.count {
-            return count
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
-        else {
-            return UICollectionViewCell()
-        }
-        cell.backgroundColor = UIColor.lightGreyColor
-        cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
-                   ,text: categoriesData?[indexPath.row].title ?? "")
-        return cell
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
-        let currentCategoryId = categoriesData?[indexPath.row].id ?? ""
-        
-        router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
-        
-//        let vc = CurrentCategoryViewController()
-//        vc.currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
-//        vc.currentCategoryId = categoriesData?[indexPath.row].id ?? ""
-//        self.hidesBottomBarWhenPushed = false
-//        self.navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                           withReuseIdentifier: HeaderCollectionReusableView.identifier,
-                                                                           for: indexPath) as? HeaderCollectionReusableView else  { return UICollectionReusableView()}
-        // MARK: - configure header
-        header.configure()
-        return header
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension CategoriesController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
-    }
-}
+//// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+//extension CategoriesController: UICollectionViewDelegate, UICollectionViewDataSource {
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if let count = categoriesData?.count {
+//            return count
+//        } else {
+//            return 0
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
+//        else {
+//            return UICollectionViewCell()
+//        }
+//        cell.backgroundColor = UIColor.lightGreyColor
+//        cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
+//                   ,text: categoriesData?[indexPath.row].title ?? "")
+//        return cell
+//        
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
+//        let currentCategoryId = categoriesData?[indexPath.row].id ?? ""
+//        
+//        router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
+//        
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+//                                                                           withReuseIdentifier: HeaderCollectionReusableView.identifier,
+//                                                                           for: indexPath) as? HeaderCollectionReusableView else  { return UICollectionReusableView()}
+//        // MARK: - configure header
+//        header.configure()
+//        return header
+//    }
+//}
+//
+//// MARK: - UICollectionViewDelegateFlowLayout
+//extension CategoriesController: UICollectionViewDelegateFlowLayout {
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
+//    }
+//}

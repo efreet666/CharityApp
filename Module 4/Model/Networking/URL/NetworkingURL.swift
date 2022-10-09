@@ -7,10 +7,21 @@
 
 import Foundation
 
-final class NetworkingURL {
+class NetworkingURLManager {
     
-    public let categoryURL = URL(string: "https://6329cdf14c626ff832caf8ad.mockapi.io/CategotyData")!
-    
-    public let eventURL = URL(string: "https://6329cdf14c626ff832caf8ad.mockapi.io/eventData")!
+    func stringToURL(urlString: String) -> URL? {
+        let url: URL = URL(string: urlString)!
+            return url
+    }
 }
+
+enum URLString: String {
+    
+    case categoryURL = "https://6329cdf14c626ff832caf8ad.mockapi.io/CategotyData"
+    
+    case eventURL = "https://6329cdf14c626ff832caf8ad.mockapi.io/eventData"
+}
+
+
+
 

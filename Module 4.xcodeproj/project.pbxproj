@@ -69,6 +69,8 @@
 		F5CC84A428ECC78C00D5E3D0 /* EventDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC849E28ECC78C00D5E3D0 /* EventDetailsInteractor.swift */; };
 		F5CC84A528ECC78C00D5E3D0 /* EventDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC849F28ECC78C00D5E3D0 /* EventDetailsController.swift */; };
 		F5CC84A728ECC78C00D5E3D0 /* EventDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC84A128ECC78C00D5E3D0 /* EventDetailsRouter.swift */; };
+		F5CC84A928EDCBA700D5E3D0 /* CategoriesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC84A828EDCBA700D5E3D0 /* CategoriesModels.swift */; };
+		F5CC84AB28EF4BB700D5E3D0 /* CategoriesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CC84AA28EF4BB700D5E3D0 /* CategoriesAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +141,8 @@
 		F5CC849E28ECC78C00D5E3D0 /* EventDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsInteractor.swift; sourceTree = "<group>"; };
 		F5CC849F28ECC78C00D5E3D0 /* EventDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsController.swift; sourceTree = "<group>"; };
 		F5CC84A128ECC78C00D5E3D0 /* EventDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsRouter.swift; sourceTree = "<group>"; };
+		F5CC84A828EDCBA700D5E3D0 /* CategoriesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModels.swift; sourceTree = "<group>"; };
+		F5CC84AA28EF4BB700D5E3D0 /* CategoriesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,10 +503,12 @@
 		F5CC848428EB815200D5E3D0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				F5CC848528EB81DD00D5E3D0 /* CategoriesController.swift */,
 				F5CC848728EB832C00D5E3D0 /* CategoriesPresenter.swift */,
 				F5CC848928EB856600D5E3D0 /* CategoriesInteractor.swift */,
 				F5CC849928ECA99E00D5E3D0 /* CategoriesRouter.swift */,
+				F5CC84A828EDCBA700D5E3D0 /* CategoriesModels.swift */,
+				F5CC84AA28EF4BB700D5E3D0 /* CategoriesAdapter.swift */,
+				F5CC848528EB81DD00D5E3D0 /* CategoriesController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				F54F43DC28BE6A7200C03947 /* PathToDataFile.swift in Sources */,
 				F547F8ED28B960AB006D215B /* R.generated.swift in Sources */,
 				F547AE5828C8925700316699 /* CharityModel.xcdatamodeld in Sources */,
+				F5CC84AB28EF4BB700D5E3D0 /* CategoriesAdapter.swift in Sources */,
 				F5CC849328EC730000D5E3D0 /* EventsModels.swift in Sources */,
 				F590697328E97EDF00F6185D /* UserDefaultClient.swift in Sources */,
 				F5CC849A28ECA99E00D5E3D0 /* CategoriesRouter.swift in Sources */,
@@ -721,6 +728,7 @@
 				F5CC848A28EB856600D5E3D0 /* CategoriesInteractor.swift in Sources */,
 				F5CC849528EC730000D5E3D0 /* EventsController.swift in Sources */,
 				F5797F0728AF808000FE85D3 /* CategoryCollectionViewCell.swift in Sources */,
+				F5CC84A928EDCBA700D5E3D0 /* CategoriesModels.swift in Sources */,
 				F5CC849728EC730000D5E3D0 /* EventsRouter.swift in Sources */,
 				F527D42428AB878200E3E792 /* SceneDelegate.swift in Sources */,
 				F52BE7D928DA55B000E4F22A /* NetworkingURL.swift in Sources */,
