@@ -19,7 +19,6 @@ final class EventDetailsController: UIViewController {
     
     var interactor: EventDetailsBusinessLogic?
     var router: (EventDetailsRoutingLogic & EventDetailsDataPassing)?
-    private lazy var adapter = EventDetailAdapter()
     
     //MARK: - current event detail data
     //var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
