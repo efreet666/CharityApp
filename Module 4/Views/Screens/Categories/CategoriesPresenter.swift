@@ -22,8 +22,7 @@ class CategoriesPresenter {
 extension CategoriesPresenter: CategoriesPresentationLogic {
     func presentData(data: CategoriesEnum.ViewDidLoad.Response?) {
         
-        
-        let viewModel = CategoriesEnum.ViewDidLoad.ViewModel.init(categotiesArray: data!.categotiesArray)
+        let viewModel = CategoriesEnum.ViewDidLoad.ViewModel.init(categotiesArray: data?.categotiesArray ?? [])
         
         viewController?.display(categoriesData: viewModel)
     }

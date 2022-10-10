@@ -12,21 +12,20 @@ protocol EventDetailsBusinessLogic: AnyObject {
 }
 
 protocol EventDetailsDataStore: AnyObject {
-    var currentEventDetail: EventModelElement? { get set }
+    var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement? { get set }
 }
 
 class EventDetailsInteractor: EventDetailsDataStore {
-  
-    var currentEventDetail: EventModelElement?
-
+    var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
     
-  var presenter: EventDetailsPresentationLogic?
-
+    var presenter: EventDetailsPresentationLogic?
+    
 }
 
 extension EventDetailsInteractor: EventDetailsBusinessLogic {
     func fetchEventDetails() {
-        presenter?.presentData(eventData: currentEventDetail! ) // Force unwrap - FIX
+        
+        presenter?.presentData(eventData: currentEventDetail!) // Force unwrap - FIX
     }
     
     

@@ -28,7 +28,7 @@ final class HelpBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(eventModelElement: EventModelElement) {
+    func configure(eventModelElement: EventDetailEnum.ViewDidLoad.EventModelElement) {
         guard let eventData = eventModelElement.actionButtons else { return}
         var counter = 0
         eventData.forEach({ event in

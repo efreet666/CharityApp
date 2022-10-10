@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EventDetailsDisplayLogic: AnyObject {
-    func display(detailEventData: EventModelElement)
+    func display(detailEventData: EventDetailEnum.ViewDidLoad.EventModelElement)
 }
 
 protocol helpButtonTapDelegate {
@@ -19,10 +19,10 @@ final class EventDetailsController: UIViewController {
     
     var interactor: EventDetailsBusinessLogic?
     var router: (EventDetailsRoutingLogic & EventDetailsDataPassing)?
+    private lazy var adapter = EventDetailAdapter()
     
     //MARK: - current event detail data
-    var currentEventDetail: EventModelElement?
-    
+    var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
     
     // MARK: Object lifecycle
     
@@ -583,12 +583,12 @@ final class EventDetailsController: UIViewController {
 }
 
 extension EventDetailsController: EventDetailsDisplayLogic {
-    func display(detailEventData: EventModelElement) {
+    func display(detailEventData: EventDetailEnum.ViewDidLoad.EventModelElement) {
         self.currentEventDetail = detailEventData
         configureNavBar()
         setupUI()
         configireTextData()
-        bottomHelpBarView.configure(eventModelElement: currentEventDetail!) // Force unwrap - FIX
+        bottomHelpBarView.configure(eventModelElement: currentEventDetail!)
     }
 }
 

@@ -1,27 +1,27 @@
 //
-//  EventsModels.swift
+//  EventDetailsModel.swift
 //  Module 4
 //
-//  Created by Влад Бокин on 04.10.2022.
+//  Created by Влад Бокин on 10.10.2022.
 //
 
 import Foundation
 
-enum EventsEnum {
+enum EventDetailEnum {
     
     enum ViewDidLoad {
         
         struct Request { }
         
-        struct Response {
-            var EventArray: [EventModelElement?]
-            var currentCategoryTitle = ""
-        }
-        
-        struct ViewModel {
-            var EventArray: [EventModelElement?]
-            var currentCategoryTitle = ""
-        }
+//        struct Response {
+//            var EventArray: [EventModelElement?]
+//            var currentCategoryTitle = ""
+//        }
+//        
+//        struct ViewModel {
+//            var EventArray: [EventModelElement?]
+//            var currentCategoryTitle = ""
+//        }
         
         struct EventModelElement {
             let id: String?

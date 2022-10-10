@@ -38,8 +38,6 @@ class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDat
         let currentCategoryTitle = categoriesData?.categotiesArray[indexPath.row]?.title ?? ""
         let currentCategoryId = categoriesData?.categotiesArray[indexPath.row]?.id ?? ""
         
-        
-        //router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
         delegate?.cellTap(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
     }
     

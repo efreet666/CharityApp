@@ -149,9 +149,8 @@ class CategoriesController: UIViewController {
 extension CategoriesController: CategoriesDisplayLogic {
     func display(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel) {
         self.activityView.stopAnimating()
-        print(categoriesData)
         adapter.categoriesData = categoriesData
-        
+    
         self.collectionView.reloadData()
         self.checkLoadedData(categoriesData: categoriesData)
     }

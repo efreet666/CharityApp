@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EventDetailsPresentationLogic: AnyObject {
-    func presentData(eventData: EventModelElement)
+    func presentData(eventData: EventDetailEnum.ViewDidLoad.EventModelElement)
 }
 
 final class EventDetailsPresenter {
@@ -18,7 +18,7 @@ final class EventDetailsPresenter {
 }
 
 extension EventDetailsPresenter: EventDetailsPresentationLogic {
-    func presentData(eventData: EventModelElement) {
+    func presentData(eventData: EventDetailEnum.ViewDidLoad.EventModelElement) {
         let viewModel = eventData
         viewController?.display(detailEventData: viewModel)
     }
