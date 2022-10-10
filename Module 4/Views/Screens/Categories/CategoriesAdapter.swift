@@ -12,6 +12,8 @@ class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDat
     
     var categoriesData: CategoriesEnum.ViewDidLoad.ViewModel? = CategoriesEnum.ViewDidLoad.ViewModel.init(categotiesArray: [])
     
+    var delegate: CellTapDelegate?
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = categoriesData?.categotiesArray.count {
             return count
@@ -36,8 +38,9 @@ class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDat
         let currentCategoryTitle = categoriesData?.categotiesArray[indexPath.row]?.title ?? ""
         let currentCategoryId = categoriesData?.categotiesArray[indexPath.row]?.id ?? ""
         
-        //router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
         
+        //router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
+        delegate?.cellTap(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -49,3 +52,4 @@ class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDat
         return header
     }
 }
+

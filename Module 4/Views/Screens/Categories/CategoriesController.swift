@@ -12,6 +12,10 @@ protocol CategoriesDisplayLogic: AnyObject {
     func display(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel)
 }
 
+protocol CellTapDelegate {
+    func cellTap(currentCategoryTitle: String, currentCategoryId: String)
+}
+
 class CategoriesController: UIViewController {
     
     // MARK: - External vars
@@ -76,7 +80,7 @@ class CategoriesController: UIViewController {
         showActivityIndicator()
         
         interactor?.requestCategories()
-        
+        adapter.delegate = self
     }
     
     
@@ -96,7 +100,7 @@ class CategoriesController: UIViewController {
         // MARK: - collection view layout
         let layout = UICollectionViewFlowLayout() // UICollectionViewCompositionalLayout
         /// Use UICollectionViewDiffableDataSource
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 9, bottom: 9, right: 9)
+        layout.sectionInset = UIEdgeInsets(top: 9, left: 9, bottom: 9, right: 9)
         layout.itemSize = CGSize(width: (self.view.frame.width - 28) / 2, height: 160)
         self.collectionView = UICollectionView(frame: CGRect(x: 0, y: 84, width: self.view.frame.size.width, height: self.view.frame.size.height), collectionViewLayout: layout)
         
@@ -151,61 +155,12 @@ extension CategoriesController: CategoriesDisplayLogic {
         self.collectionView.reloadData()
         self.checkLoadedData(categoriesData: categoriesData)
     }
-    
-    
-//    func display(categoriesData: CategoriesModel) {
-//        //self.categoriesData = categoriesData
-//        self.activityView.stopAnimating()
-//        self.collectionView.reloadData()
-//        self.checkLoadedData(categoriesData: categoriesData ?? CategoriesModel())
-//    }
 }
 
-//// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-//extension CategoriesController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if let count = categoriesData?.count {
-//            return count
-//        } else {
-//            return 0
-//        }
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell
-//        else {
-//            return UICollectionViewCell()
-//        }
-//        cell.backgroundColor = UIColor.lightGreyColor
-//        cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
-//                   ,text: categoriesData?[indexPath.row].title ?? "")
-//        return cell
-//        
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
-//        let currentCategoryId = categoriesData?[indexPath.row].id ?? ""
-//        
-//        router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
-//        
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-//                                                                           withReuseIdentifier: HeaderCollectionReusableView.identifier,
-//                                                                           for: indexPath) as? HeaderCollectionReusableView else  { return UICollectionReusableView()}
-//        // MARK: - configure header
-//        header.configure()
-//        return header
-//    }
-//}
-//
-//// MARK: - UICollectionViewDelegateFlowLayout
-//extension CategoriesController: UICollectionViewDelegateFlowLayout {
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: self.view.frame.size.width, height: Constants.headerHeight)
-//    }
-//}
+extension CategoriesController: CellTapDelegate {
+    func cellTap(currentCategoryTitle: String, currentCategoryId: String) {
+        router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
+    }
+    
+    
+}
