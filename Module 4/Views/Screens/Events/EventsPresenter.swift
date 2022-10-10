@@ -20,7 +20,6 @@ final class EventsPresenter {
 extension EventsPresenter: EventsPresentationLogic {
     func presentData(data: EventsEnum.ViewDidLoad.Response) {
         let viewModel: EventsEnum.ViewDidLoad.ViewModel =  EventsEnum.ViewDidLoad.ViewModel(EventArray: data.EventArray, currentCategoryTitle: data.currentCategoryTitle)
-        
         viewController?.display(viewModel: viewModel)
     }
     

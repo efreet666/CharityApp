@@ -13,6 +13,7 @@ class EventsAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     var categoryNewsArray: [EventsEnum.ViewDidLoad.EventModelElement?] = []
     
     var delegate: EventTapDelegate?
+    
     private enum Constants {
         static let cellHeight: CGFloat = 413
     }
@@ -34,7 +35,6 @@ class EventsAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentEventDetail = categoryNewsArray[indexPath.row]
-        //router?.navigateToDetailEvent(currentEventDetail: currentEventDetail)
         delegate?.eventCellTapped(currentEventDetail: EventsEnum.ViewDidLoad.ViewModel(EventArray: [currentEventDetail]))
     }
     

@@ -40,15 +40,15 @@ final class DataService: DataServiceProtocol {
         
        // MARK: - Check if data
         if userDefaultClient.retrieveFlagHasEventData() == true {
+            print(persistanceManager.fetchEventData(currentCategoryId: currentCategoryId))
             return persistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
         } else {
             eventData = networkManager.fetchEventData()
             persistanceManager.saveEventData(eventData: eventData ?? EventModel())
             eventData = persistanceManager.fetchEventData(currentCategoryId: currentCategoryId)
         }
+        print(eventData)
         return eventData ?? EventModel()
     }
-    
-    
     
 }

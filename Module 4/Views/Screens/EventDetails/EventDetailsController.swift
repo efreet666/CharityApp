@@ -22,7 +22,7 @@ final class EventDetailsController: UIViewController {
     private lazy var adapter = EventDetailAdapter()
     
     //MARK: - current event detail data
-    var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
+    //var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
     
     // MARK: Object lifecycle
     
@@ -273,25 +273,25 @@ final class EventDetailsController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.mainGreenColor
         self.tabBarController?.tabBar.isHidden = true
+        setupUI()
         bottomHelpBarView.delegate = self
-        
         interactor?.fetchEventDetails()
         
     }
     
-    private func configireTextData() {
+    private func configireTextData(eventModelElement: EventDetailEnum.ViewDidLoad.EventModelElement) {
         // MARK: - title label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
-        let attrString = NSMutableAttributedString(string: currentEventDetail?.title ?? "error")
+        let attrString = NSMutableAttributedString(string: eventModelElement.title ?? "error")
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         titleLabel.attributedText = attrString
        
         // MARK: - labels
-        timeoutLabel.text = currentEventDetail?.timeout
-        fondNameLabel.text = currentEventDetail?.fond
-        adressLabel.text = currentEventDetail?.adress
-        phoneLabel.text = currentEventDetail?.phones
+        timeoutLabel.text = eventModelElement.timeout
+        fondNameLabel.text = eventModelElement.fond
+        adressLabel.text = eventModelElement.adress
+        phoneLabel.text = eventModelElement.phones
         supportLabel.text = "У вас есть вопросы?"
         
         // MARK: - supportButton
@@ -306,12 +306,12 @@ final class EventDetailsController: UIViewController {
         supportButton.setAttributedTitle(attributeString, for: .normal)
         
         // MARK: - images
-        bigLeftImageView.image = UIImage(named: "\(currentEventDetail?.images?[0] ?? "")") ?? UIImage()
-        topRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[1] ?? "")") ?? UIImage()
-        bottomRightImageView.image = UIImage(named: "\(currentEventDetail?.images?[2] ?? "")") ?? UIImage()
+        bigLeftImageView.image = UIImage(named: "\(eventModelElement.images?[0] ?? "")") ?? UIImage()
+        topRightImageView.image = UIImage(named: "\(eventModelElement.images?[1] ?? "")") ?? UIImage()
+        bottomRightImageView.image = UIImage(named: "\(eventModelElement.images?[2] ?? "")") ?? UIImage()
         
         // MARK: - info event text
-        infoTextLabel.text = currentEventDetail?.infoText
+        infoTextLabel.text = eventModelElement.infoText
         
         // MARK: - open site button
         let siteTextAttributes: [NSAttributedString.Key: Any] = [
@@ -561,8 +561,8 @@ final class EventDetailsController: UIViewController {
         }
     }
     
-    private func configureNavBar() {
-        self.title = currentEventDetail?.title
+    private func configureNavBar(eventModelElement: EventDetailEnum.ViewDidLoad.EventModelElement) {
+        self.title = eventModelElement.title
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
                                           target: self,
@@ -577,18 +577,16 @@ final class EventDetailsController: UIViewController {
     // MARK: - Activity controller
     var activitiViewContorller: UIActivityViewController? = nil
     @objc func sharingLink() {
-        self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail?.title ?? "error"], applicationActivities: nil)
+        self.activitiViewContorller = UIActivityViewController(activityItems: [R.string.localizable.helpTitle()], applicationActivities: nil)
         self.present(self.activitiViewContorller!, animated: true, completion: nil)
     }
 }
 
 extension EventDetailsController: EventDetailsDisplayLogic {
     func display(detailEventData: EventDetailEnum.ViewDidLoad.EventModelElement) {
-        self.currentEventDetail = detailEventData
-        configureNavBar()
-        setupUI()
-        configireTextData()
-        bottomHelpBarView.configure(eventModelElement: currentEventDetail!)
+        configureNavBar(eventModelElement: detailEventData)
+        configireTextData(eventModelElement: detailEventData)
+        bottomHelpBarView.configure(eventModelElement: detailEventData)
     }
 }
 

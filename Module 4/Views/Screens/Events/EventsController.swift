@@ -122,7 +122,7 @@ extension EventsController: EventsDisplayLogic {
 
 extension EventsController: EventTapDelegate {
     func eventCellTapped(currentEventDetail: EventsEnum.ViewDidLoad.ViewModel) {
-        router?.navigateToDetailEvent(currentEventDetail: currentEventDetail.EventArray.first!!)
+        router?.navigateToDetailEvent(currentEventDetail: currentEventDetail.EventArray.first!!) // TWO force unwrap FIX!!
     }
     
   

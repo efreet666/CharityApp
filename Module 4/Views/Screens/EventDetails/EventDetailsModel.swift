@@ -11,17 +11,6 @@ enum EventDetailEnum {
     
     enum ViewDidLoad {
         
-        struct Request { }
-        
-//        struct Response {
-//            var EventArray: [EventModelElement?]
-//            var currentCategoryTitle = ""
-//        }
-//        
-//        struct ViewModel {
-//            var EventArray: [EventModelElement?]
-//            var currentCategoryTitle = ""
-//        }
         
         struct EventModelElement {
             let id: String?

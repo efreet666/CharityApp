@@ -16,5 +16,5 @@ final class UsingNetworkServiceFlag {
     }
     
     // MARK: - Flag
-    public let flag: NetworkServices = .URLSession
+    public let flag: NetworkServices = .Alamofire
 }
