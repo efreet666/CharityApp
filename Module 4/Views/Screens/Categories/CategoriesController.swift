@@ -86,8 +86,8 @@ class CategoriesController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    private func checkLoadedData(categoriesData: CategoriesModel) {
-        if categoriesData.isEmpty {
+    private func checkLoadedData(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel) {
+        if categoriesData.categotiesArray.isEmpty {
             errorAlert(title: R.string.localizable.errorTitle() , message: R.string.localizable.erroSubtitle(), style: .alert)
         }
     }
@@ -145,9 +145,11 @@ class CategoriesController: UIViewController {
 extension CategoriesController: CategoriesDisplayLogic {
     func display(categoriesData: CategoriesEnum.ViewDidLoad.ViewModel) {
         self.activityView.stopAnimating()
-        self.collectionView.reloadData()
         print(categoriesData)
-//        self.checkLoadedData(categoriesData: categoriesData ?? CategoriesModel())
+        adapter.categoriesData = categoriesData
+        
+        self.collectionView.reloadData()
+        self.checkLoadedData(categoriesData: categoriesData)
     }
     
     

@@ -10,10 +10,10 @@ import UIKit
 
 class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private var categoriesData: CategoriesModel? = []
+    var categoriesData: CategoriesEnum.ViewDidLoad.ViewModel? = CategoriesEnum.ViewDidLoad.ViewModel.init(categotiesArray: [])
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let count = categoriesData?.count {
+        if let count = categoriesData?.categotiesArray.count {
             return count
         } else {
             return 0
@@ -26,15 +26,15 @@ class CategoriesAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDat
             return UICollectionViewCell()
         }
         cell.backgroundColor = UIColor.lightGreyColor
-        cell.setup(image: UIImage(named: "\(categoriesData?[indexPath.row].image ?? "")") ?? UIImage()
-                   ,text: categoriesData?[indexPath.row].title ?? "")
+        cell.setup(image: UIImage(named: "\(categoriesData?.categotiesArray[indexPath.row]?.image ?? "")") ?? UIImage()
+                   ,text: categoriesData?.categotiesArray[indexPath.row]?.title ?? "")
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currentCategoryTitle = categoriesData?[indexPath.row].title ?? ""
-        let currentCategoryId = categoriesData?[indexPath.row].id ?? ""
+        let currentCategoryTitle = categoriesData?.categotiesArray[indexPath.row]?.title ?? ""
+        let currentCategoryId = categoriesData?.categotiesArray[indexPath.row]?.id ?? ""
         
         //router?.navigateToEvents(currentCategoryTitle: currentCategoryTitle, currentCategoryId: currentCategoryId)
         

@@ -13,7 +13,7 @@ protocol CategoriesBisnesslogic {
 
 class CategoriesInteractor {
     private let dataServise = DataService()
-    private var categoriesData: CategoriesEnum.ViewDidLoad.Response?
+    private var categoriesData: CategoriesEnum.ViewDidLoad.Response? = CategoriesEnum.ViewDidLoad.Response.init(categotiesArray: [])
     
     var presenter: CategoriesPresentationLogic?
 }
@@ -27,18 +27,16 @@ extension CategoriesInteractor: CategoriesBisnesslogic {
             // MARK: - Get data
             let data: CategoriesModel = dataServise.getCategories()
    
+           
             categoriesData?.categotiesArray = []
-
             data.forEach { el in
                 let categoriesElement: CategoriesEnum.ViewDidLoad.categoriesModel? = CategoriesEnum.ViewDidLoad.categoriesModel(id: el.id, title: el.title, image: el.image)
                 
                 
                 self.categoriesData?.categotiesArray.append(categoriesElement)
-                print(self.categoriesData)
             }
             
         }
-        print(self.categoriesData)
         presenter?.presentData(data: self.categoriesData)
         
     }
