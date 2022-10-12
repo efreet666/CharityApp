@@ -1,29 +1,54 @@
 //
-//  EventDetailViewController.swift
+//  EventDetailsController.swift
 //  Module 4
 //
-//  Created by Влад Бокин on 30.08.2022.
+//  Created by Влад Бокин on 04.10.2022.
 //
 
 import UIKit
-import SnapKit
+
+protocol EventDetailsDisplayLogic: AnyObject {
+    func display(detailEventData: EventDetailEnum.ViewDidLoad.EventModelElement)
+}
 
 protocol helpButtonTapDelegate {
     func helpButtonAction(buttonTitle: String)
 }
 
-class EventDetailViewController: UIViewController {
-    //MARK: - current event detail data
-    var currentEventDetail: EventModelElement
+final class EventDetailsController: UIViewController {
     
-    //MARK: - init data
-    init(currentEventDetail: EventModelElement) {
-        self.currentEventDetail = currentEventDetail
-        super.init(nibName: nil, bundle: nil)
+    var interactor: EventDetailsBusinessLogic?
+    var router: (EventDetailsRoutingLogic & EventDetailsDataPassing)?
+    
+    //MARK: - current event detail data
+    //var currentEventDetail: EventDetailEnum.ViewDidLoad.EventModelElement?
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup() {
+        let viewController = self
+        let interactor = EventDetailsInteractor()
+        let presenter = EventDetailsPresenter()
+        let router = EventDetailsRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
     
     private lazy var scrollView: UIScrollView = {
@@ -247,26 +272,25 @@ class EventDetailViewController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.mainGreenColor
         self.tabBarController?.tabBar.isHidden = true
-        bottomHelpBarView.delegate = self
-        configureNavBar()
         setupUI()
-        configireTextData()
-        bottomHelpBarView.configure(eventModelElement: currentEventDetail)
+        bottomHelpBarView.delegate = self
+        interactor?.fetchEventDetails()
+        
     }
     
-    private func configireTextData() {
+    private func configireTextData(eventModelElement: EventDetailEnum.ViewDidLoad.EventModelElement) {
         // MARK: - title label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
-        let attrString = NSMutableAttributedString(string: currentEventDetail.title ?? "error")
+        let attrString = NSMutableAttributedString(string: eventModelElement.title ?? "error")
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         titleLabel.attributedText = attrString
        
         // MARK: - labels
-        timeoutLabel.text = currentEventDetail.timeout
-        fondNameLabel.text = currentEventDetail.fond
-        adressLabel.text = currentEventDetail.adress
-        phoneLabel.text = currentEventDetail.phones
+        timeoutLabel.text = eventModelElement.timeout
+        fondNameLabel.text = eventModelElement.fond
+        adressLabel.text = eventModelElement.adress
+        phoneLabel.text = eventModelElement.phones
         supportLabel.text = "У вас есть вопросы?"
         
         // MARK: - supportButton
@@ -281,12 +305,12 @@ class EventDetailViewController: UIViewController {
         supportButton.setAttributedTitle(attributeString, for: .normal)
         
         // MARK: - images
-        bigLeftImageView.image = UIImage(named: "\(currentEventDetail.images?[0] ?? "")") ?? UIImage()
-        topRightImageView.image = UIImage(named: "\(currentEventDetail.images?[1] ?? "")") ?? UIImage()
-        bottomRightImageView.image = UIImage(named: "\(currentEventDetail.images?[2] ?? "")") ?? UIImage()
+        bigLeftImageView.image = UIImage(named: "\(eventModelElement.images?[0] ?? "")") ?? UIImage()
+        topRightImageView.image = UIImage(named: "\(eventModelElement.images?[1] ?? "")") ?? UIImage()
+        bottomRightImageView.image = UIImage(named: "\(eventModelElement.images?[2] ?? "")") ?? UIImage()
         
         // MARK: - info event text
-        infoTextLabel.text = currentEventDetail.infoText
+        infoTextLabel.text = eventModelElement.infoText
         
         // MARK: - open site button
         let siteTextAttributes: [NSAttributedString.Key: Any] = [
@@ -536,8 +560,8 @@ class EventDetailViewController: UIViewController {
         }
     }
     
-    private func configureNavBar() {
-        self.title = currentEventDetail.title
+    private func configureNavBar(eventModelElement: EventDetailEnum.ViewDidLoad.EventModelElement) {
+        self.title = eventModelElement.title
         let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
                                           style: .plain,
                                           target: self,
@@ -552,12 +576,20 @@ class EventDetailViewController: UIViewController {
     // MARK: - Activity controller
     var activitiViewContorller: UIActivityViewController? = nil
     @objc func sharingLink() {
-        self.activitiViewContorller = UIActivityViewController(activityItems: [currentEventDetail.title ?? "error"], applicationActivities: nil)
+        self.activitiViewContorller = UIActivityViewController(activityItems: [R.string.localizable.helpTitle()], applicationActivities: nil)
         self.present(self.activitiViewContorller!, animated: true, completion: nil)
     }
 }
 
-extension EventDetailViewController: helpButtonTapDelegate {
+extension EventDetailsController: EventDetailsDisplayLogic {
+    func display(detailEventData: EventDetailEnum.ViewDidLoad.EventModelElement) {
+        configureNavBar(eventModelElement: detailEventData)
+        configireTextData(eventModelElement: detailEventData)
+        bottomHelpBarView.configure(eventModelElement: detailEventData)
+    }
+}
+
+extension EventDetailsController: helpButtonTapDelegate {
     //MARK: - helpBar action
     func helpButtonAction(buttonTitle: String) {
         print(buttonTitle)

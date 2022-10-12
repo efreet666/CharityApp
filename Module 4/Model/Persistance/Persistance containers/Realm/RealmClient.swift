@@ -10,7 +10,7 @@ import RealmSwift
 
 final class RealmClient {
     
-    static func saveCategoryData(categoriesData: CategoriesModel) {
+    public func saveCategoryData(categoriesData: CategoriesModel) {
         
         let realm = try! Realm()
         
@@ -31,7 +31,7 @@ final class RealmClient {
         }
     }
     
-    static func saveEventData(eventsData: EventModel) {
+    public func saveEventData(eventsData: EventModel) {
         let realm = try! Realm()
         
         if realm.objects(Events.self).isEmpty {
@@ -67,12 +67,12 @@ final class RealmClient {
         }
     }
     
-    static func readCategoryData() -> (Results<Category>) {
+    public func readCategoryData() -> (Results<Category>) {
         let realm = try! Realm()
         return realm.objects(Category.self)
     }
     
-    static func readEventData() -> (Results<Events>) {
+    public func readEventData() -> (Results<Events>) {
         let realm = try! Realm()
         return realm.objects(Events.self)
     }

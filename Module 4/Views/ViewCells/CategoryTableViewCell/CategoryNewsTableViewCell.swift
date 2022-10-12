@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CategoryNewsTableViewCell: UITableViewCell {
+final class CategoryNewsTableViewCell: UITableViewCell {
 
     static let identifier = "CategoryNewsTableViewCell"
     

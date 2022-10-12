@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Rswift
 
 final class MainTabBarViewController: UITabBarController {
     
@@ -89,7 +90,7 @@ final class MainTabBarViewController: UITabBarController {
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
 
         // MARK: - Main VC
-        let helpVC = MainViewController()
+        let helpVC = CategoriesController()
         helpVC.tabBarItem.setTitleTextAttributes([.font: R.font.sfuiTextRegular(size: 10) ?? UIFont()], for: .normal)
         helpVC.tabBarItem.title = R.string.localizable.helpTabCategory()
         

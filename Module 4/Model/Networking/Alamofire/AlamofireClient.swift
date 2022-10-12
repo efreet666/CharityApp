@@ -9,11 +9,14 @@ import Foundation
 
 final class AlamofireClient {
     
-    static func fetchCategoryData() -> CategoriesModel {
+    private let networkingURLManager = NetworkingURLManager()
+    
+    func fetchCategoryData() -> CategoriesModel {
+        
         
         var categoryData: CategoriesModel?
         
-        AlamofireManager.requestCategoryData(NetworkingURL.categoryURL) { result in
+        AlamofireManager.requestCategoryData(networkingURLManager.stringToURL(urlString: URLString.categoryURL.rawValue)!) { result in
             switch result {
             case .success(let categoriesData):
                 print(categoriesData)
@@ -25,11 +28,11 @@ final class AlamofireClient {
         return categoryData ?? CategoriesModel()
     }
     
-    static func fetchEventData() -> EventModel {
+    func fetchEventData() -> EventModel {
         
         var eventData: EventModel?
         
-        AlamofireManager.requestEventData(NetworkingURL.eventURL) { result in
+        AlamofireManager.requestEventData(networkingURLManager.stringToURL(urlString: URLString.eventURL.rawValue)!) { result in
             switch result {
             case .success(let data):
                 print(data)

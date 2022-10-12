@@ -16,5 +16,5 @@ final class UsingDataBaseFlag {
     }
     
     // MARK: - Flag
-    static let flag: dataBases = .coreData
+    public let flag: dataBases = .Realm
 }

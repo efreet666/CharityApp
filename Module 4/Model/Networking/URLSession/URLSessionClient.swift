@@ -9,14 +9,16 @@ import Foundation
 
 final class URLSessionClient {
     
-    static func fetchCategoryData() -> CategoriesModel {
+    private let networkingURLManager = NetworkingURLManager()
+    
+    func fetchCategoryData() -> CategoriesModel {
         
         var categoryData: CategoriesModel?
         
         let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         let categoryRequest = Request(title: "")
         
-        URLSessionManager().send(categoryRequest, URL: NetworkingURL.categoryURL) { (result: Result<CategoriesModel, APIError>) -> Void in
+        URLSessionManager().send(categoryRequest, URL: networkingURLManager.stringToURL(urlString: URLString.categoryURL.rawValue)!) { (result: Result<CategoriesModel, APIError>) -> Void in
             switch result {
             case .success(let data):
                 print(data)
@@ -32,12 +34,12 @@ final class URLSessionClient {
         
     }
     
-    static func fetchEventData() -> EventModel {
+    func fetchEventData() -> EventModel {
         var eventData: EventModel?
         let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
         
             let categoryRequest = Request(title: "")
-            URLSessionManager().send(categoryRequest, URL: NetworkingURL.eventURL) { (result: Result<EventModel, APIError>) -> Void in
+            URLSessionManager().send(categoryRequest, URL: networkingURLManager.stringToURL(urlString: URLString.categoryURL.rawValue)!) { (result: Result<EventModel, APIError>) -> Void in
                 switch result {
                 case .success(let data):
                     print(data)

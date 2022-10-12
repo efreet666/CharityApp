@@ -11,7 +11,7 @@ import CoreData
 final class CoreDataClient {
     
     // MARK: - Save data to CoreData
-    static func saveCategoryData(categoriesData: CategoriesModel) {
+    public func saveCategoryData(categoriesData: CategoriesModel) {
         
         // MARK: - check if data loaded from JSON
         if readCategoryData().isEmpty {
@@ -32,7 +32,7 @@ final class CoreDataClient {
         }
     }
     
-    static func saveEventData(eventData: EventModel) {
+    public func saveEventData(eventData: EventModel) {
         // MARK: - check if data loaded from JSON
         if readEventData().isEmpty && readActionButtonData().isEmpty {
             
@@ -75,7 +75,7 @@ final class CoreDataClient {
     
     // MARK: - Read data from CoreData
     
-    static func readCategoryData() -> ([Categories]) {
+    public func readCategoryData() -> ([Categories]) {
         var categories = [Categories]()
         
         let storeManeger = DataStoreManager()
@@ -92,7 +92,7 @@ final class CoreDataClient {
         return categories
     }
     
-    static func readEventData() -> ([Event]) {
+    public func readEventData() -> ([Event]) {
         var events = [Event]()
         
         let storeManeger = DataStoreManager()
@@ -109,7 +109,7 @@ final class CoreDataClient {
         return events
     }
     
-    static func readActionButtonData() -> ([ActionButton]) {
+    public func readActionButtonData() -> ([ActionButton]) {
         var actionButton = [ActionButton]()
         
         let storeManeger = DataStoreManager()

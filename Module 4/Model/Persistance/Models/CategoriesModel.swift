@@ -12,4 +12,5 @@ struct CategoriesModelElement: Codable {
     var id, title, image: String?
 }
 
+
 typealias CategoriesModel = [CategoriesModelElement]
